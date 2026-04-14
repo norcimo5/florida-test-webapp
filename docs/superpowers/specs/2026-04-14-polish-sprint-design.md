@@ -20,7 +20,7 @@ export interface Question {
   en: QuestionEN
   es: QuestionES | null
   keywords: Keyword[]
-  explanation: string   // Spanish explanation shown after answering. English keywords bolded in JSX.
+  explanation?: string  // Optional: Spanish explanation shown after answering. Hidden if absent. English keywords bolded in JSX.
   category: Category
   source: string
 }
@@ -32,7 +32,7 @@ Add `explanation` to all 5 seed questions. Explanations are written in Spanish. 
 
 Explanations:
 
-- **q_0001** (flashing yellow): `"Flashing yellow significa reducir la velocidad y tener precaución al cruzar. Solo la flashing red obliga a detenerse por completo, igual que un STOP."`
+- **q_0001** (flashing yellow): `"Flashing yellow significa reducir la velocidad y tener precaución al cruzar. Solo la flashing red obliga a detenerse por completo, igual que un STOP."` — also add `{ "en": "flashing red", "es": "luz roja intermitente" }` to q_0001's keywords array so the term gets highlighted in the explanation.
 - **q_0002** (school bus): `"Cuando un school bus tiene sus red lights flashing, debes detenerte desde ambas direcciones en una calle sin división (undivided road). En carreteras divididas, solo se detienen los que van detrás."`
 - **q_0003** (school zone speed): `"El límite en una school zone con niños presentes es 20 mph en Florida. Recuerda: school zone + children present = 20 mph."`
 - **q_0004** (solid yellow line): `"Una solid yellow line en tu lado significa no adelantar (must not pass). Si la línea es discontinua en tu lado, puedes adelantar con precaución."`
@@ -54,7 +54,13 @@ weight(q) =
   studyAnswers[q.id].correct = true  → 1   (already correct)
 ```
 
-On "Siguiente", pick the next question by weighted random draw from the full filtered pool, excluding the current question ID to prevent back-to-back repeats. The counter shows `answered / total` (how many have been answered at least once), not a sequential position.
+On "Siguiente", pick the next question by weighted random draw from the full filtered pool, excluding the current question ID to prevent back-to-back repeats. The counter shows `answered / total` (how many have been answered at least once in this session), not a sequential position.
+
+**Session answers vs. persistent answers:**
+- `sessionAnswers`: `Record<string, StudyAnswer>` — local React state, not persisted. Tracks answers for the current session only. Used to control whether choices are clickable and whether ¿POR QUÉ? shows.
+- `progress.studyAnswers`: persisted to localStorage via `onProgressUpdate`. Used only for computing weights. Updated on every answer (same as before).
+
+When a recycled wrong question is drawn again, `sessionAnswers` does not have it — so it arrives fresh and the user can re-answer it. If they get it right this time, both `sessionAnswers` and `progress.studyAnswers` are updated (correct: true), reducing its future weight to 1.
 
 **Spanish chip** (`esVisible` state, default `true`):
 - Renders inside the main EN card, below the English question text
@@ -75,11 +81,12 @@ On "Siguiente", pick the next question by weighted random draw from the full fil
 - Answered wrong: `border: 2px solid #dc2626` (red)
 - Answered correct: `border: 2px solid #16a34a` (green)
 
-**¿POR QUÉ? box** appears after answering, inside the main card below the choices:
+**¿POR QUÉ? box** appears after answering, inside the main card below the choices, only if `question.explanation` is present:
 - Wrong: `background: #fff7ed`, `border: 1.5px solid #fed7aa`, label color `#ea580c`
 - Correct: `background: #f0fdf4`, `border: 1.5px solid #bbf7d0`, label color `#15803d`
 - Content: `question.explanation` with keyword highlighting applied (same regex mechanism)
 - Label text: `¿POR QUÉ?`
+- If `question.explanation` is absent or empty: box does not render at all
 
 **Progress bar** replaces the plain counter in the header:
 - Thin bar (`height: 5px`) + right-aligned `X / N` text
@@ -88,6 +95,8 @@ On "Siguiente", pick the next question by weighted random draw from the full fil
 - Bar fills based on `answeredCount / total`
 
 **"Anterior" button removed** — weighted random navigation has no meaningful "go back". Only "Siguiente →" button, full-width on mobile.
+
+**Bookmark button preserved** — moves to header right side as a small icon-only button (🔖 / 🔖 active state). Layout: `[← Inicio]  [progress bar + X/N]  [🔖]`.
 
 **Layout structure** (single column, mobile-first):
 ```
