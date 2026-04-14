@@ -162,6 +162,39 @@ All other screen tests (ExamMode, ResultsScreen, HomeScreen) should pass unchang
 
 ---
 
+---
+
+## Full Question Bank
+
+Replace the 5 seed questions in `src/data/questions.json` with a complete 2026 Florida DMV question bank (~120–150 questions) written from the Florida Driver Handbook. This makes the app self-contained with no scraper dependency.
+
+**Structure:** Same schema as existing seed questions. Every question has:
+- `en`: question text, 4 choices, correct index (0-based)
+- `es`: Spanish translation of question and all 4 choices
+- `keywords`: 2–3 key English terms with Spanish translations
+- `explanation`: Spanish explanation of why the correct answer is right (English keywords bolded in JSX at render time)
+- `category`: one of the 7 existing categories
+- `source`: `"flhsmv-2026"`
+
+**Category distribution (approximate):**
+| Category | Count |
+|---|---|
+| traffic-signals | ~25 |
+| speed-limits | ~20 |
+| right-of-way | ~20 |
+| school-zones | ~10 |
+| dui | ~15 |
+| road-markings | ~15 |
+| general | ~15 |
+
+**ExamMode:** already selects 50 questions at random per session — no code changes needed. With 120+ questions the randomization is meaningful.
+
+**StudyMode weighted random:** works across the full bank automatically — no code changes needed.
+
+**Scraper plan (`2026-04-13-scraper.md`):** shelved. Future question updates will be done by manually editing `questions.json`.
+
+---
+
 ## What this does NOT change
 
 - ExamMode logic — stays English-only, no explanations during exam
