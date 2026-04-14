@@ -1,0 +1,117 @@
+<h2>Section 3: Progress & Navigation</h2>
+<p class="subtitle">How should the user move through questions and track their progress? Pick the flow that fits best.</p>
+
+<div class="cards">
+
+  <!-- Option A: Linear quiz mode with progress bar -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:16px;background:#f8f9fa;border-radius:6px;font-size:12px;">
+      <!-- Top bar -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <div style="font-weight:700;color:#212529;">Examen de Práctica</div>
+        <div style="font-size:11px;color:#6c757d;">Pregunta 12 de 50</div>
+      </div>
+      <!-- Progress bar -->
+      <div style="background:#dee2e6;border-radius:10px;height:8px;margin-bottom:12px;">
+        <div style="background:#0d6efd;height:8px;border-radius:10px;width:24%;"></div>
+      </div>
+      <!-- Mini question preview -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+        <div style="background:#fff;border:1px solid #dee2e6;border-radius:4px;padding:8px;">
+          <div style="font-size:9px;font-weight:700;color:#6c757d;margin-bottom:4px;">🇺🇸 ENGLISH</div>
+          <div style="font-weight:600;color:#212529;font-size:11px;">What does a red traffic light mean?</div>
+        </div>
+        <div style="background:#fffbf0;border:1px solid #ffd966;border-radius:4px;padding:8px;">
+          <div style="font-size:9px;font-weight:700;color:#856404;margin-bottom:4px;">🇪🇸 ESPAÑOL</div>
+          <div style="font-weight:600;color:#212529;font-size:11px;">¿Qué significa una luz roja?</div>
+        </div>
+      </div>
+      <!-- Navigation buttons -->
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div style="padding:5px 12px;border:1px solid #dee2e6;border-radius:4px;color:#6c757d;font-size:11px;">← Anterior</div>
+        <div style="display:flex;gap:4px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:#198754;"></div>
+          <div style="width:8px;height:8px;border-radius:50%;background:#198754;"></div>
+          <div style="width:8px;height:8px;border-radius:50%;background:#0d6efd;"></div>
+          <div style="width:8px;height:8px;border-radius:50%;background:#dee2e6;"></div>
+          <div style="width:8px;height:8px;border-radius:50%;background:#dee2e6;"></div>
+        </div>
+        <div style="padding:5px 12px;background:#0d6efd;border-radius:4px;color:#fff;font-size:11px;">Siguiente →</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Linear Quiz</h3>
+      <p>Fixed sequence of questions with a progress bar. Next/Previous navigation. Answer all, then see results. Simple and exam-like.</p>
+    </div>
+  </div>
+
+  <!-- Option B: Category browser -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:16px;background:#f8f9fa;border-radius:6px;font-size:12px;">
+      <!-- Category pills -->
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;">
+        <div style="padding:4px 10px;background:#0d6efd;color:#fff;border-radius:20px;font-size:10px;font-weight:700;">Todas (50)</div>
+        <div style="padding:4px 10px;background:#fff;border:1px solid #dee2e6;border-radius:20px;font-size:10px;color:#6c757d;">🚦 Señales (18)</div>
+        <div style="padding:4px 10px;background:#fff;border:1px solid #dee2e6;border-radius:20px;font-size:10px;color:#6c757d;">🚗 Velocidad (12)</div>
+        <div style="padding:4px 10px;background:#fff;border:1px solid #dee2e6;border-radius:20px;font-size:10px;color:#6c757d;">🍺 DUI (10)</div>
+        <div style="padding:4px 10px;background:#fff;border:1px solid #dee2e6;border-radius:20px;font-size:10px;color:#6c757d;">🏫 Escuelas (10)</div>
+      </div>
+      <!-- Question list preview -->
+      <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:8px;">
+        <div style="display:flex;align-items:center;gap:8px;padding:6px 8px;background:#fff;border:1px solid #dee2e6;border-radius:4px;">
+          <div style="width:16px;height:16px;border-radius:50%;background:#198754;flex-shrink:0;"></div>
+          <div style="color:#212529;font-size:11px;">What does a red traffic light mean?</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:6px 8px;background:#fff;border:2px solid #0d6efd;border-radius:4px;">
+          <div style="width:16px;height:16px;border-radius:50%;background:#0d6efd;flex-shrink:0;"></div>
+          <div style="color:#212529;font-size:11px;font-weight:600;">When must you stop for a school bus?</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:6px 8px;background:#fff;border:1px solid #dee2e6;border-radius:4px;">
+          <div style="width:16px;height:16px;border-radius:50%;background:#dc3545;flex-shrink:0;"></div>
+          <div style="color:#212529;font-size:11px;">What is the speed limit in a school zone?</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:6px 8px;background:#fff;border:1px solid #dee2e6;border-radius:4px;">
+          <div style="width:16px;height:16px;border-radius:50%;background:#dee2e6;flex-shrink:0;"></div>
+          <div style="color:#6c757d;font-size:11px;">What does a yellow dashed line mean?</div>
+        </div>
+      </div>
+      <div style="font-size:10px;color:#6c757d;text-align:center;">🟢 Correcto · 🔴 Incorrecto · ⚪ Sin responder</div>
+    </div>
+    <div class="card-body">
+      <h3>B — Category Browser</h3>
+      <p>Filter by topic, pick any question. See green/red/grey status per question. Good for targeted study and reviewing missed questions.</p>
+    </div>
+  </div>
+
+  <!-- Option C: Both modes -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:16px;background:#f8f9fa;border-radius:6px;font-size:12px;">
+      <div style="text-align:center;margin-bottom:10px;font-weight:700;color:#212529;">Florida Driver's Test Prep</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="background:#0d6efd;color:#fff;border-radius:6px;padding:12px;text-align:center;">
+          <div style="font-size:20px;margin-bottom:4px;">📝</div>
+          <div style="font-weight:700;margin-bottom:2px;">Examen</div>
+          <div style="font-size:10px;opacity:0.85;">50 preguntas aleatorias</div>
+        </div>
+        <div style="background:#198754;color:#fff;border-radius:6px;padding:12px;text-align:center;">
+          <div style="font-size:20px;margin-bottom:4px;">📚</div>
+          <div style="font-weight:700;margin-bottom:2px;">Estudiar</div>
+          <div style="font-size:10px;opacity:0.85;">Navegar por categoría</div>
+        </div>
+      </div>
+      <div style="margin-top:10px;padding:8px;background:#fff;border:1px solid #dee2e6;border-radius:4px;">
+        <div style="font-size:10px;font-weight:700;color:#6c757d;margin-bottom:4px;">TU PROGRESO</div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;">
+          <span>✅ Correctas: <b>32</b></span>
+          <span>❌ Incorrectas: <b>8</b></span>
+          <span>⚪ Pendientes: <b>10</b></span>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Exam + Study Modes</h3>
+      <p>Home screen lets user choose: timed exam simulation (random 50 Qs) or free-browse study mode by category. Progress dashboard shown on home.</p>
+    </div>
+  </div>
+
+</div>
