@@ -1,0 +1,95 @@
+<h2>Section 2: Exam Screen Layout</h2>
+<p class="subtitle">How should the bilingual question look? Pick the layout that feels most natural.</p>
+
+<div class="cards">
+
+  <!-- Option A: Side by side columns -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:16px;background:#f8f9fa;border-radius:6px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:12px;">
+        <div style="background:#fff;border:1px solid #dee2e6;border-radius:4px;padding:10px;">
+          <div style="font-size:9px;font-weight:700;color:#6c757d;margin-bottom:6px;text-transform:uppercase;">🇺🇸 English (Exam)</div>
+          <div style="font-weight:600;margin-bottom:8px;color:#212529;">When must you stop for a school bus?</div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <div style="padding:4px 6px;border:1px solid #dee2e6;border-radius:3px;color:#495057;">A. Only on divided highways</div>
+            <div style="padding:4px 6px;border:1px solid #0d6efd;border-radius:3px;background:#e7f1ff;color:#0d6efd;font-weight:600;">B. When lights are flashing</div>
+            <div style="padding:4px 6px;border:1px solid #dee2e6;border-radius:3px;color:#495057;">C. Only in school zones</div>
+            <div style="padding:4px 6px;border:1px solid #dee2e6;border-radius:3px;color:#495057;">D. Never on highways</div>
+          </div>
+        </div>
+        <div style="background:#fffbf0;border:1px solid #ffd966;border-radius:4px;padding:10px;">
+          <div style="font-size:9px;font-weight:700;color:#856404;margin-bottom:6px;text-transform:uppercase;">🇪🇸 Español (Ayuda)</div>
+          <div style="font-weight:600;margin-bottom:8px;color:#212529;">¿Cuándo debe detenerse ante un autobús escolar?</div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <div style="padding:4px 6px;border:1px solid #ffd966;border-radius:3px;color:#495057;">A. Solo en autopistas divididas</div>
+            <div style="padding:4px 6px;border:1px solid #ffd966;border-radius:3px;background:#fff8d6;color:#856404;font-weight:600;">B. Cuando las luces están parpadeando</div>
+            <div style="padding:4px 6px;border:1px solid #ffd966;border-radius:3px;color:#495057;">C. Solo en zonas escolares</div>
+            <div style="padding:4px 6px;border:1px solid #ffd966;border-radius:3px;color:#495057;">D. Nunca en autopistas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Side by Side</h3>
+      <p>English and Spanish in two columns. Always visible simultaneously. Best for learning the correlation between both languages.</p>
+    </div>
+  </div>
+
+  <!-- Option B: Stacked with toggle -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:16px;background:#f8f9fa;border-radius:6px;">
+      <div style="font-size:12px;">
+        <div style="display:flex;gap:6px;margin-bottom:10px;">
+          <div style="padding:4px 12px;background:#0d6efd;color:#fff;border-radius:20px;font-size:10px;font-weight:700;">🇺🇸 EN</div>
+          <div style="padding:4px 12px;background:#fff;border:1px solid #dee2e6;border-radius:20px;font-size:10px;color:#6c757d;">🇪🇸 ES</div>
+        </div>
+        <div style="background:#fff;border:1px solid #dee2e6;border-radius:4px;padding:12px;">
+          <div style="font-weight:600;margin-bottom:10px;color:#212529;">When must you stop for a school bus?</div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <div style="padding:5px 8px;border:1px solid #dee2e6;border-radius:3px;color:#495057;">A. Only on divided highways</div>
+            <div style="padding:5px 8px;border:1px solid #0d6efd;border-radius:3px;background:#e7f1ff;color:#0d6efd;font-weight:600;">B. When lights are flashing</div>
+            <div style="padding:5px 8px;border:1px solid #dee2e6;border-radius:3px;color:#495057;">C. Only in school zones</div>
+            <div style="padding:5px 8px;border:1px solid #dee2e6;border-radius:3px;color:#495057;">D. Never on highways</div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:8px;font-size:10px;color:#6c757d;">Click 🇪🇸 ES tab to see Spanish translation</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Tabbed Toggle</h3>
+      <p>One language at a time with EN/ES tabs. Cleaner on screen. Users actively switch to Spanish when they need help — more like the real exam experience.</p>
+    </div>
+  </div>
+
+  <!-- Option C: English primary, Spanish tooltip/accordion -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:16px;background:#f8f9fa;border-radius:6px;">
+      <div style="font-size:12px;">
+        <div style="background:#fff;border:1px solid #dee2e6;border-radius:4px;padding:12px;">
+          <div style="font-size:9px;font-weight:700;color:#6c757d;margin-bottom:6px;">🇺🇸 ENGLISH (EXAM FORMAT)</div>
+          <div style="font-weight:600;margin-bottom:10px;color:#212529;">When must you stop for a school bus?</div>
+          <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:8px;">
+            <div style="padding:5px 8px;border:1px solid #dee2e6;border-radius:3px;color:#495057;">A. Only on divided highways</div>
+            <div style="padding:5px 8px;border:1px solid #0d6efd;border-radius:3px;background:#e7f1ff;color:#0d6efd;font-weight:600;">B. When lights are flashing</div>
+            <div style="padding:5px 8px;border:1px solid #dee2e6;border-radius:3px;color:#495057;">C. Only in school zones</div>
+            <div style="padding:5px 8px;border:1px solid #dee2e6;border-radius:3px;color:#495057;">D. Never on highways</div>
+          </div>
+          <div style="border-top:1px dashed #dee2e6;padding-top:8px;">
+            <div style="display:flex;align-items:center;gap:6px;color:#198754;font-size:10px;cursor:pointer;">
+              <span>▼</span><span style="font-weight:600;">Ver en Español</span>
+            </div>
+            <div style="margin-top:6px;padding:8px;background:#f0fff4;border-radius:3px;color:#495057;font-size:11px;">
+              ¿Cuándo debe detenerse ante un autobús escolar?<br>
+              <span style="color:#198754;font-weight:600;">B. Cuando las luces están parpadeando</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — English Primary + Spanish Accordion</h3>
+      <p>English is the main view. Spanish expands below on demand. Trains users to read English first, use Spanish only as a fallback — closest to real exam conditions.</p>
+    </div>
+  </div>
+
+</div>
