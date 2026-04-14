@@ -1,0 +1,148 @@
+[
+  {
+    "id": "q_0001",
+    "en": {
+      "question": "What should you do when you see a flashing yellow light?",
+      "choices": [
+        "Stop completely and wait",
+        "Speed up to clear the intersection",
+        "Slow down and proceed with caution",
+        "Yield to all oncoming traffic"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "¿Qué debe hacer cuando ve una luz amarilla intermitente?",
+      "choices": [
+        "Detenerse completamente y esperar",
+        "Acelerar para cruzar la intersección",
+        "Disminuir la velocidad y proceder con precaución",
+        "Ceder el paso a todo el tráfico que viene"
+      ]
+    },
+    "keywords": [
+      { "en": "flashing yellow", "es": "luz amarilla intermitente" },
+      { "en": "slow down", "es": "disminuir velocidad" },
+      { "en": "caution", "es": "precaución" }
+    ],
+    "category": "traffic-signals",
+    "source": "seed"
+  },
+  {
+    "id": "q_0002",
+    "en": {
+      "question": "When must you stop for a school bus that has its red lights flashing?",
+      "choices": [
+        "Only when driving in a school zone",
+        "When driving behind the bus on any road",
+        "When approaching from either direction on an undivided road",
+        "Only on roads with a speed limit under 35 mph"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "¿Cuándo debe detenerse ante un autobús escolar con las luces rojas encendidas?",
+      "choices": [
+        "Solo cuando conduce en una zona escolar",
+        "Cuando conduce detrás del autobús en cualquier calle",
+        "Al aproximarse desde cualquier dirección en una calle sin división",
+        "Solo en calles con límite de velocidad menor de 35 mph"
+      ]
+    },
+    "keywords": [
+      { "en": "school bus", "es": "autobús escolar" },
+      { "en": "red lights flashing", "es": "luces rojas encendidas" },
+      { "en": "undivided road", "es": "calle sin división" }
+    ],
+    "category": "school-zones",
+    "source": "seed"
+  },
+  {
+    "id": "q_0003",
+    "en": {
+      "question": "What is the speed limit in a school zone when children are present?",
+      "choices": [
+        "15 mph",
+        "20 mph",
+        "25 mph",
+        "30 mph"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "¿Cuál es el límite de velocidad en una zona escolar cuando hay niños presentes?",
+      "choices": [
+        "15 mph",
+        "20 mph",
+        "25 mph",
+        "30 mph"
+      ]
+    },
+    "keywords": [
+      { "en": "speed limit", "es": "límite de velocidad" },
+      { "en": "school zone", "es": "zona escolar" },
+      { "en": "20 mph", "es": "20 millas por hora" }
+    ],
+    "category": "school-zones",
+    "source": "seed"
+  },
+  {
+    "id": "q_0004",
+    "en": {
+      "question": "A solid yellow line on your side of the center line means:",
+      "choices": [
+        "You may pass if traffic is clear",
+        "You must not pass",
+        "You may pass slow vehicles only",
+        "The road is divided ahead"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Una línea amarilla sólida en su lado de la línea central significa:",
+      "choices": [
+        "Puede adelantar si el tráfico está despejado",
+        "No debe adelantar",
+        "Solo puede adelantar vehículos lentos",
+        "La carretera está dividida más adelante"
+      ]
+    },
+    "keywords": [
+      { "en": "solid yellow line", "es": "línea amarilla sólida" },
+      { "en": "must not pass", "es": "no debe adelantar" },
+      { "en": "center line", "es": "línea central" }
+    ],
+    "category": "road-markings",
+    "source": "seed"
+  },
+  {
+    "id": "q_0005",
+    "en": {
+      "question": "In Florida, it is illegal to drive with a blood alcohol level (BAC) of:",
+      "choices": [
+        "0.05% or higher",
+        "0.08% or higher",
+        "0.10% or higher",
+        "0.15% or higher"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "En Florida, es ilegal conducir con un nivel de alcohol en sangre (BAC) de:",
+      "choices": [
+        "0.05% o más",
+        "0.08% o más",
+        "0.10% o más",
+        "0.15% o más"
+      ]
+    },
+    "keywords": [
+      { "en": "blood alcohol level", "es": "nivel de alcohol en sangre" },
+      { "en": "BAC", "es": "BAC" },
+      { "en": "0.08%", "es": "0.08%" },
+      { "en": "illegal", "es": "ilegal" }
+    ],
+    "category": "dui",
+    "source": "seed"
+  }
+]
