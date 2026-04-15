@@ -28,6 +28,7 @@ export interface Question {
   en: QuestionEN
   es: QuestionES | null // null = translation unavailable
   keywords: Keyword[]
+  explanation?: string  // Spanish explanation shown after answering. Hidden if absent.
   category: Category
   source: string
 }
