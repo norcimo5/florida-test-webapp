@@ -19,8 +19,9 @@ const mockQuestion: Question = {
     { en: 'flashing yellow', es: 'luz amarilla intermitente' },
     { en: 'slow down', es: 'disminuir velocidad' },
   ],
+  explanation: 'Flashing yellow significa reducir la velocidad. Solo flashing red significa detenerse.',
   category: 'traffic-signals',
-  source: 'seed',
+  source: 'flhsmv-2026',
 }
 
 const defaultProgress: Progress = {
@@ -31,76 +32,100 @@ const defaultProgress: Progress = {
   examComplete: false,
 }
 
+function renderStudy(overrides: Partial<Parameters<typeof StudyMode>[0]> = {}) {
+  return render(
+    <StudyMode
+      questions={[mockQuestion]}
+      progress={defaultProgress}
+      onProgressUpdate={vi.fn()}
+      onBack={vi.fn()}
+      reviewMode={false}
+      {...overrides}
+    />
+  )
+}
+
 describe('StudyMode', () => {
-  it('renders the English question', () => {
-    render(
-      <StudyMode
-        questions={[mockQuestion]}
-        progress={defaultProgress}
-        onProgressUpdate={vi.fn()}
-        onBack={vi.fn()}
-        reviewMode={false}
-      />
-    )
-    expect(screen.getByText(/flashing yellow light/i)).toBeInTheDocument()
+  it('renders the English question text', () => {
+    const { container } = renderStudy()
+    expect(container.querySelector('.study__question')).toBeInTheDocument()
+    expect(container.querySelector('.study__question')!.textContent).toMatch(/flashing yellow light/i)
   })
 
-  it('renders the Spanish question', () => {
-    render(
-      <StudyMode
-        questions={[mockQuestion]}
-        progress={defaultProgress}
-        onProgressUpdate={vi.fn()}
-        onBack={vi.fn()}
-        reviewMode={false}
-      />
-    )
-    expect(screen.getAllByText(/luz amarilla intermitente/i).length).toBeGreaterThan(0)
+  it('renders the Spanish chip when es is present', () => {
+    renderStudy()
+    expect(screen.getByText('ocultar')).toBeInTheDocument()
   })
 
-  it('renders keywords in PALABRAS CLAVE box', () => {
-    render(
-      <StudyMode
-        questions={[mockQuestion]}
-        progress={defaultProgress}
-        onProgressUpdate={vi.fn()}
-        onBack={vi.fn()}
-        reviewMode={false}
-      />
-    )
-    expect(screen.getByText('flashing yellow')).toBeInTheDocument()
-    expect(screen.getByText('slow down')).toBeInTheDocument()
+  it('hides Spanish text and shows "mostrar" when ocultar is clicked', async () => {
+    renderStudy()
+    await userEvent.click(screen.getByText('ocultar'))
+    expect(screen.queryByText('ocultar')).not.toBeInTheDocument()
+    expect(screen.getByText('mostrar')).toBeInTheDocument()
+  })
+
+  it('does not render Spanish chip when es is null', () => {
+    renderStudy({ questions: [{ ...mockQuestion, es: null }] })
+    expect(screen.queryByText('ocultar')).not.toBeInTheDocument()
+    expect(screen.queryByText('mostrar')).not.toBeInTheDocument()
+  })
+
+  it('renders keywords in PALABRAS CLAVE section', () => {
+    const { container } = renderStudy()
+    const enKeywords = container.querySelectorAll('.study__keyword-en')
+    const texts = Array.from(enKeywords).map(el => el.textContent)
+    expect(texts).toContain('flashing yellow')
+    expect(texts).toContain('slow down')
+  })
+
+  it('renders a Siguiente button', () => {
+    renderStudy()
+    expect(screen.getByText(/Siguiente/i)).toBeInTheDocument()
+  })
+
+  it('does not render an Anterior button', () => {
+    renderStudy()
+    expect(screen.queryByText(/Anterior/i)).not.toBeInTheDocument()
   })
 
   it('calls onProgressUpdate when an answer is selected', async () => {
     const onProgressUpdate = vi.fn()
-    render(
-      <StudyMode
-        questions={[mockQuestion]}
-        progress={defaultProgress}
-        onProgressUpdate={onProgressUpdate}
-        onBack={vi.fn()}
-        reviewMode={false}
-      />
-    )
-    // Click the correct answer (index 2 = "Slow down and proceed with caution")
-    // It appears in both EN and ES panels — click the first occurrence
-    const choices = screen.getAllByText(/Slow down and proceed with caution/i)
+    renderStudy({ onProgressUpdate })
+    const choices = screen.getAllByRole('button', { name: /Slow down and proceed/i })
     await userEvent.click(choices[0])
     expect(onProgressUpdate).toHaveBeenCalled()
   })
 
-  it('shows "Traducción no disponible" when ES is null', () => {
-    const noTranslation: Question = { ...mockQuestion, es: null }
-    render(
-      <StudyMode
-        questions={[noTranslation]}
-        progress={defaultProgress}
-        onProgressUpdate={vi.fn()}
-        onBack={vi.fn()}
-        reviewMode={false}
-      />
+  it('shows ¿POR QUÉ? box after answering wrong', async () => {
+    renderStudy()
+    await userEvent.click(screen.getAllByRole('button', { name: /Stop completely/i })[0])
+    expect(screen.getByText(/¿POR QUÉ\?/)).toBeInTheDocument()
+  })
+
+  it('shows ¿POR QUÉ? box after answering correct', async () => {
+    renderStudy()
+    await userEvent.click(screen.getAllByRole('button', { name: /Slow down and proceed/i })[0])
+    expect(screen.getByText(/¿POR QUÉ\?/)).toBeInTheDocument()
+  })
+
+  it('does not show ¿POR QUÉ? when explanation is absent', async () => {
+    renderStudy({ questions: [{ ...mockQuestion, explanation: undefined }] })
+    await userEvent.click(screen.getAllByRole('button', { name: /Stop completely/i })[0])
+    expect(screen.queryByText(/¿POR QUÉ\?/)).not.toBeInTheDocument()
+  })
+
+  it('highlights keywords with mark elements', () => {
+    const { container } = renderStudy()
+    expect(container.querySelector('mark')).toBeInTheDocument()
+  })
+
+  it('choices are disabled after answering', async () => {
+    renderStudy()
+    const choiceBtn = screen.getAllByRole('button', { name: /Stop completely/i })[0]
+    await userEvent.click(choiceBtn)
+    const allChoices = screen.getAllByRole('button').filter(b =>
+      ['Stop completely', 'Speed up', 'Slow down', 'Yield'].some(t => b.textContent?.includes(t))
     )
-    expect(screen.getByText(/Traducción no disponible/i)).toBeInTheDocument()
+    allChoices.forEach(btn => expect(btn).toBeDisabled())
   })
 })
