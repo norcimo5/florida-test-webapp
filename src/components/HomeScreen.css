@@ -202,3 +202,15 @@
   font-size: 13px;
   white-space: nowrap;
 }
+
+@media (max-width: 480px) {
+  .home__main {
+    padding: 16px;
+  }
+  .home__modes {
+    grid-template-columns: 1fr;
+  }
+  .home__mode-btn {
+    width: 100%;
+  }
+}

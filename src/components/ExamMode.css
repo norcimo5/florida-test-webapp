@@ -169,3 +169,20 @@
   background: var(--color-success);
   color: white;
 }
+
+@media (max-width: 480px) {
+  .exam__main {
+    padding: 12px;
+  }
+  .exam__choice {
+    min-height: 44px;
+    font-size: 14px;
+  }
+  .exam__nav {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .exam__nav-btn {
+    width: 100%;
+  }
+}

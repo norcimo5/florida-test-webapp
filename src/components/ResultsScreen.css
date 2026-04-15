@@ -154,3 +154,14 @@
 
 .results__action-btn--retry { background: var(--color-primary); color: white; }
 .results__action-btn--study { background: var(--color-success); color: white; }
+
+@media (max-width: 480px) {
+  .results__breakdown-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .results__actions {
+    grid-template-columns: 1fr;
+  }
+}

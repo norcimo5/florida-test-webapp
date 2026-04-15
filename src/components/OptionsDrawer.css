@@ -163,3 +163,9 @@
   text-align: center;
   line-height: 1.7;
 }
+
+@media (max-width: 480px) {
+  .drawer {
+    width: 100%;
+  }
+}
