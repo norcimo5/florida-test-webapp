@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { Question, Progress, Category } from '../types'
+import type { Question, Progress, Category, StudyAnswer } from '../types'
 import './StudyMode.css'
 
 interface Props {
@@ -20,6 +20,46 @@ const CATEGORY_LABELS: Record<Category, string> = {
   'general': 'General',
 }
 
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+}
+
+function highlightKeywords(text: string, keywords: string[]): string {
+  let result = escapeHtml(text)
+  for (const kw of keywords) {
+    const escapedKw = escapeHtml(kw)
+    const regex = new RegExp(escapedKw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi')
+    result = result.replace(regex, match => `<mark>${match}</mark>`)
+  }
+  return result
+}
+
+function pickWeightedRandom(
+  pool: Question[],
+  studyAnswers: Record<string, StudyAnswer>,
+  excludeId: string | null
+): Question {
+  const candidates = excludeId ? pool.filter(q => q.id !== excludeId) : pool
+  const eligible = candidates.length > 0 ? candidates : pool
+  const weights = eligible.map(q => {
+    const a = studyAnswers[q.id]
+    if (!a) return 2         // unseen
+    if (!a.correct) return 4 // wrong
+    return 1                 // correct
+  })
+  const total = weights.reduce((sum, w) => sum + w, 0)
+  let rand = Math.random() * total
+  for (let i = 0; i < eligible.length; i++) {
+    rand -= weights[i]
+    if (rand <= 0) return eligible[i]
+  }
+  return eligible[eligible.length - 1]
+}
+
 export default function StudyMode({ questions, progress, onProgressUpdate, onBack, reviewMode }: Props) {
   const displayQuestions = reviewMode
     ? questions.filter(q => {
@@ -30,27 +70,60 @@ export default function StudyMode({ questions, progress, onProgressUpdate, onBac
 
   const categories = Array.from(new Set(displayQuestions.map(q => q.category))) as Category[]
   const [activeCategory, setActiveCategory] = useState<Category | 'all'>('all')
-  const [currentIndex, setCurrentIndex] = useState(0)
 
-  const filtered = activeCategory === 'all'
-    ? displayQuestions
-    : displayQuestions.filter(q => q.category === activeCategory)
+  const getFiltered = (cat: Category | 'all') =>
+    cat === 'all' ? displayQuestions : displayQuestions.filter(q => q.category === cat)
 
-  const question = filtered[currentIndex]
-  const answer = question ? progress.studyAnswers[question.id] : undefined
-  const hasAnswered = !!answer
+  const filtered = getFiltered(activeCategory)
+
+  const [currentQuestion, setCurrentQuestion] = useState<Question | null>(
+    () => displayQuestions.length > 0
+      ? pickWeightedRandom(displayQuestions, progress.studyAnswers, null)
+      : null
+  )
+  const [sessionAnswers, setSessionAnswers] = useState<Record<string, StudyAnswer>>({})
+  const [esVisible, setEsVisible] = useState(true)
+
+  const question = currentQuestion && filtered.some(q => q.id === currentQuestion.id)
+    ? currentQuestion
+    : filtered[0] ?? null
+
+  const sessionAnswer = question ? sessionAnswers[question.id] : undefined
+  const hasAnswered = !!sessionAnswer
+  const answeredCount = filtered.filter(q => sessionAnswers[q.id] !== undefined).length
+
+  const enKeywords = question?.keywords.map(k => k.en) ?? []
+  const esKeywords = question?.keywords.map(k => k.es) ?? []
+  const enQuestionHtml = question ? highlightKeywords(question.en.question, enKeywords) : ''
+  const esQuestionHtml = question?.es ? highlightKeywords(question.es.question, esKeywords) : ''
+  const explanationHtml = question?.explanation ? highlightKeywords(question.explanation, enKeywords) : ''
+
+  const cardBorderColor = !hasAnswered ? '#1a56db' : sessionAnswer.correct ? '#16a34a' : '#dc2626'
 
   function handleSelect(index: number) {
     if (!question || hasAnswered) return
     const correct = index === question.en.correct
-    const updated: Progress = {
+    const newAnswer: StudyAnswer = { selectedIndex: index, correct }
+    setSessionAnswers(prev => ({ ...prev, [question.id]: newAnswer }))
+    onProgressUpdate({
       ...progress,
-      studyAnswers: {
-        ...progress.studyAnswers,
-        [question.id]: { selectedIndex: index, correct },
-      },
+      studyAnswers: { ...progress.studyAnswers, [question.id]: newAnswer },
+    })
+  }
+
+  function handleNext() {
+    if (filtered.length === 0) return
+    setCurrentQuestion(pickWeightedRandom(filtered, progress.studyAnswers, question?.id ?? null))
+    setEsVisible(true)
+  }
+
+  function handleCategoryChange(cat: Category | 'all') {
+    setActiveCategory(cat)
+    const pool = getFiltered(cat)
+    if (pool.length > 0) {
+      setCurrentQuestion(pickWeightedRandom(pool, progress.studyAnswers, null))
     }
-    onProgressUpdate(updated)
+    setEsVisible(true)
   }
 
   function toggleBookmark() {
@@ -71,17 +144,24 @@ export default function StudyMode({ questions, progress, onProgressUpdate, onBac
   }
 
   const isBookmarked = progress.bookmarks.includes(question.id)
+  const progressPct = filtered.length > 0 ? (answeredCount / filtered.length) * 100 : 0
 
   return (
     <div className="study">
       <header className="study__header">
         <button className="study__back-btn" onClick={onBack}>← Inicio</button>
-        <span className="study__counter">Pregunta {currentIndex + 1} de {filtered.length}</span>
+        <div className="study__progress-wrap">
+          <div className="study__progress-bar">
+            <div className="study__progress-fill" style={{ width: `${progressPct}%` }} />
+          </div>
+          <span className="study__counter">{answeredCount} / {filtered.length}</span>
+        </div>
         <button
           className={`study__bookmark-btn ${isBookmarked ? 'study__bookmark-btn--active' : ''}`}
           onClick={toggleBookmark}
+          aria-label="Guardar pregunta"
         >
-          {isBookmarked ? '🔖 Guardada' : '🔖 Guardar'}
+          🔖
         </button>
       </header>
 
@@ -89,7 +169,7 @@ export default function StudyMode({ questions, progress, onProgressUpdate, onBac
         <div className="study__categories">
           <button
             className={`study__cat-pill ${activeCategory === 'all' ? 'study__cat-pill--active' : ''}`}
-            onClick={() => { setActiveCategory('all'); setCurrentIndex(0) }}
+            onClick={() => handleCategoryChange('all')}
           >
             Todas ({displayQuestions.length})
           </button>
@@ -97,7 +177,7 @@ export default function StudyMode({ questions, progress, onProgressUpdate, onBac
             <button
               key={cat}
               className={`study__cat-pill ${activeCategory === cat ? 'study__cat-pill--active' : ''}`}
-              onClick={() => { setActiveCategory(cat); setCurrentIndex(0) }}
+              onClick={() => handleCategoryChange(cat)}
             >
               {CATEGORY_LABELS[cat]} ({displayQuestions.filter(q => q.category === cat).length})
             </button>
@@ -106,62 +186,64 @@ export default function StudyMode({ questions, progress, onProgressUpdate, onBac
       )}
 
       <main className="study__main">
-        <div className="study__bilingual">
-          <div className="study__panel study__panel--en">
-            <div className="study__panel-label">ENGLISH — EXAM FORMAT</div>
-            <p className="study__question">{question.en.question}</p>
-            <div className="study__choices">
-              {question.en.choices.map((choice, i) => (
+        <div className="study__card" style={{ borderColor: cardBorderColor }}>
+          <div className="study__panel-label" style={{ color: cardBorderColor }}>
+            🇺🇸 ENGLISH — EXAM FORMAT
+          </div>
+
+          <p className="study__question" dangerouslySetInnerHTML={{ __html: enQuestionHtml }} />
+
+          {question.es && (
+            <div className="study__es-chip">
+              <div className="study__es-chip-left">
+                <span className="study__es-flag">🇪🇸</span>
+                {esVisible && (
+                  <span className="study__es-text" dangerouslySetInnerHTML={{ __html: esQuestionHtml }} />
+                )}
+              </div>
+              <button className="study__es-toggle" onClick={() => setEsVisible(v => !v)}>
+                {esVisible ? 'ocultar' : 'mostrar'}
+              </button>
+            </div>
+          )}
+
+          <div className="study__choices">
+            {question.en.choices.map((choice, i) => {
+              const isCorrect = hasAnswered && i === question.en.correct
+              const isWrong = hasAnswered && i === sessionAnswer.selectedIndex && !sessionAnswer.correct
+              return (
                 <button
                   key={i}
-                  className={`study__choice ${
-                    hasAnswered
-                      ? i === question.en.correct
-                        ? 'study__choice--correct'
-                        : i === answer.selectedIndex && !answer.correct
-                          ? 'study__choice--wrong'
-                          : ''
-                      : ''
-                  }`}
+                  className={`study__choice ${isCorrect ? 'study__choice--correct' : ''} ${isWrong ? 'study__choice--wrong' : ''}`}
                   onClick={() => handleSelect(i)}
                   disabled={hasAnswered}
                 >
+                  {isCorrect && '✓ '}
+                  {isWrong && '✗ '}
                   {choice}
+                  {isWrong && <span className="study__choice-label"> (tu respuesta)</span>}
                 </button>
-              ))}
-            </div>
+              )
+            })}
           </div>
 
-          <div className="study__panel study__panel--es">
-            <div className="study__panel-label">ESPAÑOL — AYUDA</div>
-            {question.es ? (
-              <>
-                <p className="study__question">{question.es.question}</p>
-                <div className="study__choices">
-                  {question.es.choices.map((choice, i) => (
-                    <div
-                      key={i}
-                      className={`study__choice study__choice--es ${
-                        hasAnswered && i === question.en.correct ? 'study__choice--correct-es' : ''
-                      }`}
-                    >
-                      {choice}
-                    </div>
-                  ))}
-                </div>
-              </>
-            ) : (
-              <p className="study__no-translation">Traducción no disponible</p>
-            )}
-          </div>
+          {hasAnswered && question.explanation && (
+            <div className={`study__porque ${sessionAnswer.correct ? 'study__porque--correct' : 'study__porque--wrong'}`}>
+              <div className="study__porque-label">
+                ¿POR QUÉ?{sessionAnswer.correct ? ' ✓' : ''}
+              </div>
+              <div className="study__porque-text" dangerouslySetInnerHTML={{ __html: explanationHtml }} />
+            </div>
+          )}
         </div>
 
         <div className="study__keywords">
-          <div className="study__keywords-label">PALABRAS CLAVE EN INGLÉS — MEMORIZA ESTAS</div>
+          <div className="study__keywords-label">PALABRAS CLAVE — MEMORIZA</div>
           <div className="study__keywords-list">
             {question.keywords.map((kw, i) => (
-              <div key={i} className="study__keyword-card">
+              <div key={i} className="study__keyword-item">
                 <span className="study__keyword-en">{kw.en}</span>
+                <span className="study__keyword-arrow">→</span>
                 <span className="study__keyword-es">{kw.es}</span>
               </div>
             ))}
@@ -169,18 +251,7 @@ export default function StudyMode({ questions, progress, onProgressUpdate, onBac
         </div>
 
         <div className="study__nav">
-          <button
-            className="study__nav-btn study__nav-btn--prev"
-            onClick={() => setCurrentIndex(i => Math.max(0, i - 1))}
-            disabled={currentIndex === 0}
-          >
-            ← Anterior
-          </button>
-          <button
-            className="study__nav-btn study__nav-btn--next"
-            onClick={() => setCurrentIndex(i => Math.min(filtered.length - 1, i + 1))}
-            disabled={currentIndex === filtered.length - 1}
-          >
+          <button className="study__nav-btn" onClick={handleNext}>
             Siguiente →
           </button>
         </div>
