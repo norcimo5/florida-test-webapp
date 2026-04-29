@@ -2,123 +2,2188 @@
   {
     "id": "q_0001",
     "en": {
-      "question": "What should you do when you see a flashing yellow light?",
+      "question": "What should you do when you approach a flashing yellow traffic light?",
       "choices": [
-        "Stop completely and wait",
-        "Speed up to clear the intersection",
+        "Come to a complete stop",
         "Slow down and proceed with caution",
-        "Yield to all oncoming traffic"
+        "Speed up to clear the intersection",
+        "Stop, then go when safe"
       ],
-      "correct": 2
+      "correct": 1
     },
     "es": {
-      "question": "¿Qué debe hacer cuando ve una luz amarilla intermitente?",
+      "question": "¿Qué debe hacer cuando se aproxima a una luz amarilla intermitente?",
       "choices": [
-        "Detenerse completamente y esperar",
+        "Detenerse completamente",
+        "Reducir la velocidad y proceder con precaución",
         "Acelerar para cruzar la intersección",
-        "Disminuir la velocidad y proceder con precaución",
-        "Ceder el paso a todo el tráfico que viene"
+        "Detenerse y luego avanzar cuando sea seguro"
       ]
     },
     "keywords": [
-      { "en": "flashing yellow", "es": "luz amarilla intermitente" },
-      { "en": "slow down", "es": "disminuir velocidad" },
+      { "en": "flashing yellow", "es": "amarilla intermitente" },
+      { "en": "slow down", "es": "reducir la velocidad" },
       { "en": "caution", "es": "precaución" }
     ],
+    "explanation": "Una luz flashing yellow significa slow down y avanzar con caution. Solo la flashing red obliga a detenerse por completo, igual que un STOP.",
     "category": "traffic-signals",
-    "source": "seed"
+    "source": "flhsmv-2026"
   },
   {
     "id": "q_0002",
     "en": {
-      "question": "When must you stop for a school bus that has its red lights flashing?",
+      "question": "What must you do when you encounter a flashing red traffic signal?",
       "choices": [
-        "Only when driving in a school zone",
-        "When driving behind the bus on any road",
-        "When approaching from either direction on an undivided road",
-        "Only on roads with a speed limit under 35 mph"
+        "Slow down without stopping",
+        "Stop, yield, and go when it is safe",
+        "Treat it as a green light",
+        "Stop and remain stopped until it turns green"
       ],
-      "correct": 2
+      "correct": 1
     },
     "es": {
-      "question": "¿Cuándo debe detenerse ante un autobús escolar con las luces rojas encendidas?",
+      "question": "¿Qué debe hacer ante una luz roja intermitente?",
       "choices": [
-        "Solo cuando conduce en una zona escolar",
-        "Cuando conduce detrás del autobús en cualquier calle",
-        "Al aproximarse desde cualquier dirección en una calle sin división",
-        "Solo en calles con límite de velocidad menor de 35 mph"
+        "Reducir la velocidad sin detenerse",
+        "Detenerse, ceder el paso y avanzar cuando sea seguro",
+        "Tratarla como una luz verde",
+        "Detenerse y permanecer detenido hasta que cambie a verde"
       ]
     },
     "keywords": [
-      { "en": "school bus", "es": "autobús escolar" },
-      { "en": "red lights flashing", "es": "luces rojas encendidas" },
-      { "en": "undivided road", "es": "calle sin división" }
+      { "en": "flashing red", "es": "roja intermitente" },
+      { "en": "stop", "es": "detenerse" },
+      { "en": "yield", "es": "ceder el paso" }
     ],
-    "category": "school-zones",
-    "source": "seed"
+    "explanation": "Una flashing red se trata exactamente como un STOP sign: detenerse por completo, yield al tráfico cruzado y luego avanzar cuando sea seguro.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
   },
   {
     "id": "q_0003",
     "en": {
-      "question": "What is the speed limit in a school zone when children are present?",
+      "question": "A steady yellow traffic light means:",
       "choices": [
-        "15 mph",
-        "20 mph",
-        "25 mph",
-        "30 mph"
+        "Speed up to beat the red light",
+        "The light is about to turn red — stop if you can do so safely",
+        "Stop and wait for green",
+        "Yield to oncoming traffic only"
       ],
       "correct": 1
     },
     "es": {
-      "question": "¿Cuál es el límite de velocidad en una zona escolar cuando hay niños presentes?",
+      "question": "Una luz amarilla fija significa:",
       "choices": [
-        "15 mph",
-        "20 mph",
-        "25 mph",
-        "30 mph"
+        "Acelerar para pasar antes de la roja",
+        "La luz va a cambiar a roja — deténgase si puede hacerlo de forma segura",
+        "Detenerse y esperar el verde",
+        "Ceder el paso solo al tráfico que viene"
       ]
     },
     "keywords": [
-      { "en": "speed limit", "es": "límite de velocidad" },
-      { "en": "school zone", "es": "zona escolar" },
-      { "en": "20 mph", "es": "20 millas por hora" }
+      { "en": "steady yellow", "es": "amarilla fija" },
+      { "en": "stop if safe", "es": "detenerse si es seguro" }
     ],
-    "category": "school-zones",
-    "source": "seed"
+    "explanation": "Steady yellow es una advertencia: la red light viene. Debe stop si puede hacerlo de forma segura, no acelerar.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
   },
   {
     "id": "q_0004",
     "en": {
-      "question": "A solid yellow line on your side of the center line means:",
+      "question": "What does a steady red traffic light mean?",
       "choices": [
-        "You may pass if traffic is clear",
-        "You must not pass",
-        "You may pass slow vehicles only",
-        "The road is divided ahead"
+        "Stop completely and remain stopped until it turns green",
+        "Slow down and proceed",
+        "Stop only if other vehicles are present",
+        "Yield to pedestrians, then go"
       ],
-      "correct": 1
+      "correct": 0
     },
     "es": {
-      "question": "Una línea amarilla sólida en su lado de la línea central significa:",
+      "question": "¿Qué significa una luz roja fija?",
       "choices": [
-        "Puede adelantar si el tráfico está despejado",
-        "No debe adelantar",
-        "Solo puede adelantar vehículos lentos",
-        "La carretera está dividida más adelante"
+        "Detenerse completamente y permanecer detenido hasta que cambie a verde",
+        "Reducir la velocidad y avanzar",
+        "Detenerse solo si hay otros vehículos",
+        "Ceder el paso a los peatones y luego avanzar"
       ]
     },
     "keywords": [
-      { "en": "solid yellow line", "es": "línea amarilla sólida" },
-      { "en": "must not pass", "es": "no debe adelantar" },
-      { "en": "center line", "es": "línea central" }
+      { "en": "steady red", "es": "roja fija" },
+      { "en": "stop completely", "es": "detenerse completamente" }
     ],
-    "category": "road-markings",
-    "source": "seed"
+    "explanation": "Una steady red light obliga a stop completely y permanecer detenido hasta que cambie a verde, salvo cuando un right turn on red está permitido.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
   },
   {
     "id": "q_0005",
     "en": {
-      "question": "In Florida, it is illegal to drive with a blood alcohol level (BAC) of:",
+      "question": "At a steady red light in Florida, you may turn right after stopping unless:",
+      "choices": [
+        "The road is wet",
+        "A sign prohibits turning on red",
+        "There are no other cars",
+        "You are in a residential area"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Con luz roja fija en Florida, puede girar a la derecha después de detenerse a menos que:",
+      "choices": [
+        "La calle esté mojada",
+        "Un letrero prohíba girar en rojo",
+        "No haya otros autos",
+        "Esté en una zona residencial"
+      ]
+    },
+    "keywords": [
+      { "en": "right turn on red", "es": "girar a la derecha en rojo" },
+      { "en": "no turn on red", "es": "no girar en rojo" }
+    ],
+    "explanation": "Un right turn on red está permitido tras stop completo, salvo que un letrero NO TURN ON RED lo prohíba o que el tráfico cruzado no permita avanzar de forma segura.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0006",
+    "en": {
+      "question": "A green arrow at a traffic signal means:",
+      "choices": [
+        "Stop and wait",
+        "You may proceed in the direction of the arrow — oncoming traffic must stop",
+        "Yield to oncoming traffic before turning",
+        "Caution — pedestrians have right-of-way"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Una flecha verde en un semáforo significa:",
+      "choices": [
+        "Detenerse y esperar",
+        "Puede avanzar en dirección de la flecha — el tráfico opuesto debe detenerse",
+        "Ceder el paso al tráfico opuesto antes de girar",
+        "Precaución — los peatones tienen prioridad"
+      ]
+    },
+    "keywords": [
+      { "en": "green arrow", "es": "flecha verde" },
+      { "en": "protected turn", "es": "giro protegido" }
+    ],
+    "explanation": "Una green arrow es un protected turn: usted tiene la prioridad y el tráfico que viene debe stop. Avance en la dirección de la flecha.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0007",
+    "en": {
+      "question": "When you see a steady yellow arrow, you should:",
+      "choices": [
+        "Speed up through the intersection",
+        "Slow down and prepare to stop — your protected turn is ending",
+        "Continue turning at the same speed",
+        "Yield to pedestrians only"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Al ver una flecha amarilla fija, usted debe:",
+      "choices": [
+        "Acelerar para cruzar la intersección",
+        "Reducir la velocidad y prepararse para detenerse — su giro protegido está terminando",
+        "Continuar girando a la misma velocidad",
+        "Ceder el paso solo a los peatones"
+      ]
+    },
+    "keywords": [
+      { "en": "steady yellow arrow", "es": "flecha amarilla fija" },
+      { "en": "prepare to stop", "es": "prepararse para detenerse" }
+    ],
+    "explanation": "Una steady yellow arrow indica que el protected turn está terminando. Debe prepare to stop si puede hacerlo de forma segura.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0008",
+    "en": {
+      "question": "A red arrow at a traffic signal means:",
+      "choices": [
+        "Stop — no turn allowed in the direction of the arrow",
+        "Yield, then turn",
+        "Turn after coming to a complete stop",
+        "Caution — proceed slowly"
+      ],
+      "correct": 0
+    },
+    "es": {
+      "question": "Una flecha roja en un semáforo significa:",
+      "choices": [
+        "Detenerse — no se permite girar en la dirección de la flecha",
+        "Ceder el paso y luego girar",
+        "Girar después de detenerse completamente",
+        "Precaución — avanzar lentamente"
+      ]
+    },
+    "keywords": [
+      { "en": "red arrow", "es": "flecha roja" },
+      { "en": "no turn", "es": "no girar" }
+    ],
+    "explanation": "Una red arrow significa stop: no se permite turn en la dirección de la flecha hasta que el semáforo cambie.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0009",
+    "en": {
+      "question": "A flashing yellow arrow means:",
+      "choices": [
+        "Turn protected — oncoming traffic must stop",
+        "Turns are not allowed",
+        "Turn permitted, but you must yield to oncoming traffic and pedestrians",
+        "Stop completely before turning"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "Una flecha amarilla intermitente significa:",
+      "choices": [
+        "Giro protegido — el tráfico opuesto debe detenerse",
+        "No se permiten giros",
+        "Se permite girar, pero debe ceder el paso al tráfico opuesto y a los peatones",
+        "Detenerse completamente antes de girar"
+      ]
+    },
+    "keywords": [
+      { "en": "flashing yellow arrow", "es": "flecha amarilla intermitente" },
+      { "en": "yield", "es": "ceder el paso" }
+    ],
+    "explanation": "Una flashing yellow arrow permite el giro pero no es protegido: debe yield al tráfico opuesto y a los pedestrians.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0010",
+    "en": {
+      "question": "When traffic signals at an intersection are not working due to a power failure, you must:",
+      "choices": [
+        "Drive through without stopping",
+        "Treat the intersection as a four-way stop",
+        "Yield to traffic on the larger road",
+        "Wait for a police officer"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Cuando los semáforos no funcionan por falta de energía, usted debe:",
+      "choices": [
+        "Cruzar sin detenerse",
+        "Tratar la intersección como un cruce de cuatro vías con STOP",
+        "Ceder el paso al tráfico de la calle más grande",
+        "Esperar a un policía"
+      ]
+    },
+    "keywords": [
+      { "en": "four-way stop", "es": "cruce de cuatro vías con STOP" },
+      { "en": "signal out", "es": "semáforo apagado" }
+    ],
+    "explanation": "Si el signal está apagado, la intersección se trata como un four-way stop: cada vehículo debe stop por completo y avanzar en orden de llegada.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0011",
+    "en": {
+      "question": "When a police officer is directing traffic at an intersection that also has a traffic signal, you should:",
+      "choices": [
+        "Follow the traffic signal",
+        "Follow the officer's directions, even if they contradict the signal",
+        "Stop and wait for both to agree",
+        "Choose whichever is most convenient"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Cuando un policía dirige el tráfico en un cruce que también tiene semáforo, usted debe:",
+      "choices": [
+        "Seguir el semáforo",
+        "Seguir las indicaciones del policía, aunque contradigan el semáforo",
+        "Detenerse y esperar a que coincidan",
+        "Elegir lo que sea más conveniente"
+      ]
+    },
+    "keywords": [
+      { "en": "police officer", "es": "policía" },
+      { "en": "obey directions", "es": "obedecer indicaciones" }
+    ],
+    "explanation": "Las indicaciones de un police officer siempre tienen prioridad sobre el traffic signal. Debe obey al oficial aunque la luz indique algo diferente.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0012",
+    "en": {
+      "question": "A pedestrian \"Walk\" or walking-figure signal means:",
+      "choices": [
+        "Pedestrians must wait",
+        "Pedestrians may begin to cross",
+        "All vehicles must stop",
+        "Pedestrians may run across"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Una señal de peatón \"Walk\" o con figura caminando significa:",
+      "choices": [
+        "Los peatones deben esperar",
+        "Los peatones pueden comenzar a cruzar",
+        "Todos los vehículos deben detenerse",
+        "Los peatones pueden correr al cruzar"
+      ]
+    },
+    "keywords": [
+      { "en": "walk signal", "es": "señal de caminar" },
+      { "en": "pedestrian", "es": "peatón" }
+    ],
+    "explanation": "El walk signal indica que el pedestrian puede comenzar a cross. Los conductores deben yield a los peatones que crucen legalmente.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0013",
+    "en": {
+      "question": "A flashing \"Don't Walk\" signal means:",
+      "choices": [
+        "Pedestrians may start crossing",
+        "Pedestrians must finish crossing if already in the crosswalk, but should not start",
+        "All pedestrians must run back",
+        "All traffic must stop"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Una señal \"Don't Walk\" intermitente significa:",
+      "choices": [
+        "Los peatones pueden empezar a cruzar",
+        "Los peatones que ya están en el crosswalk deben terminar de cruzar, pero no deben comenzar",
+        "Todos los peatones deben regresar corriendo",
+        "Todo el tráfico debe detenerse"
+      ]
+    },
+    "keywords": [
+      { "en": "flashing don't walk", "es": "no cruce intermitente" },
+      { "en": "crosswalk", "es": "paso peatonal" }
+    ],
+    "explanation": "Un flashing don't walk indica que no se debe comenzar a cruzar; los peatones que ya están en el crosswalk deben terminar de cruzar.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0014",
+    "en": {
+      "question": "A red \"X\" over a lane means:",
+      "choices": [
+        "The lane is for emergency vehicles only",
+        "The lane is closed — do not drive in it",
+        "Slow down in the lane",
+        "Pass only in this lane"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Una \"X\" roja sobre un carril significa:",
+      "choices": [
+        "El carril es solo para vehículos de emergencia",
+        "El carril está cerrado — no conduzca en él",
+        "Reducir la velocidad en el carril",
+        "Solo se permite adelantar en este carril"
+      ]
+    },
+    "keywords": [
+      { "en": "red X", "es": "X roja" },
+      { "en": "lane closed", "es": "carril cerrado" }
+    ],
+    "explanation": "Una red X sobre un carril significa lane closed: no debe conducir en ese carril. Cambie a un carril abierto.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0015",
+    "en": {
+      "question": "A green downward arrow over a lane means:",
+      "choices": [
+        "The lane is closed",
+        "You may drive in the lane",
+        "Stop and wait",
+        "Pass with caution"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Una flecha verde hacia abajo sobre un carril significa:",
+      "choices": [
+        "El carril está cerrado",
+        "Puede conducir en el carril",
+        "Detenerse y esperar",
+        "Adelantar con precaución"
+      ]
+    },
+    "keywords": [
+      { "en": "green arrow", "es": "flecha verde" },
+      { "en": "lane open", "es": "carril abierto" }
+    ],
+    "explanation": "Una green arrow hacia abajo indica que el carril está abierto y usted puede conducir en él.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0016",
+    "en": {
+      "question": "When a school bus is stopped on an undivided road with its red lights flashing and stop arm extended, you must:",
+      "choices": [
+        "Slow down and pass carefully",
+        "Stop only if you are behind the bus",
+        "Stop from both directions",
+        "Stop only if children are visible"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "Cuando un autobús escolar está detenido en una calle sin división con sus luces rojas intermitentes y el brazo de stop extendido, usted debe:",
+      "choices": [
+        "Reducir la velocidad y pasar con cuidado",
+        "Detenerse solo si está detrás del autobús",
+        "Detenerse desde ambas direcciones",
+        "Detenerse solo si ve niños"
+      ]
+    },
+    "keywords": [
+      { "en": "school bus", "es": "autobús escolar" },
+      { "en": "red lights flashing", "es": "luces rojas intermitentes" },
+      { "en": "undivided road", "es": "calle sin división" }
+    ],
+    "explanation": "En una undivided road, todos los conductores en ambas direcciones deben stop cuando un school bus tiene las red lights flashing. Solo en una calle dividida los autos opuestos pueden continuar.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0017",
+    "en": {
+      "question": "When an emergency vehicle approaches with sirens and flashing lights, you must:",
+      "choices": [
+        "Speed up to get out of the way",
+        "Pull to the right edge of the road and stop",
+        "Continue at the same speed",
+        "Switch lanes only"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Cuando un vehículo de emergencia se aproxima con sirenas y luces intermitentes, usted debe:",
+      "choices": [
+        "Acelerar para apartarse",
+        "Hacerse a la derecha y detenerse",
+        "Continuar a la misma velocidad",
+        "Solo cambiar de carril"
+      ]
+    },
+    "keywords": [
+      { "en": "emergency vehicle", "es": "vehículo de emergencia" },
+      { "en": "pull to the right", "es": "hacerse a la derecha" }
+    ],
+    "explanation": "Cuando se aproxima un emergency vehicle con sirena, debe pull to the right del camino y stop hasta que pase.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0018",
+    "en": {
+      "question": "When you see flashing red lights at a railroad crossing, you must:",
+      "choices": [
+        "Drive around the gates if no train is visible",
+        "Stop and wait until the lights stop flashing and any gates are raised",
+        "Slow down and continue across",
+        "Stop only if you see a train"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Cuando ve luces rojas intermitentes en un cruce de tren, debe:",
+      "choices": [
+        "Rodear las barreras si no ve tren",
+        "Detenerse y esperar hasta que las luces dejen de parpadear y las barreras suban",
+        "Reducir la velocidad y cruzar",
+        "Detenerse solo si ve un tren"
+      ]
+    },
+    "keywords": [
+      { "en": "railroad crossing", "es": "cruce de tren" },
+      { "en": "flashing red lights", "es": "luces rojas intermitentes" }
+    ],
+    "explanation": "En un railroad crossing con flashing red lights, debe stop y esperar a que las luces se apaguen y las gates suban. Es ilegal rodear barreras bajadas.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0019",
+    "en": {
+      "question": "A railroad \"Crossbuck\" sign at a crossing without lights or gates tells you to:",
+      "choices": [
+        "Always come to a complete stop",
+        "Slow down, look, listen, and stop if a train is approaching",
+        "Continue at the same speed",
+        "Sound your horn"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Una señal \"Crossbuck\" en un cruce de tren sin luces ni barreras le indica:",
+      "choices": [
+        "Detenerse siempre por completo",
+        "Reducir velocidad, mirar, escuchar y detenerse si un tren se acerca",
+        "Continuar a la misma velocidad",
+        "Tocar la bocina"
+      ]
+    },
+    "keywords": [
+      { "en": "crossbuck", "es": "crossbuck" },
+      { "en": "look and listen", "es": "mirar y escuchar" }
+    ],
+    "explanation": "Una crossbuck sign funciona como un yield: reduzca velocidad, look y listen, y stop si un train se acerca.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0020",
+    "en": {
+      "question": "When a flagger at a construction zone signals you to stop, you must:",
+      "choices": [
+        "Obey the flagger's signals — they override traffic signs and signals",
+        "Follow only posted signs",
+        "Continue if no workers are visible",
+        "Slow down but not stop"
+      ],
+      "correct": 0
+    },
+    "es": {
+      "question": "Cuando un flagger en una zona de construcción le indica detenerse, usted debe:",
+      "choices": [
+        "Obedecer al flagger — sus señales tienen prioridad sobre los letreros y semáforos",
+        "Seguir solo los letreros",
+        "Continuar si no ve trabajadores",
+        "Reducir la velocidad pero no detenerse"
+      ]
+    },
+    "keywords": [
+      { "en": "flagger", "es": "señalador" },
+      { "en": "work zone", "es": "zona de trabajo" }
+    ],
+    "explanation": "Las señales de un flagger en una work zone tienen prioridad sobre cualquier traffic signal o señal. Debe obey al flagger siempre.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0021",
+    "en": {
+      "question": "A diamond-shaped warning sign typically means:",
+      "choices": [
+        "Stop ahead",
+        "There is a possible hazard ahead",
+        "Yield right-of-way",
+        "Speed limit sign"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Una señal de advertencia con forma de diamante normalmente significa:",
+      "choices": [
+        "Stop adelante",
+        "Hay un posible peligro adelante",
+        "Ceder el paso",
+        "Letrero de límite de velocidad"
+      ]
+    },
+    "keywords": [
+      { "en": "warning sign", "es": "señal de advertencia" },
+      { "en": "diamond shape", "es": "forma de diamante" }
+    ],
+    "explanation": "Un warning sign de forma de diamond avisa de un hazard adelante: curva, cruce, peligro. Reduzca velocidad y prepárese.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0022",
+    "en": {
+      "question": "An octagonal (8-sided) sign always means:",
+      "choices": [
+        "Yield",
+        "Stop",
+        "Caution",
+        "School zone"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Una señal octagonal (8 lados) siempre significa:",
+      "choices": [
+        "Ceder el paso",
+        "Stop",
+        "Precaución",
+        "Zona escolar"
+      ]
+    },
+    "keywords": [
+      { "en": "octagonal", "es": "octagonal" },
+      { "en": "stop sign", "es": "señal de stop" }
+    ],
+    "explanation": "Solo los stop signs tienen forma octagonal. Si ve esta forma, debe detenerse por completo.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0023",
+    "en": {
+      "question": "A triangular sign with the point down means:",
+      "choices": [
+        "Stop",
+        "Yield right-of-way",
+        "Do not enter",
+        "School crossing"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Una señal triangular con la punta hacia abajo significa:",
+      "choices": [
+        "Stop",
+        "Ceder el paso",
+        "No entrar",
+        "Cruce escolar"
+      ]
+    },
+    "keywords": [
+      { "en": "yield sign", "es": "señal de ceder" },
+      { "en": "triangular", "es": "triangular" }
+    ],
+    "explanation": "Un yield sign tiene forma triangular con la punta hacia abajo. Reduzca velocidad y stop si es necesario para ceder el paso.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0024",
+    "en": {
+      "question": "A round (circular) traffic sign typically indicates:",
+      "choices": [
+        "Speed limit",
+        "Railroad crossing ahead",
+        "Construction zone",
+        "Hospital ahead"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Una señal de tránsito redonda (circular) normalmente indica:",
+      "choices": [
+        "Límite de velocidad",
+        "Cruce de tren adelante",
+        "Zona de construcción",
+        "Hospital adelante"
+      ]
+    },
+    "keywords": [
+      { "en": "round sign", "es": "señal redonda" },
+      { "en": "railroad crossing ahead", "es": "cruce de tren adelante" }
+    ],
+    "explanation": "Una round sign generalmente avisa de un railroad crossing adelante. Esté preparado para reducir velocidad y detenerse si hay un train.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0025",
+    "en": {
+      "question": "A pennant-shaped sign on the left side of a road means:",
+      "choices": [
+        "School zone ahead",
+        "No passing zone",
+        "Yield ahead",
+        "Construction ahead"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Una señal con forma de banderín (pennant) al lado izquierdo del camino significa:",
+      "choices": [
+        "Zona escolar adelante",
+        "Zona sin adelantar",
+        "Ceder el paso adelante",
+        "Construcción adelante"
+      ]
+    },
+    "keywords": [
+      { "en": "no passing zone", "es": "zona sin adelantar" },
+      { "en": "pennant", "es": "banderín" }
+    ],
+    "explanation": "Un pennant en el lado izquierdo marca el inicio de un no passing zone. No debe pass a otros vehículos en esa zona.",
+    "category": "traffic-signals",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0026",
+    "en": {
+      "question": "What is the default maximum speed limit in a Florida business or residential district?",
+      "choices": [
+        "20 mph",
+        "30 mph",
+        "45 mph",
+        "55 mph"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "¿Cuál es el límite de velocidad máximo por defecto en un distrito comercial o residencial de Florida?",
+      "choices": [
+        "20 mph",
+        "30 mph",
+        "45 mph",
+        "55 mph"
+      ]
+    },
+    "keywords": [
+      { "en": "30 mph", "es": "30 mph" },
+      { "en": "business or residence district", "es": "distrito comercial o residencial" }
+    ],
+    "explanation": "El default speed limit en una business or residence district de Florida es 30 mph, salvo que un letrero indique otra cosa.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0027",
+    "en": {
+      "question": "What is the default speed limit on Florida roads where no other limit is posted?",
+      "choices": [
+        "45 mph",
+        "55 mph",
+        "65 mph",
+        "70 mph"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "¿Cuál es el límite de velocidad por defecto en las carreteras de Florida donde no hay otro límite señalado?",
+      "choices": [
+        "45 mph",
+        "55 mph",
+        "65 mph",
+        "70 mph"
+      ]
+    },
+    "keywords": [
+      { "en": "default speed limit", "es": "límite por defecto" },
+      { "en": "55 mph", "es": "55 mph" }
+    ],
+    "explanation": "El default speed limit en Florida es 55 mph en lugares donde no hay otro letrero, según la ley estatal.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0028",
+    "en": {
+      "question": "What is the maximum speed limit on rural interstate highways in Florida?",
+      "choices": [
+        "55 mph",
+        "65 mph",
+        "70 mph",
+        "75 mph"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "¿Cuál es el límite de velocidad máximo en autopistas interestatales rurales de Florida?",
+      "choices": [
+        "55 mph",
+        "65 mph",
+        "70 mph",
+        "75 mph"
+      ]
+    },
+    "keywords": [
+      { "en": "rural interstate", "es": "interestatal rural" },
+      { "en": "70 mph", "es": "70 mph" }
+    ],
+    "explanation": "En una rural interstate de Florida, el límite máximo es 70 mph donde esté señalado.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0029",
+    "en": {
+      "question": "What is the minimum speed limit on a Florida interstate highway when the posted maximum is 70 mph?",
+      "choices": [
+        "30 mph",
+        "40 mph",
+        "50 mph",
+        "55 mph"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "¿Cuál es el límite mínimo en una autopista interestatal de Florida cuando el máximo señalado es 70 mph?",
+      "choices": [
+        "30 mph",
+        "40 mph",
+        "50 mph",
+        "55 mph"
+      ]
+    },
+    "keywords": [
+      { "en": "minimum speed", "es": "velocidad mínima" },
+      { "en": "interstate", "es": "interestatal" }
+    ],
+    "explanation": "Cuando el posted maximum en una interstate es 70 mph, el minimum speed es 50 mph. Conducir más despacio puede ser peligroso e ilegal.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0030",
+    "en": {
+      "question": "What is the speed limit in a Florida school zone when children are present or lights are flashing?",
+      "choices": [
+        "15 mph",
+        "20 mph",
+        "25 mph",
+        "30 mph"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "¿Cuál es el límite de velocidad en una zona escolar de Florida cuando hay niños presentes o las luces están intermitentes?",
+      "choices": [
+        "15 mph",
+        "20 mph",
+        "25 mph",
+        "30 mph"
+      ]
+    },
+    "keywords": [
+      { "en": "school zone", "es": "zona escolar" },
+      { "en": "20 mph", "es": "20 mph" },
+      { "en": "children present", "es": "niños presentes" }
+    ],
+    "explanation": "El típico school zone speed limit en Florida es 20 mph cuando hay children present o cuando las luces escolares están intermitentes.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0031",
+    "en": {
+      "question": "Speed limit signs indicate:",
+      "choices": [
+        "The recommended speed",
+        "The maximum or minimum speed legally allowed",
+        "The speed for ideal weather only",
+        "The average speed of traffic"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Los letreros de límite de velocidad indican:",
+      "choices": [
+        "La velocidad recomendada",
+        "La velocidad máxima o mínima permitida por ley",
+        "La velocidad solo para clima ideal",
+        "La velocidad promedio del tráfico"
+      ]
+    },
+    "keywords": [
+      { "en": "speed limit", "es": "límite de velocidad" },
+      { "en": "maximum or minimum", "es": "máximo o mínimo" }
+    ],
+    "explanation": "Un speed limit sign es la velocidad legal: la maximum or minimum permitida por ley en buenas condiciones.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0032",
+    "en": {
+      "question": "You may exceed the posted speed limit by 10 mph or less:",
+      "choices": [
+        "When passing slow vehicles",
+        "On a multi-lane highway",
+        "In emergencies only",
+        "In no situation"
+      ],
+      "correct": 3
+    },
+    "es": {
+      "question": "Puede exceder el límite de velocidad señalado por 10 mph o menos:",
+      "choices": [
+        "Al adelantar vehículos lentos",
+        "En autopistas de varios carriles",
+        "Solo en emergencias",
+        "En ninguna situación"
+      ]
+    },
+    "keywords": [
+      { "en": "exceed speed limit", "es": "exceder el límite" },
+      { "en": "no situation", "es": "ninguna situación" }
+    ],
+    "explanation": "Nunca está permitido exceed el speed limit. La ley es estricta: ni siquiera 10 mph por encima son legales.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0033",
+    "en": {
+      "question": "When it begins to rain, you should:",
+      "choices": [
+        "Drive at the maximum posted speed",
+        "Slow down — wet roads reduce traction",
+        "Drive faster than surrounding traffic",
+        "Use cruise control"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Cuando empieza a llover, usted debe:",
+      "choices": [
+        "Conducir al máximo del límite señalado",
+        "Reducir la velocidad — el pavimento mojado reduce la tracción",
+        "Conducir más rápido que el tráfico",
+        "Usar el control crucero"
+      ]
+    },
+    "keywords": [
+      { "en": "slow down", "es": "reducir la velocidad" },
+      { "en": "wet roads", "es": "pavimento mojado" }
+    ],
+    "explanation": "Bajo lluvia, debe slow down. El pavimento wet reduce la tracción y aumenta la distancia de frenado.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0034",
+    "en": {
+      "question": "How many points does speeding 16 mph or more over the limit add to your driving record?",
+      "choices": [
+        "2 points",
+        "3 points",
+        "4 points",
+        "6 points"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "¿Cuántos puntos suma a su récord conducir 16 mph o más sobre el límite?",
+      "choices": [
+        "2 puntos",
+        "3 puntos",
+        "4 puntos",
+        "6 puntos"
+      ]
+    },
+    "keywords": [
+      { "en": "16 mph over", "es": "16 mph por encima" },
+      { "en": "4 points", "es": "4 puntos" }
+    ],
+    "explanation": "Speeding 16 mph or more sobre el límite añade 4 points a su licencia. Acumular puntos puede causar suspensión.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0035",
+    "en": {
+      "question": "How many points does speeding 15 mph or less over the limit add to your record?",
+      "choices": [
+        "1 point",
+        "2 points",
+        "3 points",
+        "4 points"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "¿Cuántos puntos suma a su récord conducir 15 mph o menos sobre el límite?",
+      "choices": [
+        "1 punto",
+        "2 puntos",
+        "3 puntos",
+        "4 puntos"
+      ]
+    },
+    "keywords": [
+      { "en": "15 mph over", "es": "15 mph por encima" },
+      { "en": "3 points", "es": "3 puntos" }
+    ],
+    "explanation": "Speeding 15 mph or less sobre el límite añade 3 points. Recuerde: 15 o menos = 3 puntos; 16 o más = 4 puntos.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0036",
+    "en": {
+      "question": "Fines for speeding violations are doubled when:",
+      "choices": [
+        "Driving on a Sunday",
+        "The infraction occurs in a school zone or work zone",
+        "Driving at night",
+        "Driving an out-of-state car"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Las multas por exceso de velocidad se duplican cuando:",
+      "choices": [
+        "Se conduce un domingo",
+        "La infracción ocurre en una zona escolar o zona de trabajo",
+        "Se conduce de noche",
+        "Se conduce un auto de otro estado"
+      ]
+    },
+    "keywords": [
+      { "en": "school zone", "es": "zona escolar" },
+      { "en": "work zone", "es": "zona de trabajo" },
+      { "en": "doubled fines", "es": "multas duplicadas" }
+    ],
+    "explanation": "Las fines por speeding se doubled en una school zone o work zone. Reduzca la velocidad en estas áreas.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0037",
+    "en": {
+      "question": "The fine for exceeding the speed limit by more than 50 mph for a first offense in Florida is at least:",
+      "choices": [
+        "$250",
+        "$500",
+        "$1,000",
+        "$2,500"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "La multa por exceder el límite de velocidad en más de 50 mph (primera vez) en Florida es de al menos:",
+      "choices": [
+        "$250",
+        "$500",
+        "$1,000",
+        "$2,500"
+      ]
+    },
+    "keywords": [
+      { "en": "50 mph over", "es": "50 mph por encima" },
+      { "en": "$1,000 fine", "es": "multa de $1,000" }
+    ],
+    "explanation": "Exceder el speed limit en más de 50 mph conlleva una fine de al menos $1,000 por la primera ofensa, y $2,500 por la segunda.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0038",
+    "en": {
+      "question": "When merging onto a freeway, you should:",
+      "choices": [
+        "Stop at the end of the ramp and wait",
+        "Accelerate to the speed of freeway traffic and merge with the flow",
+        "Drive slower than traffic",
+        "Use your hazard lights"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Al incorporarse a una autopista (freeway), usted debe:",
+      "choices": [
+        "Detenerse al final de la rampa y esperar",
+        "Acelerar a la velocidad del tráfico y unirse al flujo",
+        "Conducir más despacio que el tráfico",
+        "Usar las luces de emergencia"
+      ]
+    },
+    "keywords": [
+      { "en": "merge", "es": "incorporarse" },
+      { "en": "speed of traffic", "es": "velocidad del tráfico" }
+    ],
+    "explanation": "Al merge a una freeway, accelerate a la speed of traffic existente. Detenerse en la rampa es peligroso.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0039",
+    "en": {
+      "question": "When approaching a sharp curve, you should:",
+      "choices": [
+        "Maintain the same speed",
+        "Slow down before entering the curve",
+        "Brake hard while in the curve",
+        "Speed up to keep stable"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Al aproximarse a una curva cerrada, usted debe:",
+      "choices": [
+        "Mantener la misma velocidad",
+        "Reducir la velocidad antes de entrar en la curva",
+        "Frenar fuerte dentro de la curva",
+        "Acelerar para mantenerse estable"
+      ]
+    },
+    "keywords": [
+      { "en": "sharp curve", "es": "curva cerrada" },
+      { "en": "slow down", "es": "reducir la velocidad" }
+    ],
+    "explanation": "Antes de una sharp curve debe slow down. Frenar dentro de la curva puede causar pérdida de control.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0040",
+    "en": {
+      "question": "When driving in fog, you should:",
+      "choices": [
+        "Use your high beams",
+        "Use your low beams",
+        "Use your hazard lights",
+        "Drive without lights"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Al conducir con niebla, usted debe:",
+      "choices": [
+        "Usar las luces altas",
+        "Usar las luces bajas",
+        "Usar las luces de emergencia",
+        "Conducir sin luces"
+      ]
+    },
+    "keywords": [
+      { "en": "low beams", "es": "luces bajas" },
+      { "en": "fog", "es": "niebla" }
+    ],
+    "explanation": "Con fog, use las low beams. Las high beams reflejan la niebla y reducen la visibilidad.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0041",
+    "en": {
+      "question": "If you are being tailgated, you should:",
+      "choices": [
+        "Brake suddenly to scare the driver",
+        "Speed up to get away",
+        "Move to the right lane and let them pass",
+        "Stop in the road"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "Si alguien le va pegado detrás (tailgating), usted debe:",
+      "choices": [
+        "Frenar de golpe para asustar al conductor",
+        "Acelerar para escapar",
+        "Moverse al carril derecho y dejarlo pasar",
+        "Detenerse en la calle"
+      ]
+    },
+    "keywords": [
+      { "en": "tailgated", "es": "le van pegado detrás" },
+      { "en": "right lane", "es": "carril derecho" }
+    ],
+    "explanation": "Si lo están tailgated, muévase al right lane y deje que el otro conductor pase. Nunca frene de golpe.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0042",
+    "en": {
+      "question": "On a slick or wet road, you should:",
+      "choices": [
+        "Drive faster to avoid hydroplaning",
+        "Take turns more slowly than usual",
+        "Brake hard to test traction",
+        "Change lanes quickly"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "En un camino mojado o resbaloso, usted debe:",
+      "choices": [
+        "Conducir más rápido para evitar hidroplaneo",
+        "Tomar las curvas más despacio de lo normal",
+        "Frenar fuerte para probar la tracción",
+        "Cambiar de carril rápidamente"
+      ]
+    },
+    "keywords": [
+      { "en": "slick roads", "es": "caminos resbalosos" },
+      { "en": "slow turns", "es": "curvas despacio" }
+    ],
+    "explanation": "En slick roads tome las curvas slow. Movimientos bruscos pueden causar derrapes y pérdida de tracción.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0043",
+    "en": {
+      "question": "\"Highway hypnosis\" is most commonly caused by:",
+      "choices": [
+        "Listening to music",
+        "Staring at the road for long periods without rest",
+        "Drinking coffee",
+        "Driving with windows down"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "La \"highway hypnosis\" es causada principalmente por:",
+      "choices": [
+        "Escuchar música",
+        "Mirar el camino por largos periodos sin descansar",
+        "Tomar café",
+        "Conducir con las ventanas abiertas"
+      ]
+    },
+    "keywords": [
+      { "en": "highway hypnosis", "es": "hipnosis de carretera" },
+      { "en": "long periods", "es": "largos periodos" }
+    ],
+    "explanation": "Highway hypnosis ocurre al stare al camino por long periods sin descansar. Tome descansos frecuentes en viajes largos.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0044",
+    "en": {
+      "question": "If you start to feel tired while driving, the best thing to do is:",
+      "choices": [
+        "Drink coffee and keep going",
+        "Open a window for fresh air",
+        "Stop driving and rest",
+        "Turn up the radio"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "Si empieza a sentirse cansado al conducir, lo mejor es:",
+      "choices": [
+        "Tomar café y seguir manejando",
+        "Abrir una ventana para aire fresco",
+        "Dejar de manejar y descansar",
+        "Subir el volumen de la radio"
+      ]
+    },
+    "keywords": [
+      { "en": "tired", "es": "cansado" },
+      { "en": "stop driving", "es": "dejar de manejar" }
+    ],
+    "explanation": "Si está tired, debe stop driving y descansar. La fatiga es una causa común de accidentes graves.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0045",
+    "en": {
+      "question": "What is the most common cause of traffic crashes?",
+      "choices": [
+        "Bad weather",
+        "Mechanical failure",
+        "Human error",
+        "Bad roads"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "¿Cuál es la causa más común de accidentes de tránsito?",
+      "choices": [
+        "Mal clima",
+        "Falla mecánica",
+        "Error humano",
+        "Mal estado de las carreteras"
+      ]
+    },
+    "keywords": [
+      { "en": "human error", "es": "error humano" },
+      { "en": "traffic crashes", "es": "accidentes de tránsito" }
+    ],
+    "explanation": "La mayoría de los traffic crashes son causados por human error: distracción, exceso de velocidad o falta de atención.",
+    "category": "speed-limits",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0046",
+    "en": {
+      "question": "At an intersection with no traffic signals or signs, who has the right-of-way?",
+      "choices": [
+        "The vehicle on the left",
+        "The vehicle on the right",
+        "The faster vehicle",
+        "The larger vehicle"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "En una intersección sin señales ni semáforos, ¿quién tiene la prioridad?",
+      "choices": [
+        "El vehículo de la izquierda",
+        "El vehículo de la derecha",
+        "El vehículo más rápido",
+        "El vehículo más grande"
+      ]
+    },
+    "keywords": [
+      { "en": "right-of-way", "es": "prioridad" },
+      { "en": "vehicle on the right", "es": "vehículo de la derecha" }
+    ],
+    "explanation": "En una intersección sin control, el vehículo on the right tiene right-of-way. Si llegan al mismo tiempo, ceda el paso al de la derecha.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0047",
+    "en": {
+      "question": "At a four-way stop, the right-of-way goes to:",
+      "choices": [
+        "The largest vehicle",
+        "The vehicle that arrived first",
+        "The fastest vehicle",
+        "The vehicle going straight"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "En un cruce de cuatro vías con STOP, la prioridad la tiene:",
+      "choices": [
+        "El vehículo más grande",
+        "El vehículo que llegó primero",
+        "El vehículo más rápido",
+        "El vehículo que va recto"
+      ]
+    },
+    "keywords": [
+      { "en": "four-way stop", "es": "cuatro vías con STOP" },
+      { "en": "arrived first", "es": "llegó primero" }
+    ],
+    "explanation": "En un four-way stop, el vehículo que arrived first tiene la prioridad. Si llegan al mismo tiempo, el de la derecha pasa primero.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0048",
+    "en": {
+      "question": "When making a left turn at a green light with no green arrow, you must:",
+      "choices": [
+        "Turn immediately",
+        "Yield to oncoming traffic and pedestrians",
+        "Honk before turning",
+        "Wait for the light to change"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Al hacer un giro a la izquierda con luz verde sin flecha verde, usted debe:",
+      "choices": [
+        "Girar inmediatamente",
+        "Ceder el paso al tráfico opuesto y a los peatones",
+        "Tocar la bocina antes de girar",
+        "Esperar a que cambie la luz"
+      ]
+    },
+    "keywords": [
+      { "en": "left turn", "es": "giro a la izquierda" },
+      { "en": "yield", "es": "ceder el paso" }
+    ],
+    "explanation": "Sin green arrow, el left turn no es protegido: debe yield al tráfico opuesto y a los pedestrians antes de girar.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0049",
+    "en": {
+      "question": "A pedestrian using a white cane is:",
+      "choices": [
+        "A police officer",
+        "Deaf",
+        "Blind — drivers must yield",
+        "An elderly person"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "Un peatón con un bastón blanco es:",
+      "choices": [
+        "Un policía",
+        "Sordo",
+        "Ciego — los conductores deben ceder el paso",
+        "Una persona anciana"
+      ]
+    },
+    "keywords": [
+      { "en": "white cane", "es": "bastón blanco" },
+      { "en": "blind pedestrian", "es": "peatón ciego" }
+    ],
+    "explanation": "Un white cane indica un blind pedestrian. Los conductores deben yield siempre y darle prioridad absoluta.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0050",
+    "en": {
+      "question": "When a funeral procession is moving through an intersection, who has the right-of-way?",
+      "choices": [
+        "Pedestrians",
+        "Cross traffic",
+        "The funeral procession",
+        "Bicyclists"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "Cuando un cortejo fúnebre cruza una intersección, ¿quién tiene la prioridad?",
+      "choices": [
+        "Los peatones",
+        "El tráfico cruzado",
+        "El cortejo fúnebre (funeral procession)",
+        "Los ciclistas"
+      ]
+    },
+    "keywords": [
+      { "en": "funeral procession", "es": "cortejo fúnebre" },
+      { "en": "right-of-way", "es": "prioridad" }
+    ],
+    "explanation": "Una funeral procession tiene right-of-way: una vez que el primer vehículo entra a la intersección, los demás pueden seguir aunque la luz cambie.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0051",
+    "en": {
+      "question": "When an emergency vehicle with sirens is approaching from behind, you must:",
+      "choices": [
+        "Speed up",
+        "Pull to the right and stop until it passes",
+        "Stop in the middle of the lane",
+        "Switch to the left lane"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Cuando un vehículo de emergencia con sirena se aproxima por detrás, usted debe:",
+      "choices": [
+        "Acelerar",
+        "Hacerse a la derecha y detenerse hasta que pase",
+        "Detenerse en medio del carril",
+        "Cambiar al carril izquierdo"
+      ]
+    },
+    "keywords": [
+      { "en": "emergency vehicle", "es": "vehículo de emergencia" },
+      { "en": "pull to the right", "es": "hacerse a la derecha" }
+    ],
+    "explanation": "Cuando un emergency vehicle se aproxima por behind, debe pull to the right y stop hasta que pase. Nunca acelere.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0052",
+    "en": {
+      "question": "When entering a traffic circle (roundabout), you must:",
+      "choices": [
+        "Yield to vehicles already in the roundabout",
+        "Stop completely before entering",
+        "Speed up to merge",
+        "Honk before entering"
+      ],
+      "correct": 0
+    },
+    "es": {
+      "question": "Al entrar en una glorieta (roundabout), usted debe:",
+      "choices": [
+        "Ceder el paso a los vehículos que ya están en la glorieta",
+        "Detenerse por completo antes de entrar",
+        "Acelerar para incorporarse",
+        "Tocar la bocina antes de entrar"
+      ]
+    },
+    "keywords": [
+      { "en": "roundabout", "es": "glorieta" },
+      { "en": "yield", "es": "ceder el paso" }
+    ],
+    "explanation": "Al entrar a un roundabout debe yield a los vehículos que ya están dentro. Solo entre cuando haya un espacio seguro.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0053",
+    "en": {
+      "question": "When a driver on an unpaved road meets a paved road, the driver on the unpaved road must:",
+      "choices": [
+        "Yield to traffic on the paved road",
+        "Have the right-of-way",
+        "Stop for 10 seconds",
+        "Honk to alert drivers"
+      ],
+      "correct": 0
+    },
+    "es": {
+      "question": "Cuando un conductor en un camino sin pavimentar llega a uno pavimentado, debe:",
+      "choices": [
+        "Ceder el paso al tráfico de la calle pavimentada",
+        "Tener la prioridad",
+        "Detenerse por 10 segundos",
+        "Tocar la bocina para avisar"
+      ]
+    },
+    "keywords": [
+      { "en": "unpaved road", "es": "camino sin pavimentar" },
+      { "en": "yield", "es": "ceder el paso" }
+    ],
+    "explanation": "El conductor que viene de un unpaved road debe yield al tráfico de la paved road. La calle pavimentada tiene prioridad.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0054",
+    "en": {
+      "question": "When entering traffic from a private driveway, you must:",
+      "choices": [
+        "Have the right-of-way",
+        "Yield to traffic already on the road",
+        "Honk before entering",
+        "Stop only if other cars are visible"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Al incorporarse al tráfico desde una entrada privada, usted debe:",
+      "choices": [
+        "Tener la prioridad",
+        "Ceder el paso al tráfico que ya está en la calle",
+        "Tocar la bocina antes de entrar",
+        "Detenerse solo si ve otros autos"
+      ]
+    },
+    "keywords": [
+      { "en": "private driveway", "es": "entrada privada" },
+      { "en": "yield", "es": "ceder el paso" }
+    ],
+    "explanation": "Al salir de una private driveway debe yield al tráfico que ya está en la calle. Nunca asuma que tiene right-of-way.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0055",
+    "en": {
+      "question": "At a T-intersection, the vehicle on the through road has:",
+      "choices": [
+        "No right-of-way",
+        "The right-of-way over vehicles entering from the side road",
+        "The same priority as the side road",
+        "Right-of-way only at night"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "En una intersección en T, el vehículo en la calle principal tiene:",
+      "choices": [
+        "No tiene prioridad",
+        "Prioridad sobre los vehículos que entran desde la calle secundaria",
+        "La misma prioridad que la calle secundaria",
+        "Prioridad solo de noche"
+      ]
+    },
+    "keywords": [
+      { "en": "T-intersection", "es": "intersección en T" },
+      { "en": "through road", "es": "calle principal" }
+    ],
+    "explanation": "En una T-intersection, el vehículo en la through road tiene right-of-way. El que entra desde la side road debe ceder.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0056",
+    "en": {
+      "question": "When making a right turn at a red light, after coming to a complete stop, you must:",
+      "choices": [
+        "Turn immediately",
+        "Yield to pedestrians and cross traffic, then turn if safe",
+        "Wait for the light to turn green",
+        "Honk before turning"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Al hacer un giro a la derecha en luz roja, después de detenerse por completo, usted debe:",
+      "choices": [
+        "Girar inmediatamente",
+        "Ceder el paso a peatones y tráfico cruzado, y luego girar si es seguro",
+        "Esperar a que la luz cambie a verde",
+        "Tocar la bocina antes de girar"
+      ]
+    },
+    "keywords": [
+      { "en": "right turn on red", "es": "girar a la derecha en rojo" },
+      { "en": "yield to pedestrians", "es": "ceder el paso a peatones" }
+    ],
+    "explanation": "En un right turn on red debe stop por completo, yield a peatones y al tráfico cruzado, y luego girar cuando sea seguro.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0057",
+    "en": {
+      "question": "When approaching a yield sign, you must:",
+      "choices": [
+        "Always come to a complete stop",
+        "Slow down and stop if necessary to avoid traffic or pedestrians",
+        "Honk before proceeding",
+        "Ignore it if the road is clear"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Al aproximarse a una señal de YIELD, usted debe:",
+      "choices": [
+        "Detenerse siempre por completo",
+        "Reducir la velocidad y detenerse si es necesario para evitar tráfico o peatones",
+        "Tocar la bocina antes de avanzar",
+        "Ignorarla si el camino está despejado"
+      ]
+    },
+    "keywords": [
+      { "en": "yield sign", "es": "señal de yield" },
+      { "en": "slow down", "es": "reducir velocidad" }
+    ],
+    "explanation": "Una yield sign no siempre obliga a detenerse: debe slow down y stop solo si es necesario para ceder el paso.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0058",
+    "en": {
+      "question": "An emergency vehicle approaches with flashing lights from the opposite direction on an undivided road. You must:",
+      "choices": [
+        "Continue at the same speed",
+        "Pull to the right and stop until it passes",
+        "Speed up",
+        "Stop in the left lane"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Un vehículo de emergencia con luces se aproxima desde el sentido contrario en una calle sin dividir. Usted debe:",
+      "choices": [
+        "Continuar a la misma velocidad",
+        "Hacerse a la derecha y detenerse hasta que pase",
+        "Acelerar",
+        "Detenerse en el carril izquierdo"
+      ]
+    },
+    "keywords": [
+      { "en": "emergency vehicle", "es": "vehículo de emergencia" },
+      { "en": "undivided road", "es": "calle sin dividir" }
+    ],
+    "explanation": "En una undivided road, todos los conductores en ambas direcciones deben pull to the right y stop ante un emergency vehicle.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0059",
+    "en": {
+      "question": "Florida's Move Over Law requires you to do which of the following when approaching a stopped emergency or work vehicle on a multi-lane road?",
+      "choices": [
+        "Continue at the posted speed",
+        "Move over to a non-adjacent lane if safe; if not, slow to 20 mph below the posted limit",
+        "Stop completely until they leave",
+        "Honk to alert them"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "La Move Over Law de Florida le obliga a hacer cuál de las siguientes al aproximarse a un vehículo de emergencia o de trabajo detenido en una vía de varios carriles:",
+      "choices": [
+        "Continuar a la velocidad señalada",
+        "Cambiar a un carril no adyacente si es seguro; si no, reducir a 20 mph por debajo del límite",
+        "Detenerse por completo hasta que se vayan",
+        "Tocar la bocina para alertarlos"
+      ]
+    },
+    "keywords": [
+      { "en": "Move Over Law", "es": "ley de cambio de carril" },
+      { "en": "20 mph below", "es": "20 mph por debajo" }
+    ],
+    "explanation": "La Move Over Law obliga a cambiar a un carril no adyacente; si no es seguro, reducir a 20 mph below el límite señalado.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0060",
+    "en": {
+      "question": "You should always look over your shoulder to check your blind spot when:",
+      "choices": [
+        "Driving in heavy rain",
+        "Changing lanes, turning, or pulling away from a curb",
+        "Stopping at a red light",
+        "Driving in a school zone"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Siempre debe mirar por encima del hombro para revisar el blind spot cuando:",
+      "choices": [
+        "Conduce con lluvia fuerte",
+        "Cambia de carril, gira o se aparta de la acera",
+        "Se detiene en una luz roja",
+        "Conduce en una zona escolar"
+      ]
+    },
+    "keywords": [
+      { "en": "blind spot", "es": "punto ciego" },
+      { "en": "changing lanes", "es": "cambiar de carril" }
+    ],
+    "explanation": "Siempre revise el blind spot al changing lanes, girar, o salir de una curb. Los espejos no muestran todos los ángulos.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0061",
+    "en": {
+      "question": "When you see a pedestrian crossing in front of you in a crosswalk, you must:",
+      "choices": [
+        "Continue at the same speed",
+        "Honk so they hurry",
+        "Stop and yield until they have safely crossed",
+        "Drive around them"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "Cuando ve un peatón cruzando frente a usted en un crosswalk, debe:",
+      "choices": [
+        "Continuar a la misma velocidad",
+        "Tocar la bocina para que se apure",
+        "Detenerse y ceder el paso hasta que cruce con seguridad",
+        "Rodearlo"
+      ]
+    },
+    "keywords": [
+      { "en": "pedestrian", "es": "peatón" },
+      { "en": "crosswalk", "es": "paso peatonal" }
+    ],
+    "explanation": "Debe stop y yield al pedestrian que cruza el crosswalk. Nunca toque la bocina ni intente rodearlo.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0062",
+    "en": {
+      "question": "When you encounter a vehicle stopped on a hill ahead of you, you must:",
+      "choices": [
+        "Pass it immediately",
+        "Stop a safe distance behind and wait until you can see clearly",
+        "Honk to make it move",
+        "Drive around it on the left"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Cuando encuentra un vehículo detenido en una cuesta delante de usted, debe:",
+      "choices": [
+        "Adelantarlo inmediatamente",
+        "Detenerse a una distancia segura detrás y esperar hasta tener visibilidad",
+        "Tocar la bocina para que se mueva",
+        "Rodearlo por la izquierda"
+      ]
+    },
+    "keywords": [
+      { "en": "stopped vehicle", "es": "vehículo detenido" },
+      { "en": "safe distance", "es": "distancia segura" }
+    ],
+    "explanation": "Mantenga una safe distance detrás de un stopped vehicle en una hill: no pueda ver el tráfico opuesto y rebasar es peligroso.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0063",
+    "en": {
+      "question": "Pedestrians, bicyclists, and other drivers must yield the right-of-way to:",
+      "choices": [
+        "School buses always",
+        "Funeral processions and emergency vehicles",
+        "Larger vehicles",
+        "Motorcycles only"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Los peatones, ciclistas y otros conductores deben ceder el paso a:",
+      "choices": [
+        "Autobuses escolares siempre",
+        "Cortejos fúnebres y vehículos de emergencia",
+        "Vehículos más grandes",
+        "Solo motocicletas"
+      ]
+    },
+    "keywords": [
+      { "en": "yield right-of-way", "es": "ceder el paso" },
+      { "en": "funeral procession", "es": "cortejo fúnebre" }
+    ],
+    "explanation": "Toda persona en la vía (peatones, ciclistas, conductores) debe yield el right-of-way a una funeral procession y a los emergency vehicles.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0064",
+    "en": {
+      "question": "When can you share a lane and drive beside a motorcyclist?",
+      "choices": [
+        "When passing on a multi-lane road",
+        "In business or residential districts",
+        "In no situation",
+        "Only at low speeds"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "¿Cuándo puede compartir un carril y conducir al lado de un motociclista?",
+      "choices": [
+        "Al adelantar en una vía de varios carriles",
+        "En distritos comerciales o residenciales",
+        "En ninguna situación",
+        "Solo a baja velocidad"
+      ]
+    },
+    "keywords": [
+      { "en": "motorcyclist", "es": "motociclista" },
+      { "en": "share a lane", "es": "compartir el carril" }
+    ],
+    "explanation": "Nunca debe share a lane con un motorcyclist. Cada motocicleta tiene derecho al carril completo.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0065",
+    "en": {
+      "question": "If another vehicle is trying to pass you, you should:",
+      "choices": [
+        "Speed up to prevent it",
+        "Maintain or reduce your speed and let them pass safely",
+        "Move into the left lane",
+        "Honk repeatedly"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Si otro vehículo intenta adelantarlo, usted debe:",
+      "choices": [
+        "Acelerar para impedirlo",
+        "Mantener o reducir su velocidad y dejarlo pasar con seguridad",
+        "Cambiarse al carril izquierdo",
+        "Tocar la bocina repetidamente"
+      ]
+    },
+    "keywords": [
+      { "en": "let them pass", "es": "dejarlo pasar" },
+      { "en": "maintain speed", "es": "mantener velocidad" }
+    ],
+    "explanation": "Si alguien intenta pass, debe maintain o reducir su velocidad y dejar el carril libre para que pase de forma segura.",
+    "category": "right-of-way",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0066",
+    "en": {
+      "question": "When must you stop for a school bus that has its red lights flashing on a two-lane undivided road?",
+      "choices": [
+        "Only when you are behind the bus",
+        "Only if children are visible",
+        "From either direction — both sides must stop",
+        "Only on weekdays"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "¿Cuándo debe detenerse ante un autobús escolar con luces rojas intermitentes en una calle sin dividir de dos carriles?",
+      "choices": [
+        "Solo cuando va detrás del autobús",
+        "Solo si ve niños",
+        "Desde cualquier dirección — ambos lados deben detenerse",
+        "Solo en días de semana"
+      ]
+    },
+    "keywords": [
+      { "en": "school bus", "es": "autobús escolar" },
+      { "en": "undivided road", "es": "calle sin dividir" },
+      { "en": "stop", "es": "detenerse" }
+    ],
+    "explanation": "En una undivided road, ambas direcciones deben stop ante un school bus con luces intermitentes. La excepción es solo en una calle dividida.",
+    "category": "school-zones",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0067",
+    "en": {
+      "question": "On a divided highway with a median, when a school bus stops with red lights flashing, only:",
+      "choices": [
+        "Vehicles behind the bus must stop",
+        "Vehicles in front of the bus must stop",
+        "All vehicles in both directions must stop",
+        "No vehicles need to stop"
+      ],
+      "correct": 0
+    },
+    "es": {
+      "question": "En una autopista dividida con un separador (median), cuando un autobús escolar se detiene con luces rojas:",
+      "choices": [
+        "Solo los vehículos detrás del autobús deben detenerse",
+        "Solo los vehículos delante del autobús deben detenerse",
+        "Todos los vehículos en ambas direcciones deben detenerse",
+        "Ningún vehículo necesita detenerse"
+      ]
+    },
+    "keywords": [
+      { "en": "divided highway", "es": "autopista dividida" },
+      { "en": "median", "es": "separador" }
+    ],
+    "explanation": "En una divided highway con median, solo los vehículos behind del school bus deben stop. Los del lado opuesto pueden continuar.",
+    "category": "school-zones",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0068",
+    "en": {
+      "question": "What is the speed limit in a Florida school zone when children are present?",
+      "choices": [
+        "10 mph",
+        "20 mph",
+        "30 mph",
+        "35 mph"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "¿Cuál es el límite de velocidad en una zona escolar de Florida cuando hay niños presentes?",
+      "choices": [
+        "10 mph",
+        "20 mph",
+        "30 mph",
+        "35 mph"
+      ]
+    },
+    "keywords": [
+      { "en": "school zone", "es": "zona escolar" },
+      { "en": "20 mph", "es": "20 mph" }
+    ],
+    "explanation": "El límite en una school zone con children present es 20 mph. Recuerde: school zone + children = 20 mph.",
+    "category": "school-zones",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0069",
+    "en": {
+      "question": "When are you required to obey a reduced school zone speed limit?",
+      "choices": [
+        "All day, every day",
+        "Only on school days from 7 AM to 4 PM",
+        "During the times posted on the sign or whenever lights are flashing",
+        "Only when a teacher is visible"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "¿Cuándo debe obedecer el límite reducido de una zona escolar?",
+      "choices": [
+        "Todo el día, todos los días",
+        "Solo los días escolares de 7 AM a 4 PM",
+        "Durante los horarios señalados o cuando las luces estén intermitentes",
+        "Solo cuando vea un maestro"
+      ]
+    },
+    "keywords": [
+      { "en": "school zone", "es": "zona escolar" },
+      { "en": "lights flashing", "es": "luces intermitentes" }
+    ],
+    "explanation": "Debe obedecer el school zone limit durante los times posted en el letrero o siempre que las warning lights estén flashing.",
+    "category": "school-zones",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0070",
+    "en": {
+      "question": "Passing a stopped school bus with its red lights flashing adds how many points to your driving record?",
+      "choices": [
+        "2 points",
+        "3 points",
+        "4 points",
+        "6 points"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "Adelantar un autobús escolar detenido con luces rojas intermitentes suma ¿cuántos puntos a su récord?",
+      "choices": [
+        "2 puntos",
+        "3 puntos",
+        "4 puntos",
+        "6 puntos"
+      ]
+    },
+    "keywords": [
+      { "en": "passing school bus", "es": "adelantar autobús escolar" },
+      { "en": "4 points", "es": "4 puntos" }
+    ],
+    "explanation": "Passing un school bus detenido con luces rojas suma 4 points a su licencia, además de fines elevadas.",
+    "category": "school-zones",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0071",
+    "en": {
+      "question": "An \"End school zone\" sign indicates:",
+      "choices": [
+        "The start of a school zone",
+        "The end of the reduced school zone speed limit",
+        "School is in session",
+        "Stop ahead"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Un letrero \"End school zone\" indica:",
+      "choices": [
+        "El inicio de una zona escolar",
+        "El fin del límite reducido de la zona escolar",
+        "La escuela está en sesión",
+        "STOP adelante"
+      ]
+    },
+    "keywords": [
+      { "en": "end school zone", "es": "fin de zona escolar" },
+      { "en": "reduced speed", "es": "velocidad reducida" }
+    ],
+    "explanation": "Un end school zone sign marca el final de la reduced speed zone. Puede regresar al límite normal de la calle.",
+    "category": "school-zones",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0072",
+    "en": {
+      "question": "What nighttime restriction applies to a 16-year-old with a Florida driver license?",
+      "choices": [
+        "No restrictions",
+        "No driving 9 PM – 6 AM",
+        "No driving 11 PM – 6 AM unless going to/from work or with a 21+ licensed adult",
+        "No driving 1 AM – 5 AM only"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "¿Qué restricción nocturna se aplica a un joven de 16 años con licencia de Florida?",
+      "choices": [
+        "No tiene restricciones",
+        "No conducir 9 PM – 6 AM",
+        "No conducir 11 PM – 6 AM salvo ir a/del trabajo o con un adulto licenciado de 21+",
+        "Solo no conducir 1 AM – 5 AM"
+      ]
+    },
+    "keywords": [
+      { "en": "16-year-old", "es": "16 años" },
+      { "en": "11 PM to 6 AM", "es": "11 PM a 6 AM" }
+    ],
+    "explanation": "Un conductor de 16 años no puede conducir entre 11 PM y 6 AM, salvo que sea hacia/desde el trabajo o vaya con un adulto licenciado de 21+.",
+    "category": "school-zones",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0073",
+    "en": {
+      "question": "You should not pass another vehicle when:",
+      "choices": [
+        "On a hill or curve where visibility is limited",
+        "When school bus lights are flashing",
+        "When approaching an intersection or railroad crossing",
+        "All of the above"
+      ],
+      "correct": 3
+    },
+    "es": {
+      "question": "Usted no debe adelantar otro vehículo cuando:",
+      "choices": [
+        "Está en una cuesta o curva con poca visibilidad",
+        "Las luces de un autobús escolar están intermitentes",
+        "Se aproxima a una intersección o cruce de tren",
+        "Todas las anteriores"
+      ]
+    },
+    "keywords": [
+      { "en": "do not pass", "es": "no adelantar" },
+      { "en": "school bus", "es": "autobús escolar" }
+    ],
+    "explanation": "No debe pass en una hill, una curve, cerca de una intersection, un railroad crossing, ni cuando un school bus tiene luces flashing.",
+    "category": "school-zones",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0074",
+    "en": {
+      "question": "Fines for traffic infractions in a school zone are:",
+      "choices": [
+        "The same as in any other area",
+        "Reduced",
+        "Doubled",
+        "Waived for first-time offenders"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "Las multas por infracciones de tránsito en una zona escolar son:",
+      "choices": [
+        "Iguales que en cualquier otra área",
+        "Reducidas",
+        "Duplicadas",
+        "Perdonadas para primera vez"
+      ]
+    },
+    "keywords": [
+      { "en": "school zone fines", "es": "multas en zona escolar" },
+      { "en": "doubled", "es": "duplicadas" }
+    ],
+    "explanation": "Las fines en una school zone son doubled. Esto incluye exceso de velocidad y otras infracciones.",
+    "category": "school-zones",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0075",
+    "en": {
+      "question": "When approaching a school crossing guard who is signaling, you must:",
+      "choices": [
+        "Honk and continue",
+        "Obey the guard's signals as you would a police officer's",
+        "Pass quickly to clear the area",
+        "Ignore the signals if there are no children"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Al aproximarse a un guardia de cruce escolar que hace señales, usted debe:",
+      "choices": [
+        "Tocar la bocina y continuar",
+        "Obedecer las señales del guardia como si fuera un policía",
+        "Pasar rápido para despejar el área",
+        "Ignorar las señales si no hay niños"
+      ]
+    },
+    "keywords": [
+      { "en": "school crossing guard", "es": "guardia de cruce escolar" },
+      { "en": "obey signals", "es": "obedecer señales" }
+    ],
+    "explanation": "Las señales de un school crossing guard tienen la misma autoridad que las de un police officer. Debe obey siempre.",
+    "category": "school-zones",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0076",
+    "en": {
+      "question": "In Florida, it is illegal for a driver 21 or older to operate a vehicle with a blood alcohol level (BAC) of:",
       "choices": [
         "0.05% or higher",
         "0.08% or higher",
@@ -128,7 +2193,7 @@
       "correct": 1
     },
     "es": {
-      "question": "En Florida, es ilegal conducir con un nivel de alcohol en sangre (BAC) de:",
+      "question": "En Florida, es ilegal para un conductor de 21+ años manejar con un nivel de alcohol en sangre (BAC) de:",
       "choices": [
         "0.05% o más",
         "0.08% o más",
@@ -137,12 +2202,1292 @@
       ]
     },
     "keywords": [
-      { "en": "blood alcohol level", "es": "nivel de alcohol en sangre" },
       { "en": "BAC", "es": "BAC" },
       { "en": "0.08%", "es": "0.08%" },
       { "en": "illegal", "es": "ilegal" }
     ],
+    "explanation": "En Florida, el límite legal de BAC es 0.08% para conductores 21+. Conducir con ese nivel o más es illegal y puede resultar en arresto por DUI.",
     "category": "dui",
-    "source": "seed"
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0077",
+    "en": {
+      "question": "What is Florida's BAC limit for drivers under 21?",
+      "choices": [
+        "0.02%",
+        "0.05%",
+        "0.08%",
+        "0.10%"
+      ],
+      "correct": 0
+    },
+    "es": {
+      "question": "¿Cuál es el límite de BAC en Florida para conductores menores de 21 años?",
+      "choices": [
+        "0.02%",
+        "0.05%",
+        "0.08%",
+        "0.10%"
+      ]
+    },
+    "keywords": [
+      { "en": "under 21", "es": "menor de 21" },
+      { "en": "0.02%", "es": "0.02%" },
+      { "en": "zero tolerance", "es": "tolerancia cero" }
+    ],
+    "explanation": "Florida tiene una zero tolerance law: el BAC para conductores under 21 no puede ser de 0.02% o más.",
+    "category": "dui",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0078",
+    "en": {
+      "question": "What is the BAC limit for commercial drivers (CDL) in Florida?",
+      "choices": [
+        "0.02%",
+        "0.04%",
+        "0.08%",
+        "0.10%"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "¿Cuál es el límite de BAC para conductores comerciales (CDL) en Florida?",
+      "choices": [
+        "0.02%",
+        "0.04%",
+        "0.08%",
+        "0.10%"
+      ]
+    },
+    "keywords": [
+      { "en": "CDL", "es": "CDL" },
+      { "en": "0.04%", "es": "0.04%" }
+    ],
+    "explanation": "Para conductores con CDL (commercial driver license), el BAC máximo es 0.04% mientras opera un vehículo comercial.",
+    "category": "dui",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0079",
+    "en": {
+      "question": "The penalty for refusing to take a breath, urine, or blood test in Florida (first refusal) is:",
+      "choices": [
+        "A warning",
+        "A 6-month license suspension",
+        "A 1-year license suspension",
+        "A 5-year license revocation"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "La penalidad por negarse a una prueba de aliento, orina o sangre en Florida (primera vez) es:",
+      "choices": [
+        "Una advertencia",
+        "Una suspensión de licencia de 6 meses",
+        "Una suspensión de licencia de 1 año",
+        "Una revocación de 5 años"
+      ]
+    },
+    "keywords": [
+      { "en": "breath test refusal", "es": "negarse a la prueba" },
+      { "en": "1-year suspension", "es": "suspensión de 1 año" },
+      { "en": "implied consent", "es": "consentimiento implícito" }
+    ],
+    "explanation": "Bajo la implied consent law, refusar un breath test la primera vez resulta en una 1-year license suspension.",
+    "category": "dui",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0080",
+    "en": {
+      "question": "For a first DUI conviction in Florida, the fine is at least:",
+      "choices": [
+        "$250",
+        "$500",
+        "$1,000",
+        "$2,500"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Por una primera condena de DUI en Florida, la multa es de al menos:",
+      "choices": [
+        "$250",
+        "$500",
+        "$1,000",
+        "$2,500"
+      ]
+    },
+    "keywords": [
+      { "en": "first DUI", "es": "primer DUI" },
+      { "en": "$500 fine", "es": "multa de $500" }
+    ],
+    "explanation": "La fine por una first DUI conviction en Florida va de $500 a $1,000 (más alta si BAC ≥ 0.15 o hay un menor en el vehículo).",
+    "category": "dui",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0081",
+    "en": {
+      "question": "A first DUI conviction in Florida carries a license suspension of:",
+      "choices": [
+        "30 days",
+        "90 days",
+        "At least 180 days (6 months)",
+        "5 years"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "Una primera condena de DUI en Florida conlleva una suspensión de licencia de:",
+      "choices": [
+        "30 días",
+        "90 días",
+        "Al menos 180 días (6 meses)",
+        "5 años"
+      ]
+    },
+    "keywords": [
+      { "en": "license suspension", "es": "suspensión de licencia" },
+      { "en": "180 days", "es": "180 días" }
+    ],
+    "explanation": "Una first DUI suspende la licencia por al menos 180 days (6 meses) y hasta 1 año.",
+    "category": "dui",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0082",
+    "en": {
+      "question": "If your BAC is 0.15% or higher (or a minor is in the vehicle), DUI penalties are:",
+      "choices": [
+        "Reduced",
+        "The same",
+        "Enhanced — higher fines and longer jail",
+        "Eliminated"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "Si su BAC es 0.15% o más (o hay un menor en el vehículo), las penalidades por DUI son:",
+      "choices": [
+        "Reducidas",
+        "Iguales",
+        "Aumentadas — multas más altas y cárcel más larga",
+        "Eliminadas"
+      ]
+    },
+    "keywords": [
+      { "en": "BAC 0.15", "es": "BAC 0.15" },
+      { "en": "enhanced penalties", "es": "penalidades aumentadas" },
+      { "en": "minor", "es": "menor de edad" }
+    ],
+    "explanation": "Un BAC ≥ 0.15 o un minor en el auto resulta en enhanced penalties: fines de $1,000 a $2,000 y hasta 9 meses de cárcel.",
+    "category": "dui",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0083",
+    "en": {
+      "question": "If someone offers you alcohol and you must drive a few hours later, you should:",
+      "choices": [
+        "Drink water with each drink",
+        "Eat more food",
+        "Not drink any alcohol at all",
+        "Drink only beer"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "Si alguien le ofrece alcohol y debe manejar unas horas después, debe:",
+      "choices": [
+        "Tomar agua con cada bebida",
+        "Comer más comida",
+        "No tomar nada de alcohol",
+        "Tomar solo cerveza"
+      ]
+    },
+    "keywords": [
+      { "en": "alcohol", "es": "alcohol" },
+      { "en": "do not drink", "es": "no tomar" }
+    ],
+    "explanation": "Si va a manejar, do not drink alcohol. Ningún truco (comida, agua, café) elimina el alcohol del cuerpo a tiempo.",
+    "category": "dui",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0084",
+    "en": {
+      "question": "Florida's \"implied consent\" law means:",
+      "choices": [
+        "You must always give your driver license to police",
+        "By driving in Florida, you have agreed to take a chemical test if arrested for DUI",
+        "Police need a warrant for any test",
+        "You can refuse all tests without penalty"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "La ley de \"consentimiento implícito\" (implied consent) de Florida significa:",
+      "choices": [
+        "Siempre debe entregar su licencia a la policía",
+        "Al conducir en Florida, ha aceptado hacer una prueba química si lo arrestan por DUI",
+        "La policía necesita una orden para cualquier prueba",
+        "Puede negarse a las pruebas sin consecuencia"
+      ]
+    },
+    "keywords": [
+      { "en": "implied consent", "es": "consentimiento implícito" },
+      { "en": "chemical test", "es": "prueba química" }
+    ],
+    "explanation": "La implied consent law dice que al conducir en Florida usted ha aceptado tomar una chemical test si lo arrestan por DUI. Refusar trae sanciones.",
+    "category": "dui",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0085",
+    "en": {
+      "question": "A first DUI conviction also requires:",
+      "choices": [
+        "Only payment of a fine",
+        "50 hours of community service and 1 year probation",
+        "Mandatory military service",
+        "A new driving test"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Una primera condena por DUI también requiere:",
+      "choices": [
+        "Solo pagar la multa",
+        "50 horas de servicio comunitario y 1 año de probation",
+        "Servicio militar obligatorio",
+        "Volver a tomar el examen de manejo"
+      ]
+    },
+    "keywords": [
+      { "en": "community service", "es": "servicio comunitario" },
+      { "en": "probation", "es": "libertad condicional" }
+    ],
+    "explanation": "Un first DUI exige 50 horas de community service, 1 año de probation, y un impoundment de 10 días del vehículo.",
+    "category": "dui",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0086",
+    "en": {
+      "question": "After a DUI revocation, the minimum bodily injury liability insurance for one person is:",
+      "choices": [
+        "$10,000",
+        "$50,000",
+        "$100,000",
+        "$500,000"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "Después de una revocación por DUI, el seguro mínimo de responsabilidad por lesión a una persona es:",
+      "choices": [
+        "$10,000",
+        "$50,000",
+        "$100,000",
+        "$500,000"
+      ]
+    },
+    "keywords": [
+      { "en": "DUI revocation", "es": "revocación por DUI" },
+      { "en": "$100,000", "es": "$100,000" }
+    ],
+    "explanation": "Después de una DUI revocation, el seguro mínimo es $100,000 por lesión a una persona y $300,000 por accidente.",
+    "category": "dui",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0087",
+    "en": {
+      "question": "Driving under the influence (DUI) applies to:",
+      "choices": [
+        "Only alcohol",
+        "Only illegal drugs",
+        "Alcohol, illegal drugs, prescription drugs, and over-the-counter medications that impair driving",
+        "Only beer and wine"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "El DUI (Driving Under the Influence) se aplica a:",
+      "choices": [
+        "Solo alcohol",
+        "Solo drogas ilegales",
+        "Alcohol, drogas ilegales, recetadas y de venta libre que afecten el manejo",
+        "Solo cerveza y vino"
+      ]
+    },
+    "keywords": [
+      { "en": "DUI", "es": "DUI" },
+      { "en": "prescription drugs", "es": "medicinas recetadas" }
+    ],
+    "explanation": "El DUI no es solo alcohol: incluye drogas ilegales, prescription drugs, y over-the-counter medications que afecten su capacidad de manejar.",
+    "category": "dui",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0088",
+    "en": {
+      "question": "What is the only way to get rid of alcohol in your body?",
+      "choices": [
+        "Coffee",
+        "Cold shower",
+        "Exercise",
+        "Time"
+      ],
+      "correct": 3
+    },
+    "es": {
+      "question": "¿Cuál es la única forma de eliminar el alcohol del cuerpo?",
+      "choices": [
+        "Café",
+        "Ducha fría",
+        "Ejercicio",
+        "Tiempo"
+      ]
+    },
+    "keywords": [
+      { "en": "time", "es": "tiempo" },
+      { "en": "alcohol", "es": "alcohol" }
+    ],
+    "explanation": "Solo el time elimina el alcohol del cuerpo. El café, una ducha fría, o el ejercicio no aceleran este proceso.",
+    "category": "dui",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0089",
+    "en": {
+      "question": "If you are convicted of DUI, your vehicle may be impounded for at least:",
+      "choices": [
+        "1 day",
+        "5 days",
+        "10 days",
+        "30 days"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "Si lo condenan por DUI, su vehículo puede ser confiscado por al menos:",
+      "choices": [
+        "1 día",
+        "5 días",
+        "10 días",
+        "30 días"
+      ]
+    },
+    "keywords": [
+      { "en": "vehicle impoundment", "es": "confiscación del vehículo" },
+      { "en": "10 days", "es": "10 días" }
+    ],
+    "explanation": "Una condena por DUI implica un impoundment de al menos 10 days del vehículo, además de las otras penalidades.",
+    "category": "dui",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0090",
+    "en": {
+      "question": "How does alcohol affect a driver?",
+      "choices": [
+        "It improves reaction time",
+        "It impairs judgment, vision, and coordination",
+        "It has no effect at low doses",
+        "It only affects vision"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "¿Cómo afecta el alcohol a un conductor?",
+      "choices": [
+        "Mejora el tiempo de reacción",
+        "Afecta el juicio, la visión y la coordinación",
+        "No tiene efecto en dosis bajas",
+        "Solo afecta la visión"
+      ]
+    },
+    "keywords": [
+      { "en": "alcohol", "es": "alcohol" },
+      { "en": "impairs judgment", "es": "afecta el juicio" }
+    ],
+    "explanation": "El alcohol impairs el judgment, la vision, la coordinación y el tiempo de reacción. Conducir bajo su efecto es peligroso e ilegal.",
+    "category": "dui",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0091",
+    "en": {
+      "question": "A solid yellow line on your side of the centerline means:",
+      "choices": [
+        "You may pass if traffic is clear",
+        "You must not pass",
+        "Pass slow vehicles only",
+        "Two-way traffic ahead"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Una línea amarilla sólida en su lado de la línea central significa:",
+      "choices": [
+        "Puede adelantar si está despejado",
+        "No debe adelantar",
+        "Solo adelantar vehículos lentos",
+        "Tráfico de doble sentido adelante"
+      ]
+    },
+    "keywords": [
+      { "en": "solid yellow line", "es": "línea amarilla sólida" },
+      { "en": "must not pass", "es": "no debe adelantar" }
+    ],
+    "explanation": "Una solid yellow line en su lado significa must not pass. Solo puede pass si la línea es discontinua.",
+    "category": "road-markings",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0092",
+    "en": {
+      "question": "A broken (dashed) yellow line on your side of the centerline means:",
+      "choices": [
+        "You must not pass",
+        "You may pass when safe",
+        "The road is closed",
+        "School zone"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Una línea amarilla discontinua en su lado de la línea central significa:",
+      "choices": [
+        "No debe adelantar",
+        "Puede adelantar cuando sea seguro",
+        "La calle está cerrada",
+        "Zona escolar"
+      ]
+    },
+    "keywords": [
+      { "en": "broken yellow line", "es": "línea amarilla discontinua" },
+      { "en": "may pass", "es": "puede adelantar" }
+    ],
+    "explanation": "Una broken yellow line permite pass cuando sea seguro. Solo en su lado: si es sólida en su lado, no puede.",
+    "category": "road-markings",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0093",
+    "en": {
+      "question": "Two solid yellow lines in the center of the road mean:",
+      "choices": [
+        "Passing is allowed for both directions",
+        "No passing for either direction",
+        "Passing only on left",
+        "Two-way left turn lane"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Dos líneas amarillas sólidas en el centro de la calle significan:",
+      "choices": [
+        "Adelantar permitido en ambas direcciones",
+        "No adelantar en ninguna dirección",
+        "Adelantar solo por la izquierda",
+        "Carril de giro a la izquierda en doble sentido"
+      ]
+    },
+    "keywords": [
+      { "en": "double solid yellow", "es": "doble línea amarilla sólida" },
+      { "en": "no passing", "es": "no adelantar" }
+    ],
+    "explanation": "Dos solid yellow lines significa no passing en ninguna dirección. Cruzarlas es ilegal.",
+    "category": "road-markings",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0094",
+    "en": {
+      "question": "Yellow lines on the road are used to separate:",
+      "choices": [
+        "Lanes of traffic going the same direction",
+        "Lanes of traffic going opposite directions",
+        "Bicycle lanes from car lanes",
+        "Parking from driving lanes"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Las líneas amarillas en la calle se usan para separar:",
+      "choices": [
+        "Carriles del mismo sentido",
+        "Carriles de sentidos opuestos",
+        "Carriles de bicicleta y autos",
+        "Estacionamiento del carril"
+      ]
+    },
+    "keywords": [
+      { "en": "yellow lines", "es": "líneas amarillas" },
+      { "en": "opposite directions", "es": "sentidos opuestos" }
+    ],
+    "explanation": "Las yellow lines separan tráfico de opposite directions. Las white lines separan carriles del mismo sentido.",
+    "category": "road-markings",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0095",
+    "en": {
+      "question": "White lines on the road are used to separate:",
+      "choices": [
+        "Lanes of traffic going opposite directions",
+        "Lanes of traffic going the same direction",
+        "Highway exits",
+        "Construction zones"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Las líneas blancas en la calle se usan para separar:",
+      "choices": [
+        "Carriles de sentidos opuestos",
+        "Carriles del mismo sentido",
+        "Salidas de autopista",
+        "Zonas de construcción"
+      ]
+    },
+    "keywords": [
+      { "en": "white lines", "es": "líneas blancas" },
+      { "en": "same direction", "es": "mismo sentido" }
+    ],
+    "explanation": "Las white lines separan carriles del same direction. Las amarillas separan sentidos opuestos.",
+    "category": "road-markings",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0096",
+    "en": {
+      "question": "A solid white line between two lanes going the same direction:",
+      "choices": [
+        "Is for parking only",
+        "Discourages lane changes — change only when necessary",
+        "Means you must change lanes",
+        "Marks a bicycle lane"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Una línea blanca sólida entre dos carriles del mismo sentido:",
+      "choices": [
+        "Es solo para estacionar",
+        "Desalienta cambios de carril — cámbiese solo si es necesario",
+        "Le obliga a cambiar de carril",
+        "Marca un carril de bicicleta"
+      ]
+    },
+    "keywords": [
+      { "en": "solid white line", "es": "línea blanca sólida" },
+      { "en": "discourage lane change", "es": "evitar cambio de carril" }
+    ],
+    "explanation": "Una solid white line entre carriles del mismo sentido discourages lane changes. Cámbiese solo si es necesario y seguro.",
+    "category": "road-markings",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0097",
+    "en": {
+      "question": "A broken white line between lanes going the same direction means:",
+      "choices": [
+        "You may not change lanes",
+        "You may change lanes when safe",
+        "Lane is closed",
+        "Pass on left only"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Una línea blanca discontinua entre carriles del mismo sentido significa:",
+      "choices": [
+        "No puede cambiar de carril",
+        "Puede cambiar de carril cuando sea seguro",
+        "El carril está cerrado",
+        "Solo adelantar por la izquierda"
+      ]
+    },
+    "keywords": [
+      { "en": "broken white line", "es": "línea blanca discontinua" },
+      { "en": "change lanes", "es": "cambiar de carril" }
+    ],
+    "explanation": "Una broken white line permite change lanes cuando sea seguro. Verifique los espejos y el blind spot antes.",
+    "category": "road-markings",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0098",
+    "en": {
+      "question": "\"Sharrows\" (chevron markings with a bicycle) on a lane mean:",
+      "choices": [
+        "The lane is for bicycles only",
+        "The lane is shared by bicyclists and motorists",
+        "Bicycles must use the sidewalk",
+        "Left-turn lane"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Las \"sharrows\" (flechas en cheurón con una bicicleta) en un carril significan:",
+      "choices": [
+        "El carril es solo para bicicletas",
+        "El carril es compartido por ciclistas y autos",
+        "Las bicicletas deben usar la acera",
+        "Carril de giro a la izquierda"
+      ]
+    },
+    "keywords": [
+      { "en": "sharrows", "es": "sharrows" },
+      { "en": "shared lane", "es": "carril compartido" }
+    ],
+    "explanation": "Las sharrows marcan un shared lane: ciclistas y motoristas comparten el carril. Comparta y dé espacio al ciclista.",
+    "category": "road-markings",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0099",
+    "en": {
+      "question": "A diamond symbol painted in a lane indicates:",
+      "choices": [
+        "A bicycle lane",
+        "A High-Occupancy Vehicle (HOV) lane",
+        "A turn-only lane",
+        "An exit lane"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Un diamante pintado en un carril indica:",
+      "choices": [
+        "Un carril de bicicletas",
+        "Un carril HOV (vehículos de alta ocupación)",
+        "Un carril solo de giro",
+        "Un carril de salida"
+      ]
+    },
+    "keywords": [
+      { "en": "HOV lane", "es": "carril HOV" },
+      { "en": "diamond symbol", "es": "símbolo de diamante" }
+    ],
+    "explanation": "Un diamond symbol marca un HOV lane (high-occupancy vehicle): solo vehículos con varios pasajeros pueden usarlo.",
+    "category": "road-markings",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0100",
+    "en": {
+      "question": "It is illegal to pass another vehicle within how many feet of an intersection, railroad crossing, bridge, or tunnel?",
+      "choices": [
+        "50 feet",
+        "75 feet",
+        "100 feet",
+        "300 feet"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "Es ilegal adelantar a otro vehículo dentro de cuántos pies de una intersección, cruce de tren, puente o túnel?",
+      "choices": [
+        "50 pies",
+        "75 pies",
+        "100 pies",
+        "300 pies"
+      ]
+    },
+    "keywords": [
+      { "en": "100 feet", "es": "100 pies" },
+      { "en": "no passing", "es": "no adelantar" }
+    ],
+    "explanation": "No debe pass dentro de 100 feet de una intersection, railroad crossing, bridge o tunnel.",
+    "category": "road-markings",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0101",
+    "en": {
+      "question": "A pavement with shark-tooth (triangle) markings means:",
+      "choices": [
+        "Stop completely",
+        "Yield — slow down and yield to traffic",
+        "Speed up",
+        "School zone"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Un pavimento con triángulos (\"shark teeth\") significa:",
+      "choices": [
+        "Detenerse por completo",
+        "Yield — reducir y ceder el paso al tráfico",
+        "Acelerar",
+        "Zona escolar"
+      ]
+    },
+    "keywords": [
+      { "en": "shark teeth", "es": "dientes de tiburón" },
+      { "en": "yield line", "es": "línea de ceder el paso" }
+    ],
+    "explanation": "Las shark teeth en el pavimento marcan una yield line. Reduzca velocidad y yield al tráfico cruzado.",
+    "category": "road-markings",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0102",
+    "en": {
+      "question": "A wide white line painted across a lane at an intersection is called a:",
+      "choices": [
+        "Crosswalk",
+        "Stop line",
+        "Yield line",
+        "Lane divider"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Una línea blanca ancha pintada cruzando un carril en una intersección se llama:",
+      "choices": [
+        "Crosswalk",
+        "Línea de stop",
+        "Línea de yield",
+        "Divisor de carril"
+      ]
+    },
+    "keywords": [
+      { "en": "stop line", "es": "línea de stop" },
+      { "en": "intersection", "es": "intersección" }
+    ],
+    "explanation": "La stop line marca el lugar exacto donde debe detenerse en una intersection. Detenga su vehículo antes de cruzar la línea.",
+    "category": "road-markings",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0103",
+    "en": {
+      "question": "Two parallel white lines across a road indicate:",
+      "choices": [
+        "A bike lane",
+        "A pedestrian crosswalk",
+        "Stop line",
+        "Two-way traffic"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Dos líneas blancas paralelas cruzando la calle indican:",
+      "choices": [
+        "Un carril de bicicleta",
+        "Un crosswalk peatonal",
+        "Línea de stop",
+        "Tráfico de doble sentido"
+      ]
+    },
+    "keywords": [
+      { "en": "crosswalk", "es": "paso peatonal" },
+      { "en": "pedestrians", "es": "peatones" }
+    ],
+    "explanation": "Las dos líneas blancas paralelas marcan un crosswalk para pedestrians. Pare antes de la línea para dejar cruzar.",
+    "category": "road-markings",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0104",
+    "en": {
+      "question": "An arrow painted in a lane indicates:",
+      "choices": [
+        "A scenic route",
+        "The direction of travel allowed in that lane",
+        "Speed limit",
+        "Caution"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Una flecha pintada en un carril indica:",
+      "choices": [
+        "Una ruta escénica",
+        "La dirección de viaje permitida en ese carril",
+        "Límite de velocidad",
+        "Precaución"
+      ]
+    },
+    "keywords": [
+      { "en": "lane arrow", "es": "flecha de carril" },
+      { "en": "direction of travel", "es": "dirección de viaje" }
+    ],
+    "explanation": "Una lane arrow indica la direction permitida desde ese carril. Respete las flechas: girar contra ellas es ilegal.",
+    "category": "road-markings",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0105",
+    "en": {
+      "question": "A center lane marked with arrows pointing both directions and yellow lines on both sides is:",
+      "choices": [
+        "A passing lane",
+        "An HOV lane",
+        "A two-way left-turn lane (used only for turning)",
+        "A break-down lane"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "Un carril central marcado con flechas en ambos sentidos y líneas amarillas a ambos lados es:",
+      "choices": [
+        "Un carril de adelantamiento",
+        "Un carril HOV",
+        "Un carril de giro a la izquierda en doble sentido (solo para girar)",
+        "Un carril de emergencia"
+      ]
+    },
+    "keywords": [
+      { "en": "two-way left-turn lane", "es": "carril de giro a la izquierda en doble sentido" },
+      { "en": "left turn", "es": "giro a la izquierda" }
+    ],
+    "explanation": "Un two-way left-turn lane se usa solo para giros a la izquierda. No es para conducir ni para adelantar.",
+    "category": "road-markings",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0106",
+    "en": {
+      "question": "Florida law requires you to use your headlights:",
+      "choices": [
+        "Only after dark on rural roads",
+        "Between sunset and sunrise, and any time you use windshield wipers due to rain or fog",
+        "Only when other drivers can't see you",
+        "Only on the interstate"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "La ley de Florida exige usar las luces (headlights):",
+      "choices": [
+        "Solo después de oscurecer en calles rurales",
+        "Entre sunset y sunrise, y siempre que use los limpiaparabrisas por lluvia o niebla",
+        "Solo cuando otros no lo ven",
+        "Solo en la interestatal"
+      ]
+    },
+    "keywords": [
+      { "en": "headlights", "es": "luces" },
+      { "en": "sunset to sunrise", "es": "del atardecer al amanecer" },
+      { "en": "windshield wipers", "es": "limpiaparabrisas" }
+    ],
+    "explanation": "En Florida debe usar headlights desde sunset hasta sunrise, y siempre que active los windshield wipers por mal clima.",
+    "category": "general",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0107",
+    "en": {
+      "question": "You should use your low beams when:",
+      "choices": [
+        "Within 500 feet of an oncoming vehicle or 300 feet behind another vehicle",
+        "Always at night",
+        "Only in rain",
+        "When going downhill"
+      ],
+      "correct": 0
+    },
+    "es": {
+      "question": "Debe usar las luces bajas (low beams) cuando:",
+      "choices": [
+        "Esté a 500 pies de un vehículo que viene o a 300 pies detrás de otro vehículo",
+        "Siempre de noche",
+        "Solo cuando llueve",
+        "Cuando baja una pendiente"
+      ]
+    },
+    "keywords": [
+      { "en": "low beams", "es": "luces bajas" },
+      { "en": "500 feet", "es": "500 pies" }
+    ],
+    "explanation": "Cambie a low beams al estar dentro de 500 feet de un vehículo opuesto o 300 feet detrás de otro vehículo. Las altas deslumbran.",
+    "category": "general",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0108",
+    "en": {
+      "question": "By Florida law, who must wear a seat belt?",
+      "choices": [
+        "Only the driver",
+        "Only front-seat passengers",
+        "All passengers in the front and back seats",
+        "Only children under 6"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "Por ley de Florida, ¿quién debe usar cinturón de seguridad?",
+      "choices": [
+        "Solo el conductor",
+        "Solo los pasajeros del frente",
+        "Todos los pasajeros adelante y atrás",
+        "Solo niños menores de 6"
+      ]
+    },
+    "keywords": [
+      { "en": "seat belt", "es": "cinturón de seguridad" },
+      { "en": "all passengers", "es": "todos los pasajeros" }
+    ],
+    "explanation": "En Florida, todos los passengers deben usar seat belt, tanto adelante como atrás. La ley se aplica a todos los ocupantes.",
+    "category": "general",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0109",
+    "en": {
+      "question": "In Florida, children age 5 and under must be secured in:",
+      "choices": [
+        "An adult seat belt",
+        "A federally approved child restraint device (car seat or booster seat)",
+        "The back seat only",
+        "A lap held by an adult"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "En Florida, los niños de 5 años o menos deben estar asegurados en:",
+      "choices": [
+        "Un cinturón de adulto",
+        "Una silla o booster aprobada federalmente",
+        "Solo en el asiento trasero",
+        "En el regazo de un adulto"
+      ]
+    },
+    "keywords": [
+      { "en": "child restraint", "es": "silla infantil" },
+      { "en": "5 and under", "es": "5 años o menos" }
+    ],
+    "explanation": "Niños de 5 and under deben estar en una child restraint aprobada federalmente: car seat para los menores y booster seat para los mayorcitos.",
+    "category": "general",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0110",
+    "en": {
+      "question": "Texting while driving in Florida is:",
+      "choices": [
+        "Allowed at red lights",
+        "A primary offense — police can stop you for texting alone",
+        "Allowed if hands-free",
+        "Only illegal for new drivers"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Enviar mensajes (texting) mientras conduce en Florida es:",
+      "choices": [
+        "Permitido en las luces rojas",
+        "Una primary offense — la policía puede detenerlo solo por eso",
+        "Permitido si usa manos libres",
+        "Solo ilegal para conductores nuevos"
+      ]
+    },
+    "keywords": [
+      { "en": "texting while driving", "es": "enviar mensajes al conducir" },
+      { "en": "primary offense", "es": "infracción primaria" }
+    ],
+    "explanation": "Texting while driving es una primary offense en Florida: un oficial puede detenerlo solo por esa razón. Use el teléfono únicamente con manos libres.",
+    "category": "general",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0111",
+    "en": {
+      "question": "In Florida, you cannot park within how many feet of a fire hydrant?",
+      "choices": [
+        "10 feet",
+        "15 feet",
+        "20 feet",
+        "30 feet"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "En Florida, ¿a cuántos pies de un fire hydrant no puede estacionarse?",
+      "choices": [
+        "10 pies",
+        "15 pies",
+        "20 pies",
+        "30 pies"
+      ]
+    },
+    "keywords": [
+      { "en": "fire hydrant", "es": "hidrante" },
+      { "en": "15 feet", "es": "15 pies" }
+    ],
+    "explanation": "No puede estacionar dentro de 15 feet de un fire hydrant. Esta es una de las distancias clave de la ley de Florida.",
+    "category": "general",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0112",
+    "en": {
+      "question": "You cannot park within how many feet of a stop sign or traffic signal?",
+      "choices": [
+        "10 feet",
+        "20 feet",
+        "30 feet",
+        "50 feet"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "¿A cuántos pies de un stop sign o semáforo no puede estacionarse?",
+      "choices": [
+        "10 pies",
+        "20 pies",
+        "30 pies",
+        "50 pies"
+      ]
+    },
+    "keywords": [
+      { "en": "stop sign", "es": "señal de stop" },
+      { "en": "30 feet", "es": "30 pies" }
+    ],
+    "explanation": "No puede estacionar dentro de 30 feet del lado de un stop sign o traffic signal. Esto asegura la visibilidad de la señal.",
+    "category": "general",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0113",
+    "en": {
+      "question": "You cannot park within how many feet of a railroad crossing?",
+      "choices": [
+        "20 feet",
+        "30 feet",
+        "50 feet",
+        "100 feet"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "¿A cuántos pies de un railroad crossing no puede estacionarse?",
+      "choices": [
+        "20 pies",
+        "30 pies",
+        "50 pies",
+        "100 pies"
+      ]
+    },
+    "keywords": [
+      { "en": "railroad crossing", "es": "cruce de tren" },
+      { "en": "50 feet", "es": "50 pies" }
+    ],
+    "explanation": "No puede estacionar dentro de 50 feet del rail más cercano de un railroad crossing.",
+    "category": "general",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0114",
+    "en": {
+      "question": "When parking uphill on a road with a curb, you should turn your front wheels:",
+      "choices": [
+        "Sharply toward the curb",
+        "Sharply away from the curb",
+        "Straight ahead",
+        "Slightly toward the curb"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Al estacionar cuesta arriba en una calle con curb, debe girar las ruedas delanteras:",
+      "choices": [
+        "Hacia la curb fuertemente",
+        "Lejos de la curb fuertemente",
+        "Rectas hacia adelante",
+        "Ligeramente hacia la curb"
+      ]
+    },
+    "keywords": [
+      { "en": "parking uphill", "es": "estacionar cuesta arriba" },
+      { "en": "away from curb", "es": "lejos de la curb" }
+    ],
+    "explanation": "Cuesta arriba con curb: gire las ruedas away from the curb. Si el auto rueda, la curb lo detendrá.",
+    "category": "general",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0115",
+    "en": {
+      "question": "When parking downhill, you should turn your front wheels:",
+      "choices": [
+        "Toward the curb",
+        "Away from the curb",
+        "Straight ahead",
+        "Sideways"
+      ],
+      "correct": 0
+    },
+    "es": {
+      "question": "Al estacionar cuesta abajo, debe girar las ruedas delanteras:",
+      "choices": [
+        "Hacia la curb",
+        "Lejos de la curb",
+        "Rectas hacia adelante",
+        "De lado"
+      ]
+    },
+    "keywords": [
+      { "en": "parking downhill", "es": "estacionar cuesta abajo" },
+      { "en": "toward curb", "es": "hacia la curb" }
+    ],
+    "explanation": "Cuesta abajo: gire las ruedas toward the curb. Si el auto rueda, las ruedas chocan con la curb y lo detienen.",
+    "category": "general",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0116",
+    "en": {
+      "question": "When you park and leave your vehicle, you must:",
+      "choices": [
+        "Set the parking brake but you may leave the keys",
+        "Leave the engine running for AC",
+        "Turn off the engine, set the parking brake, and remove the key",
+        "Lock the doors only"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "Cuando estaciona y deja su vehículo, debe:",
+      "choices": [
+        "Poner el freno de mano pero puede dejar las llaves",
+        "Dejar el motor encendido para el aire",
+        "Apagar el motor, poner el freno de mano y quitar la llave",
+        "Solo cerrar las puertas"
+      ]
+    },
+    "keywords": [
+      { "en": "turn off engine", "es": "apagar el motor" },
+      { "en": "remove key", "es": "quitar la llave" }
+    ],
+    "explanation": "Al dejar el vehículo: turn off engine, set the parking brake y remove the key. Es ilegal dejar el motor encendido.",
+    "category": "general",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0117",
+    "en": {
+      "question": "If your vehicle plunges into deep water after a crash, the first thing you should do is:",
+      "choices": [
+        "Open all the windows immediately",
+        "Stay calm, unbuckle your safety belt, and try to escape through a window",
+        "Wait for help inside the vehicle",
+        "Move to the back seat"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Si su vehículo cae en agua profunda tras un accidente, lo primero que debe hacer es:",
+      "choices": [
+        "Abrir todas las ventanas de inmediato",
+        "Mantener la calma, quitarse el safety belt e intentar salir por una ventana",
+        "Esperar ayuda dentro del vehículo",
+        "Pasarse al asiento trasero"
+      ]
+    },
+    "keywords": [
+      { "en": "deep water", "es": "agua profunda" },
+      { "en": "safety belt", "es": "cinturón de seguridad" }
+    ],
+    "explanation": "Si cae en deep water, mantenga la calma, quítese el safety belt y salga por una ventana. Esperar puede ser fatal.",
+    "category": "general",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0118",
+    "en": {
+      "question": "If your wheels drift off the edge of the pavement, you should:",
+      "choices": [
+        "Brake hard immediately",
+        "Jerk the steering wheel back",
+        "Slow down gently and steer gradually back onto the road",
+        "Speed up"
+      ],
+      "correct": 2
+    },
+    "es": {
+      "question": "Si sus ruedas salen del borde del pavimento, debe:",
+      "choices": [
+        "Frenar fuerte inmediatamente",
+        "Jalar el volante de regreso",
+        "Reducir velocidad suavemente y volver al camino gradualmente",
+        "Acelerar"
+      ]
+    },
+    "keywords": [
+      { "en": "wheels off pavement", "es": "ruedas fuera del pavimento" },
+      { "en": "slow down gently", "es": "reducir suavemente" }
+    ],
+    "explanation": "Si las ruedas salen del pavement, slow down suavemente y vuelva al camino gradualmente. Jerk el volante puede causar volcadura.",
+    "category": "general",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0119",
+    "en": {
+      "question": "If oncoming headlights blind you at night, you should:",
+      "choices": [
+        "Stare at the headlights",
+        "Look toward the right edge of your lane",
+        "Close one eye",
+        "Flash your high beams back"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Si las luces de un auto que viene lo deslumbran de noche, debe:",
+      "choices": [
+        "Mirar fijamente las luces",
+        "Mirar hacia el borde derecho de su carril",
+        "Cerrar un ojo",
+        "Encender sus high beams en respuesta"
+      ]
+    },
+    "keywords": [
+      { "en": "oncoming headlights", "es": "luces que vienen" },
+      { "en": "right edge", "es": "borde derecho" }
+    ],
+    "explanation": "Si lo deslumbran, mire hacia el right edge de su carril. Nunca stare las headlights ni responda con high beams.",
+    "category": "general",
+    "source": "flhsmv-2026"
+  },
+  {
+    "id": "q_0120",
+    "en": {
+      "question": "Accumulating 12 points within 12 months in Florida results in a license suspension of:",
+      "choices": [
+        "10 days",
+        "30 days",
+        "3 months",
+        "1 year"
+      ],
+      "correct": 1
+    },
+    "es": {
+      "question": "Acumular 12 puntos en 12 meses en Florida resulta en una suspensión de licencia de:",
+      "choices": [
+        "10 días",
+        "30 días",
+        "3 meses",
+        "1 año"
+      ]
+    },
+    "keywords": [
+      { "en": "12 points", "es": "12 puntos" },
+      { "en": "30-day suspension", "es": "suspensión de 30 días" }
+    ],
+    "explanation": "Acumular 12 points en 12 months trae una 30-day suspension. 18 puntos/18 meses = 3 meses; 24 puntos/36 meses = 1 año.",
+    "category": "general",
+    "source": "flhsmv-2026"
   }
 ]
