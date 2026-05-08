@@ -1,4 +1,4 @@
-import type { Progress, AppSettings } from '../types'
+import type { Progress, AppSettings, MockExamRecord, DailyReadiness } from '../types'
 
 const PROGRESS_KEY = 'fl_driver_progress'
 const SETTINGS_KEY = 'fl_driver_settings'
@@ -39,8 +39,29 @@ function safeSet(key: string, value: unknown): void {
   }
 }
 
+/** Migrate a loaded Progress object — fill any missing new fields from defaults. */
+function migrateProgress(loaded: Partial<Progress>): Progress {
+  const migrated: Progress = {
+    ...defaultProgress,
+    ...loaded,
+  }
+  return migrated
+}
+
+/** Migrate a loaded AppSettings object — fill any missing new fields from defaults. */
+function migrateSettings(loaded: Partial<AppSettings>): AppSettings {
+  return {
+    ...defaultSettings,
+    ...loaded,
+  }
+}
+
 export function loadProgress(): Progress {
-  return safeGet(PROGRESS_KEY, structuredClone(defaultProgress))
+  const raw = safeGet<Partial<Progress>>(PROGRESS_KEY, structuredClone(defaultProgress))
+  const migrated = migrateProgress(raw)
+  // Re-save if migration added new fields
+  safeSet(PROGRESS_KEY, migrated)
+  return migrated
 }
 
 export function saveProgress(progress: Progress): void {
@@ -48,7 +69,11 @@ export function saveProgress(progress: Progress): void {
 }
 
 export function loadSettings(): AppSettings {
-  return safeGet(SETTINGS_KEY, structuredClone(defaultSettings))
+  const raw = safeGet<Partial<AppSettings>>(SETTINGS_KEY, structuredClone(defaultSettings))
+  const migrated = migrateSettings(raw)
+  // Re-save if migration added new fields
+  safeSet(SETTINGS_KEY, migrated)
+  return migrated
 }
 
 export function saveSettings(settings: AppSettings): void {
@@ -82,4 +107,35 @@ export function isLocalStorageAvailable(): boolean {
   } catch {
     return false
   }
+}
+
+// ─── Helper setters (pure — return new Progress/Settings) ────────────────────
+
+/** Append a mock exam record, trimming to last 20. */
+export function pushMockExamRecord(progress: Progress, record: MockExamRecord): Progress {
+  const history = [...progress.mockHistory, record]
+  return {
+    ...progress,
+    mockHistory: history.slice(-20),
+  }
+}
+
+/** Append or replace today's daily readiness entry, trimming to last 30 days. */
+export function pushDailyReadiness(progress: Progress, entry: DailyReadiness): Progress {
+  const list = [...progress.dailyReadiness]
+  const lastIdx = list.length - 1
+  if (lastIdx >= 0 && list[lastIdx].date === entry.date) {
+    list[lastIdx] = entry
+  } else {
+    list.push(entry)
+  }
+  return {
+    ...progress,
+    dailyReadiness: list.slice(-30),
+  }
+}
+
+/** Update the userName in settings. */
+export function setUserName(settings: AppSettings, name: string): AppSettings {
+  return { ...settings, userName: name }
 }
