@@ -1,0 +1,102 @@
+/* ─── GradientHeader ────────────────────────────────────────────────────────── */
+
+.gradient-header {
+  background: var(--gradient-header);
+  color: #ffffff;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 var(--space-4);
+}
+
+/* ── Strip variant: slim title bar for Study / Exam / Results / etc. ───────── */
+
+.gradient-header--strip {
+  padding-top: env(safe-area-inset-top, 0px);
+  min-height: 56px;
+}
+
+.gradient-header--strip .gradient-header__top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+  gap: var(--space-2);
+}
+
+.gradient-header--strip .gradient-header__title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+/* ── Full variant: tall hero for Home ──────────────────────────────────────── */
+
+.gradient-header--full {
+  padding-top: calc(env(safe-area-inset-top, 0px) + var(--space-4));
+  padding-bottom: var(--space-6);
+}
+
+.gradient-header--full .gradient-header__top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  gap: var(--space-2);
+}
+
+.gradient-header--full .gradient-header__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+.gradient-header__body {
+  margin-top: var(--space-4);
+}
+
+/* ── Shared: left / right slots ────────────────────────────────────────────── */
+
+.gradient-header__left,
+.gradient-header__right {
+  display: flex;
+  align-items: center;
+  min-width: 44px;
+}
+
+.gradient-header__left--empty,
+.gradient-header__right--empty {
+  /* invisible spacer — keeps title centred */
+  pointer-events: none;
+}
+
+.gradient-header__right {
+  justify-content: flex-end;
+}
+
+/* ── Buttons inside the header inherit white color ─────────────────────────── */
+
+.gradient-header button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  padding: var(--space-2);
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+}
+
+.gradient-header button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
+}
