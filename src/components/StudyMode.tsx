@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { Question, Progress, Category, StudyAnswer } from '../types'
+import { GradientHeader } from './GradientHeader'
 import './StudyMode.css'
 
 interface Props {
@@ -98,7 +99,7 @@ export default function StudyMode({ questions, progress, onProgressUpdate, onBac
   const esQuestionHtml = question?.es ? highlightKeywords(question.es.question, esKeywords) : ''
   const explanationHtml = question?.explanation ? highlightKeywords(question.explanation, enKeywords) : ''
 
-  const cardBorderColor = !hasAnswered ? '#1a56db' : sessionAnswer.correct ? '#16a34a' : '#dc2626'
+  const cardBorderColor = !hasAnswered ? 'var(--color-brand-blue)' : sessionAnswer.correct ? 'var(--color-success)' : 'var(--color-error)'
 
   function handleSelect(index: number) {
     if (!question || hasAnswered) return
@@ -148,22 +149,28 @@ export default function StudyMode({ questions, progress, onProgressUpdate, onBac
 
   return (
     <div className="study">
-      <header className="study__header">
-        <button className="study__back-btn" onClick={onBack}>← Inicio</button>
-        <div className="study__progress-wrap">
-          <div className="study__progress-bar">
-            <div className="study__progress-fill" style={{ width: `${progressPct}%` }} />
-          </div>
-          <span className="study__counter">{answeredCount} / {filtered.length}</span>
+      <GradientHeader
+        variant="strip"
+        title="Estudio"
+        left={
+          <button className="study__back-btn" onClick={onBack}>← Inicio</button>
+        }
+        right={
+          <button
+            className={`study__bookmark-btn ${isBookmarked ? 'study__bookmark-btn--active' : ''}`}
+            onClick={toggleBookmark}
+            aria-label="Guardar pregunta"
+          >
+            🔖
+          </button>
+        }
+      />
+      <div className="study__progress-wrap">
+        <div className="study__progress-bar">
+          <div className="study__progress-fill" style={{ width: `${progressPct}%` }} />
         </div>
-        <button
-          className={`study__bookmark-btn ${isBookmarked ? 'study__bookmark-btn--active' : ''}`}
-          onClick={toggleBookmark}
-          aria-label="Guardar pregunta"
-        >
-          🔖
-        </button>
-      </header>
+        <span className="study__counter">{answeredCount} / {filtered.length}</span>
+      </div>
 
       {categories.length > 1 && (
         <div className="study__categories">
