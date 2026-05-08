@@ -221,9 +221,9 @@
 }
 
 .study__choice--wrong {
-  border-color: var(--color-error) !important;
+  border-color: var(--color-error-dark) !important;
   background: var(--color-error-light) !important;
-  color: var(--color-error) !important;
+  color: var(--color-error-dark) !important;
   font-weight: 600;
 }
 
@@ -311,7 +311,7 @@
 
 .study__keyword-arrow {
   font-size: 11px;
-  color: var(--color-gray-400);
+  color: var(--color-gray-500);
 }
 
 .study__keyword-es {
