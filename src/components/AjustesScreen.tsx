@@ -37,47 +37,53 @@ export function AjustesScreen({ onResetComplete }: AjustesProps) {
   }
 
   return (
-    <div className="ajustes">
-      <GradientHeader variant="strip" title="Ajustes" />
+    <>
+      {/* Main content — inert when modal is open so focus can't escape */}
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+      <div className="ajustes" {...(modalOpen ? { inert: '' as any } : {})}>
+        <GradientHeader variant="strip" title="Ajustes" />
 
-      <div className="ajustes__body">
-        {/* ── Row 1: Reiniciar progreso ─────────────────────────────────── */}
-        <div className="ajustes__row">
-          <span className="ajustes__row-label">Reiniciar progreso</span>
-          <button
-            className="ajustes__danger-btn"
-            type="button"
-            onClick={() => setModalOpen(true)}
-            aria-label="Reiniciar progreso"
-          >
-            Reiniciar
-          </button>
-        </div>
+        <div className="ajustes__body">
+          <div className="ajustes__card">
+            {/* ── Row 1: Reiniciar progreso ────────────────────────────────── */}
+            <div className="ajustes__row">
+              <span className="ajustes__row-label">Reiniciar progreso</span>
+              <button
+                className="ajustes__danger-btn"
+                type="button"
+                onClick={() => setModalOpen(true)}
+                aria-label="Reiniciar progreso"
+              >
+                Reiniciar
+              </button>
+            </div>
 
-        <div className="ajustes__divider" role="separator" />
+            <div className="ajustes__divider" role="separator" />
 
-        {/* ── Row 2: Versión ────────────────────────────────────────────── */}
-        <div className="ajustes__row">
-          <span className="ajustes__row-label">Versión</span>
-          <span className="ajustes__row-value">1.0.0</span>
-        </div>
+            {/* ── Row 2: Versión ─────────────────────────────────────────── */}
+            <div className="ajustes__row">
+              <span className="ajustes__row-label">Versión</span>
+              <span className="ajustes__row-value">1.0.0</span>
+            </div>
 
-        <div className="ajustes__divider" role="separator" />
+            <div className="ajustes__divider" role="separator" />
 
-        {/* ── Row 3: Soporte ────────────────────────────────────────────── */}
-        <div className="ajustes__row">
-          <span className="ajustes__row-label">Soporte</span>
-          <a
-            className="ajustes__support-link"
-            href="mailto:mperez.tech@gmail.com?subject=FL%20DMV%20Prep%20-%20Soporte"
-            aria-label="Enviar correo de soporte"
-          >
-            mperez.tech@gmail.com
-          </a>
+            {/* ── Row 3: Soporte ─────────────────────────────────────────── */}
+            <div className="ajustes__row">
+              <span className="ajustes__row-label">Soporte</span>
+              <a
+                className="ajustes__support-link"
+                href="mailto:mperez.tech@gmail.com?subject=FL%20DMV%20Prep%20-%20Soporte"
+                aria-label="Enviar correo de soporte"
+              >
+                mperez.tech@gmail.com
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* ── Confirmation modal ───────────────────────────────────────────── */}
+      {/* ── Confirmation modal — outside inert wrapper ───────────────────── */}
       {modalOpen && (
         <div className="ajustes__modal-backdrop" aria-hidden="false">
           <div
@@ -112,7 +118,7 @@ export function AjustesScreen({ onResetComplete }: AjustesProps) {
           </div>
         </div>
       )}
-    </div>
+    </>
   )
 }
 

@@ -2,8 +2,10 @@
   /* Brand */
   --color-brand-blue-deep: #1e3a8a;
   --color-brand-blue: #1d4ed8;
+  --color-brand-blue-light: rgba(29, 78, 216, 0.08);
   --color-brand-teal: #10b981;
   --color-brand-teal-dark: #059669;
+  --color-brand-teal-deep: #047857;
   --color-brand-amber: #f59e0b;
 
   /* Grays */

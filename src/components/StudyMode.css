@@ -39,7 +39,7 @@
 
 .study__counter {
   font-size: 11px;
-  color: var(--color-gray-400);
+  color: var(--color-gray-500);
   white-space: nowrap;
 }
 
@@ -75,8 +75,8 @@
 }
 
 .study__cat-pill--active {
-  background: var(--color-primary);
-  border-color: var(--color-primary);
+  background: var(--color-brand-blue);
+  border-color: var(--color-brand-blue);
   color: white;
   font-weight: 700;
 }
@@ -192,8 +192,8 @@
 }
 
 .study__choice:hover:not(:disabled) {
-  border-color: var(--color-primary);
-  background: var(--color-primary-light);
+  border-color: var(--color-brand-blue);
+  background: var(--color-brand-blue-light);
 }
 
 .study__choice:disabled { cursor: default; }

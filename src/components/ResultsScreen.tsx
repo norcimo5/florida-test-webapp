@@ -94,7 +94,7 @@ export default function ResultsScreen({ questions, progress, onProgressUpdate, o
       <GradientHeader
         variant="full"
         left={
-          <button className="results__back-btn" onClick={onBack}>← Inicio</button>
+          <button className="results__back-btn" onClick={onBack} aria-label="Volver al Inicio">← Inicio</button>
         }
       >
         {heroContent}
