@@ -63,21 +63,12 @@ export function passProbabilityPct(progress: Progress, questions: Question[]): n
 }
 
 /**
- * Count of unique EN keywords that appear in at least 1 question answered
- * correctly with the Spanish chip hidden (studyAnswersWithoutHints).
- * Per FR-4: threshold is ≥1 appearance (lowered from 3 because most keywords
- * appear in only 1–2 questions across the 120-bank).
+ * Count of unique EN keywords in progress.masteredKeywords.
+ * masteredKeywords is maintained by the study flow: a keyword is added when
+ * its question is answered correctly with the Spanish chip hidden.
+ * Per FR-4: threshold is ≥1 appearance (lowered from 3).
  */
 export function masteredKeywordsCount(progress: Progress): number {
-  const hintsHidden = new Set(progress.studyAnswersWithoutHints)
-  if (hintsHidden.size === 0) return 0
-
-  // We only have question IDs, not the questions themselves, so we rely on
-  // progress.masteredKeywords which is maintained by the study flow.
-  // However this function is also used standalone; if masteredKeywords is
-  // populated, count those. If we need to compute from scratch we'd need
-  // questions — but the store only has IDs.
-  // Per spec: masteredKeywords is the canonical list maintained at answer time.
   return progress.masteredKeywords.length
 }
 
@@ -106,6 +97,7 @@ export function shouldShowReadyChip(progress: Progress): boolean {
  * Returns the last n mock exam records (newest last in source array).
  */
 export function getRecentMockScores(progress: Progress, n: number): MockExamRecord[] {
+  if (n <= 0) return []
   return progress.mockHistory.slice(-n)
 }
 
