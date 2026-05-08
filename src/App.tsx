@@ -81,11 +81,12 @@ export default function App() {
 
       {screen === 'home' && (
         <HomeScreen
+          questions={typedQuestions}
           progress={progress}
           settings={settings}
-          totalQuestions={typedQuestions.length}
-          onNavigate={handleNavigate}
-          onOpenOptions={() => setOptionsOpen(true)}
+          onTopicTap={(_topic) => handleNavigate('study')}
+          onStartFullMock={() => handleNavigate('exam')}
+          onStartDailyQuiz={() => handleNavigate('study')}
         />
       )}
 
