@@ -1,0 +1,96 @@
+/* ─── BottomTabBar ──────────────────────────────────────────────────────────── */
+
+.bottom-tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  display: flex;
+  align-items: stretch;
+
+  background: #ffffff;
+  border-top: 1px solid var(--color-gray-200);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+
+  /* Horizontal centering on wide screens (matches app max-width) */
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* On wider viewports the tab bar should still span the full viewport bottom */
+@media (min-width: 480px) {
+  .bottom-tab-bar {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 480px;
+  }
+}
+
+/* ── Individual tab button ─────────────────────────────────────────────────── */
+
+.bottom-tab-bar__tab {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+
+  /* Touch target: minimum 56px height per plan */
+  min-height: 56px;
+  padding: var(--space-1) var(--space-2);
+
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-gray-500);
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  transition: color 0.15s ease;
+
+  /* Ensure the full column is tappable */
+  width: 100%;
+}
+
+.bottom-tab-bar__tab:focus-visible {
+  outline: 2px solid var(--color-brand-teal);
+  outline-offset: -2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Active state ─────────────────────────────────────────────────────────── */
+
+.bottom-tab-bar__tab--active {
+  color: var(--color-brand-blue);
+}
+
+/* ── Icon ─────────────────────────────────────────────────────────────────── */
+
+.bottom-tab-bar__icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  /* Prevent layout shift on emoji */
+  display: block;
+}
+
+.bottom-tab-bar__tab--active .bottom-tab-bar__icon {
+  /* Slight scale to indicate active */
+  transform: scale(1.1);
+  transition: transform 0.15s ease;
+}
+
+/* ── Label ────────────────────────────────────────────────────────────────── */
+
+.bottom-tab-bar__label {
+  font-size: 0.625rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
