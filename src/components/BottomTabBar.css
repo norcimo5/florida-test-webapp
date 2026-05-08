@@ -10,7 +10,7 @@
   display: flex;
   align-items: stretch;
 
-  background: #ffffff;
+  background: white;
   border-top: 1px solid var(--color-gray-200);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 

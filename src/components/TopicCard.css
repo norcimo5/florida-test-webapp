@@ -9,7 +9,7 @@
   padding: var(--space-3) var(--space-4);
   min-height: 72px; /* well above 44px touch target */
 
-  background: #ffffff;
+  background: white;
   border: 1px solid var(--color-gray-200);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);

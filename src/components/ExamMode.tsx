@@ -70,7 +70,7 @@ export default function ExamMode({ questions, progress, settings, onProgressUpda
           <button className="exam__back-btn" onClick={onBack} aria-label="Salir del examen">← Salir</button>
         }
         right={
-          <span className="exam__timer" aria-label="Tiempo transcurrido">{timerLabel}</span>
+          <span className="exam__timer" role="timer" aria-label="Tiempo transcurrido">{timerLabel}</span>
         }
       />
       <div className="exam__progress-wrap">
