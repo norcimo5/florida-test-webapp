@@ -66,7 +66,7 @@ describe('progressStore', () => {
   })
 
   it('saves and reloads settings', () => {
-    saveSettings({ examLength: 25 })
+    saveSettings({ examLength: 25, userName: 'TESTUSER', onboardingComplete: true })
     expect(loadSettings().examLength).toBe(25)
   })
 

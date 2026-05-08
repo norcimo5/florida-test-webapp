@@ -33,7 +33,26 @@ export interface Question {
   source: string
 }
 
-export type Screen = 'home' | 'study' | 'exam' | 'results'
+export type Screen = 'home' | 'temas' | 'study' | 'exam' | 'results' | 'perfil' | 'ajustes'
+
+export type MacroTopic = 'senales' | 'reglas' | 'seguridad' | 'especial'
+
+export interface MockExamRecord {
+  id: string                  // ISO timestamp
+  scoreCorrect: number
+  scoreTotal: number          // always 50
+  takenAt: string             // ISO date
+}
+
+export interface DailyReadiness {
+  date: string                // YYYY-MM-DD (America/New_York)
+  readinessPct: number        // 0-100
+}
+
+export interface DailyQuizState {
+  streakDays: number
+  lastCompletedDate: string | null  // YYYY-MM-DD
+}
 
 export interface StudyAnswer {
   selectedIndex: number
@@ -51,8 +70,16 @@ export interface Progress {
   examQuestionIds: string[]                  // ordered list for current exam
   examAnswers: ExamAnswer[]
   examComplete: boolean
+  // NEW:
+  mockHistory: MockExamRecord[]      // last 20 retained
+  dailyReadiness: DailyReadiness[]   // last 30 days retained
+  dailyQuiz: DailyQuizState
+  masteredKeywords: string[]         // EN keyword strings
+  studyAnswersWithoutHints: string[] // questionIds answered correctly with Spanish chip hidden
 }
 
 export interface AppSettings {
   examLength: 25 | 50
+  userName: string             // 'TESTUSER' default
+  onboardingComplete: boolean  // reserved for v2 onboarding tour; default true in v1 (no tour)
 }

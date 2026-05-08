@@ -9,10 +9,17 @@ const defaultProgress: Progress = {
   examQuestionIds: [],
   examAnswers: [],
   examComplete: false,
+  mockHistory: [],
+  dailyReadiness: [],
+  dailyQuiz: { streakDays: 0, lastCompletedDate: null },
+  masteredKeywords: [],
+  studyAnswersWithoutHints: [],
 }
 
 const defaultSettings: AppSettings = {
   examLength: 50,
+  userName: 'TESTUSER',
+  onboardingComplete: true,
 }
 
 function safeGet<T>(key: string, fallback: T): T {

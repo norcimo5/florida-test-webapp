@@ -30,6 +30,11 @@ const defaultProgress: Progress = {
   examQuestionIds: [],
   examAnswers: [],
   examComplete: false,
+  mockHistory: [],
+  dailyReadiness: [],
+  dailyQuiz: { streakDays: 0, lastCompletedDate: null },
+  masteredKeywords: [],
+  studyAnswersWithoutHints: [],
 }
 
 function renderStudy(overrides: Partial<Parameters<typeof StudyMode>[0]> = {}) {

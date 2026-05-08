@@ -37,9 +37,14 @@ const defaultProgress: Progress = {
   examQuestionIds: ['q_001', 'q_002'],
   examAnswers: [],
   examComplete: false,
+  mockHistory: [],
+  dailyReadiness: [],
+  dailyQuiz: { streakDays: 0, lastCompletedDate: null },
+  masteredKeywords: [],
+  studyAnswersWithoutHints: [],
 }
 
-const settings: AppSettings = { examLength: 50 }
+const settings: AppSettings = { examLength: 50, userName: 'TESTUSER', onboardingComplete: true }
 
 describe('ExamMode', () => {
   it('shows English question text', () => {

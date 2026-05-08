@@ -23,11 +23,23 @@ const questions: Question[] = [
   },
 ]
 
+const baseProgress: Progress = {
+  studyAnswers: {},
+  bookmarks: [],
+  examQuestionIds: [],
+  examAnswers: [],
+  examComplete: false,
+  mockHistory: [],
+  dailyReadiness: [],
+  dailyQuiz: { streakDays: 0, lastCompletedDate: null },
+  masteredKeywords: [],
+  studyAnswersWithoutHints: [],
+}
+
 describe('ResultsScreen', () => {
   it('shows score X out of N', () => {
     const progress: Progress = {
-      studyAnswers: {},
-      bookmarks: [],
+      ...baseProgress,
       examQuestionIds: ['q_001', 'q_002'],
       examAnswers: [
         { questionId: 'q_001', selectedIndex: 2 }, // correct
@@ -49,8 +61,7 @@ describe('ResultsScreen', () => {
 
   it('shows APROBADO when score >= 80%', () => {
     const progress: Progress = {
-      studyAnswers: {},
-      bookmarks: [],
+      ...baseProgress,
       examQuestionIds: ['q_001', 'q_002'],
       examAnswers: [
         { questionId: 'q_001', selectedIndex: 2 }, // correct
@@ -72,8 +83,7 @@ describe('ResultsScreen', () => {
 
   it('shows REPROBADO when score < 80%', () => {
     const progress: Progress = {
-      studyAnswers: {},
-      bookmarks: [],
+      ...baseProgress,
       examQuestionIds: ['q_001', 'q_002'],
       examAnswers: [
         { questionId: 'q_001', selectedIndex: 0 }, // wrong
@@ -96,8 +106,7 @@ describe('ResultsScreen', () => {
   it('calls onRetry when retry button clicked', async () => {
     const onRetry = vi.fn()
     const progress: Progress = {
-      studyAnswers: {},
-      bookmarks: [],
+      ...baseProgress,
       examQuestionIds: ['q_001'],
       examAnswers: [{ questionId: 'q_001', selectedIndex: 0 }],
       examComplete: true,
