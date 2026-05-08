@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import questions from './data/questions.json'
-import type { Question, Progress, AppSettings, Screen } from './types'
+import type { Question, Progress, AppSettings, Screen, MacroTopic } from './types'
 import {
   loadProgress,
   saveProgress,
@@ -10,54 +10,99 @@ import {
   clearAll,
   isLocalStorageAvailable,
 } from './store/progressStore'
+import { recordDailyReadiness } from './store/computed'
 import HomeScreen from './components/HomeScreen'
 import StudyMode from './components/StudyMode'
 import ExamMode from './components/ExamMode'
 import ResultsScreen from './components/ResultsScreen'
-import OptionsDrawer from './components/OptionsDrawer'
+import TemasScreen from './components/TemasScreen'
+import PerfilScreen from './components/PerfilScreen'
+import AjustesScreen from './components/AjustesScreen'
+import BottomTabBar from './components/BottomTabBar'
 
 const typedQuestions = questions as Question[]
+
+/** Screens that hide the bottom tab bar (focus / in-session mode). */
+const FOCUS_SCREENS: Screen[] = ['study', 'exam', 'results']
 
 export default function App() {
   const [screen, setScreen] = useState<Screen>('home')
   const [reviewMode, setReviewMode] = useState(false)
+  const [filterTopic, setFilterTopic] = useState<MacroTopic | null>(null)
   const [progress, setProgress] = useState<Progress>(() => loadProgress())
   const [settings, setSettings] = useState<AppSettings>(() => loadSettings())
-  const [optionsOpen, setOptionsOpen] = useState(false)
   const [storageWarning] = useState(() => !isLocalStorageAvailable())
 
+  // Persist progress and settings whenever they change
   useEffect(() => { saveProgress(progress) }, [progress])
   useEffect(() => { saveSettings(settings) }, [settings])
 
-  function handleNavigate(target: Screen, mode?: 'review') {
-    setReviewMode(mode === 'review')
+  // Record daily readiness on every Home mount
+  useEffect(() => {
+    if (screen === 'home') {
+      setProgress(prev => {
+        const updated = recordDailyReadiness(prev, typedQuestions)
+        return updated
+      })
+    }
+  }, [screen])
+
+  // ── Navigation helpers ───────────────────────────────────────────────────────
+
+  function navigateTo(target: Screen) {
+    setReviewMode(false)
+    setFilterTopic(null)
     setScreen(target)
+  }
+
+  function handleTopicTap(topic: MacroTopic) {
+    setFilterTopic(topic)
+    setReviewMode(false)
+    setScreen('study')
+  }
+
+  function handleStartFullMock() {
+    setProgress(prev => clearExam(prev))
+    setScreen('exam')
+  }
+
+  // v1: daily quiz routes to the same full mock handler (5-question mechanic deferred to v2)
+  function handleStartDailyQuiz() {
+    handleStartFullMock()
   }
 
   function handleProgressUpdate(p: Progress) {
     setProgress(p)
   }
 
-  function handleSettingsUpdate(s: AppSettings) {
-    setSettings(s)
-  }
-
-  function handleResetExam() {
-    setProgress(prev => clearExam(prev))
-    setOptionsOpen(false)
-  }
-
-  function handleResetAll() {
-    clearAll()
-    setProgress(loadProgress())
-    setSettings(loadSettings())
-    setOptionsOpen(false)
-    setScreen('home')
-  }
-
   function handleExamComplete() {
     setScreen('results')
   }
+
+  function handleResetComplete() {
+    clearAll()
+    setProgress(loadProgress())
+    setSettings(loadSettings())
+    setScreen('home')
+  }
+
+  // ── BottomTabBar onChange ────────────────────────────────────────────────────
+
+  function handleTabChange(tab: Screen) {
+    if (tab === 'exam') {
+      // Exámenes tab always launches a fresh full mock
+      handleStartFullMock()
+    } else {
+      navigateTo(tab)
+    }
+  }
+
+  // ── Determine which Screen the tab bar should highlight ─────────────────────
+  // During focus screens (study/exam/results), the tab bar is hidden,
+  // so active tab value doesn't matter — but keep 'home' as fallback.
+  const activeTab: Screen = FOCUS_SCREENS.includes(screen) ? 'home' : screen
+
+  const showTabBar = !FOCUS_SCREENS.includes(screen)
 
   return (
     <>
@@ -79,9 +124,17 @@ export default function App() {
           questions={typedQuestions}
           progress={progress}
           settings={settings}
-          onTopicTap={(_topic) => handleNavigate('study')}
-          onStartFullMock={() => handleNavigate('exam')}
-          onStartDailyQuiz={() => handleNavigate('study')}
+          onTopicTap={handleTopicTap}
+          onStartFullMock={handleStartFullMock}
+          onStartDailyQuiz={handleStartDailyQuiz}
+        />
+      )}
+
+      {screen === 'temas' && (
+        <TemasScreen
+          questions={typedQuestions}
+          progress={progress}
+          onTopicTap={handleTopicTap}
         />
       )}
 
@@ -90,8 +143,9 @@ export default function App() {
           questions={typedQuestions}
           progress={progress}
           onProgressUpdate={handleProgressUpdate}
-          onBack={() => setScreen('home')}
+          onBack={() => navigateTo('home')}
           reviewMode={reviewMode}
+          filterTopic={filterTopic ?? undefined}
         />
       )}
 
@@ -102,7 +156,7 @@ export default function App() {
           settings={settings}
           onProgressUpdate={handleProgressUpdate}
           onComplete={handleExamComplete}
-          onBack={() => setScreen('home')}
+          onBack={() => navigateTo('home')}
         />
       )}
 
@@ -111,19 +165,37 @@ export default function App() {
           questions={typedQuestions}
           progress={progress}
           onProgressUpdate={handleProgressUpdate}
-          onStudy={() => handleNavigate('study', 'review')}
-          onBack={() => setScreen('home')}
+          onStudy={() => {
+            // v1: "Repasar Errores" navigates to study in review mode (existing logic)
+            setReviewMode(true)
+            setFilterTopic(null)
+            setScreen('study')
+          }}
+          onBack={() => navigateTo('home')}
         />
       )}
 
-      <OptionsDrawer
-        isOpen={optionsOpen}
-        settings={settings}
-        onSettingsUpdate={handleSettingsUpdate}
-        onResetExam={handleResetExam}
-        onResetAll={handleResetAll}
-        onClose={() => setOptionsOpen(false)}
-      />
+      {screen === 'perfil' && (
+        <PerfilScreen
+          questions={typedQuestions}
+          progress={progress}
+          settings={settings}
+          onNavigateToAjustes={() => navigateTo('ajustes')}
+        />
+      )}
+
+      {screen === 'ajustes' && (
+        <AjustesScreen
+          onResetComplete={handleResetComplete}
+        />
+      )}
+
+      {showTabBar && (
+        <BottomTabBar
+          active={activeTab}
+          onChange={handleTabChange}
+        />
+      )}
     </>
   )
 }

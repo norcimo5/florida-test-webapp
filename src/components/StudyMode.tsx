@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import type { Question, Progress, Category, StudyAnswer } from '../types'
+import type { Question, Progress, Category, StudyAnswer, MacroTopic } from '../types'
 import { GradientHeader } from './GradientHeader'
+import { MACRO_TOPIC_MAP } from '../store/computed'
 import './StudyMode.css'
 
 interface Props {
@@ -9,6 +10,8 @@ interface Props {
   onProgressUpdate: (p: Progress) => void
   onBack: () => void
   reviewMode: boolean
+  /** If set, pre-filters the question pool to this macro topic before any other filtering. */
+  filterTopic?: MacroTopic
 }
 
 const CATEGORY_LABELS: Record<Category, string> = {
@@ -61,13 +64,18 @@ function pickWeightedRandom(
   return eligible[eligible.length - 1]
 }
 
-export default function StudyMode({ questions, progress, onProgressUpdate, onBack, reviewMode }: Props) {
+export default function StudyMode({ questions, progress, onProgressUpdate, onBack, reviewMode, filterTopic }: Props) {
+  // If filterTopic is set, narrow the pool to those categories first
+  const topicFilteredQuestions = filterTopic
+    ? questions.filter(q => MACRO_TOPIC_MAP[filterTopic].includes(q.category))
+    : questions
+
   const displayQuestions = reviewMode
-    ? questions.filter(q => {
+    ? topicFilteredQuestions.filter(q => {
         const a = progress.studyAnswers[q.id]
         return a && !a.correct
       })
-    : questions
+    : topicFilteredQuestions
 
   const categories = Array.from(new Set(displayQuestions.map(q => q.category))) as Category[]
   const [activeCategory, setActiveCategory] = useState<Category | 'all'>('all')
