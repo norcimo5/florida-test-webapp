@@ -192,6 +192,7 @@ export default function StudyMode({ questions, progress, onProgressUpdate, onBac
           <button
             className={`study__cat-pill ${activeCategory === 'all' ? 'study__cat-pill--active' : ''}`}
             onClick={() => handleCategoryChange('all')}
+            aria-pressed={activeCategory === 'all'}
           >
             Todas ({displayQuestions.length})
           </button>
@@ -200,6 +201,7 @@ export default function StudyMode({ questions, progress, onProgressUpdate, onBac
               key={cat}
               className={`study__cat-pill ${activeCategory === cat ? 'study__cat-pill--active' : ''}`}
               onClick={() => handleCategoryChange(cat)}
+              aria-pressed={activeCategory === cat}
             >
               {CATEGORY_LABELS[cat]} ({displayQuestions.filter(q => q.category === cat).length})
             </button>

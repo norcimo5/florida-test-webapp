@@ -145,7 +145,7 @@
 }
 
 .results__action-btn--study {
-  background: var(--color-brand-teal);
+  background: var(--color-brand-teal-deep);
   color: white;
   border: none;
   box-shadow: var(--shadow-cta);

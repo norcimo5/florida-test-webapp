@@ -145,7 +145,7 @@ export function PerformanceChart({ readiness, mockScores }: PerformanceChartProp
           x={MARGIN.left + PLOT_W + 4}
           y={goalY + 4}
           fontSize="8"
-          fill="var(--color-brand-amber)"
+          fill="var(--color-amber-text)"
           fontFamily="var(--font-sans)"
           fontWeight="600"
         >

@@ -110,6 +110,7 @@ export default function ExamMode({ questions, progress, settings, onProgressUpda
             className="exam__nav-btn exam__nav-btn--prev"
             onClick={() => setCurrentIndex(i => Math.max(0, i - 1))}
             disabled={currentIndex === 0}
+            aria-label="Pregunta anterior"
           >
             ← Anterior
           </button>
@@ -117,6 +118,7 @@ export default function ExamMode({ questions, progress, settings, onProgressUpda
             <button
               className="exam__nav-btn exam__nav-btn--finish"
               onClick={handleFinish}
+              aria-label="Terminar examen"
             >
               Terminar Examen ✓
             </button>
@@ -124,6 +126,7 @@ export default function ExamMode({ questions, progress, settings, onProgressUpda
             <button
               className="exam__nav-btn exam__nav-btn--next"
               onClick={() => setCurrentIndex(i => i + 1)}
+              aria-label="Siguiente pregunta"
             >
               Siguiente →
             </button>

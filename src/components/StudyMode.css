@@ -213,7 +213,7 @@
 .study__choice--correct {
   border-color: var(--color-success) !important;
   background: var(--color-success-light) !important;
-  color: var(--color-success) !important;
+  color: var(--color-success-dark) !important;
   font-weight: 700;
 }
 
@@ -252,7 +252,7 @@
   margin-bottom: 4px;
 }
 
-.study__porque--wrong .study__porque-label { color: var(--color-warning-text); }
+.study__porque--wrong .study__porque-label { color: var(--color-warning-text-dark); }
 .study__porque--correct .study__porque-label { color: var(--color-success-dark); }
 
 .study__porque-text {
