@@ -1,10 +1,13 @@
+import { useEffect, useRef } from 'react'
 import type { Question, Progress, Category } from '../types'
+import { GradientHeader } from './GradientHeader'
+import { pushMockExamRecord } from '../store/progressStore'
 import './ResultsScreen.css'
 
 interface Props {
   questions: Question[]
   progress: Progress
-  onRetry: () => void
+  onProgressUpdate: (p: Progress) => void
   onStudy: () => void
   onBack: () => void
 }
@@ -19,7 +22,7 @@ const CATEGORY_LABELS: Record<Category, string> = {
   'general': '📋 General',
 }
 
-export default function ResultsScreen({ questions, progress, onRetry, onStudy, onBack }: Props) {
+export default function ResultsScreen({ questions, progress, onProgressUpdate, onStudy, onBack }: Props) {
   const examQs = progress.examQuestionIds
     .map(id => questions.find(q => q.id === id))
     .filter((q): q is Question => q !== undefined)
@@ -43,24 +46,63 @@ export default function ResultsScreen({ questions, progress, onRetry, onStudy, o
     categoryMap.set(q.category, entry)
   }
 
+  // ── Persist mock exam record on first render (guard against double-push) ──
+  const persistedRef = useRef(false)
+  useEffect(() => {
+    if (persistedRef.current) return
+    if (total === 0) return
+
+    // Guard: skip if latest mockHistory entry already matches this completion
+    const latest = progress.mockHistory[progress.mockHistory.length - 1]
+    const recentThreshold = Date.now() - 5 * 60 * 1000 // 5 minutes
+    if (
+      latest &&
+      latest.scoreCorrect === correct &&
+      latest.scoreTotal === total &&
+      new Date(latest.takenAt).getTime() > recentThreshold
+    ) {
+      persistedRef.current = true
+      return
+    }
+
+    persistedRef.current = true
+    const now = new Date().toISOString()
+    const updated = pushMockExamRecord(progress, {
+      id: now,
+      scoreCorrect: correct,
+      scoreTotal: total,
+      takenAt: now,
+    })
+    onProgressUpdate(updated)
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // ── Header content ────────────────────────────────────────────────────────
+  const headline = passed ? '🎉 ¡APROBASTE!' : '😔 Sigue practicando'
+  const scoreLine = `${correct} / ${total}  =  ${pct}%`
+  const subtext = `(Necesitas 40 / 50 para aprobar)`
+
+  const heroContent = (
+    <div className="results__hero-body">
+      <div className="results__verdict">{headline}</div>
+      <div className="results__score">{scoreLine}</div>
+      <div className="results__subtext">{subtext}</div>
+    </div>
+  )
+
   return (
     <div className="results">
-      <header className="results__header">
-        <button className="results__back-btn" onClick={onBack}>← Inicio</button>
-      </header>
+      <GradientHeader
+        variant="full"
+        left={
+          <button className="results__back-btn" onClick={onBack}>← Inicio</button>
+        }
+      >
+        {heroContent}
+      </GradientHeader>
 
       <main className="results__main">
-        <div className={`results__hero ${passed ? 'results__hero--pass' : 'results__hero--fail'}`}>
-          <div className="results__icon">{passed ? '🎉' : '📚'}</div>
-          <div className={`results__verdict ${passed ? 'results__verdict--pass' : 'results__verdict--fail'}`}>
-            {passed ? 'APROBADO' : 'REPROBADO'}
-          </div>
-          <div className="results__score">{correct} / {total}</div>
-          <div className="results__pct">{pct}% correcto · {passed ? 'Pasaste el umbral del 80%' : 'Necesitas 80% para aprobar'}</div>
-        </div>
-
         <div className="results__breakdown">
-          <div className="results__breakdown-title">Resultados por Categoría</div>
+          <div className="results__breakdown-title">DESEMPEÑO POR CATEGORÍA</div>
           {Array.from(categoryMap.entries()).map(([cat, { correct: c, total: t }]) => (
             <div key={cat} className="results__breakdown-row">
               <span className="results__breakdown-cat">{CATEGORY_LABELS[cat]}</span>
@@ -78,11 +120,11 @@ export default function ResultsScreen({ questions, progress, onRetry, onStudy, o
         </div>
 
         <div className="results__actions">
-          <button className="results__action-btn results__action-btn--retry" onClick={onRetry}>
-            🔄 Intentar de nuevo
-          </button>
           <button className="results__action-btn results__action-btn--study" onClick={onStudy}>
-            📚 Estudiar preguntas falladas
+            📚 Repasar Errores
+          </button>
+          <button className="results__action-btn results__action-btn--back" onClick={onBack}>
+            Volver al Inicio
           </button>
         </div>
       </main>

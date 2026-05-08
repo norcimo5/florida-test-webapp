@@ -59,11 +59,6 @@ export default function App() {
     setScreen('results')
   }
 
-  function handleRetryExam() {
-    setProgress(prev => clearExam(prev))
-    setScreen('exam')
-  }
-
   return (
     <>
       {storageWarning && (
@@ -115,7 +110,7 @@ export default function App() {
         <ResultsScreen
           questions={typedQuestions}
           progress={progress}
-          onRetry={handleRetryExam}
+          onProgressUpdate={handleProgressUpdate}
           onStudy={() => handleNavigate('study', 'review')}
           onBack={() => setScreen('home')}
         />
