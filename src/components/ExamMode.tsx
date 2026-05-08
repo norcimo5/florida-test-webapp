@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import type { Question, Progress, AppSettings } from '../types'
+import { GradientHeader } from './GradientHeader'
 import './ExamMode.css'
 
 interface Props {
@@ -28,6 +29,18 @@ export default function ExamMode({ questions, progress, settings, onProgressUpda
   }
 
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [elapsed, setElapsed] = useState(0)
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  useEffect(() => {
+    intervalRef.current = setInterval(() => setElapsed(s => s + 1), 1000)
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
+  }, [])
+
+  const minutes = Math.floor(elapsed / 60)
+  const seconds = elapsed % 60
+  const timerLabel = `⏱ ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
+
   const currentQuestion = examQuestions[currentIndex]
   const currentAnswer = progress.examAnswers.find(a => a.questionId === currentQuestion?.id)
   const isLast = currentIndex === examQuestions.length - 1
@@ -50,18 +63,25 @@ export default function ExamMode({ questions, progress, settings, onProgressUpda
 
   return (
     <div className="exam">
-      <header className="exam__header">
-        <button className="exam__back-btn" onClick={onBack}>← Inicio</button>
-        <div className="exam__progress-wrap">
-          <div className="exam__progress-bar">
-            <div
-              className="exam__progress-fill"
-              style={{ width: `${((currentIndex + 1) / examQuestions.length) * 100}%` }}
-            />
-          </div>
-          <span className="exam__counter">Pregunta {currentIndex + 1} de {examQuestions.length}</span>
+      <GradientHeader
+        variant="strip"
+        title="Examen Completo"
+        left={
+          <button className="exam__back-btn" onClick={onBack}>← Salir</button>
+        }
+        right={
+          <span className="exam__timer" aria-label="Tiempo transcurrido">{timerLabel}</span>
+        }
+      />
+      <div className="exam__progress-wrap">
+        <div className="exam__progress-bar">
+          <div
+            className="exam__progress-fill"
+            style={{ width: `${((currentIndex + 1) / examQuestions.length) * 100}%` }}
+          />
         </div>
-      </header>
+        <span className="exam__counter">Pregunta {currentIndex + 1} de {examQuestions.length}</span>
+      </div>
 
       <main className="exam__main">
         <div className="exam__card">
