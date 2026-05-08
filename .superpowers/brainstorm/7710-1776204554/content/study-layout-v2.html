@@ -1,0 +1,106 @@
+<h2>A+C combo — stacked, open by default, collapsible</h2>
+<p class="subtitle">One column. Spanish always shown. Small toggle to hide it if they want exam-only mode. Two variants on spacing/hierarchy.</p>
+
+<div class="split">
+
+  <div class="mockup">
+    <div class="mockup-header">V1 — ES as a soft panel below</div>
+    <div class="mockup-body">
+      <div style="background:#f8f9fa;border-radius:8px;padding:14px;font-family:sans-serif;max-width:280px;margin:0 auto;">
+
+        <!-- progress bar -->
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <div style="flex:1;height:6px;background:#e5e7eb;border-radius:10px;overflow:hidden;">
+            <div style="width:40%;height:100%;background:#1a56db;border-radius:10px;"></div>
+          </div>
+          <span style="font-size:10px;color:#6b7280;">2 / 5</span>
+        </div>
+
+        <!-- EN card -->
+        <div style="background:white;border:2px solid #1a56db;border-radius:10px;padding:14px;margin-bottom:10px;">
+          <div style="font-size:9px;font-weight:800;color:#1a56db;letter-spacing:1px;margin-bottom:8px;">🇺🇸 ENGLISH</div>
+          <div style="font-size:13px;font-weight:600;color:#111;margin-bottom:12px;line-height:1.4;">What does a <strong style="background:#fef08a;padding:1px 4px;border-radius:3px;">flashing yellow</strong> light mean?</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="border:1.5px solid #e5e7eb;border-radius:7px;padding:9px 12px;font-size:12px;color:#374151;">Stop completely</div>
+            <div style="border:1.5px solid #e5e7eb;border-radius:7px;padding:9px 12px;font-size:12px;color:#374151;">Speed up</div>
+            <div style="border:1.5px solid #16a34a;background:#f0fdf4;border-radius:7px;padding:9px 12px;font-size:12px;color:#16a34a;font-weight:700;">✓ Slow down and proceed</div>
+            <div style="border:1.5px solid #e5e7eb;border-radius:7px;padding:9px 12px;font-size:12px;color:#374151;">Yield</div>
+          </div>
+        </div>
+
+        <!-- ES panel -->
+        <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:12px;margin-bottom:10px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <div style="font-size:9px;font-weight:800;color:#92400e;letter-spacing:1px;">🇲🇽 ESPAÑOL</div>
+            <button style="font-size:9px;color:#a16207;background:none;border:1px solid #fde68a;border-radius:4px;padding:2px 7px;cursor:pointer;">Ocultar ▲</button>
+          </div>
+          <div style="font-size:12px;color:#78350f;">¿Qué debe hacer cuando ve una <strong>luz amarilla intermitente</strong>?</div>
+        </div>
+
+        <!-- Keywords -->
+        <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:10px;">
+          <div style="font-size:9px;font-weight:800;color:#166534;letter-spacing:1px;margin-bottom:6px;">PALABRAS CLAVE</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <div style="background:white;border:1px solid #bbf7d0;border-radius:6px;padding:4px 8px;font-size:10px;color:#166534;"><strong>flashing yellow</strong> → amarilla intermitente</div>
+            <div style="background:white;border:1px solid #bbf7d0;border-radius:6px;padding:4px 8px;font-size:10px;color:#166534;"><strong>slow down</strong> → disminuir velocidad</div>
+          </div>
+        </div>
+
+        <!-- nav -->
+        <div style="display:flex;justify-content:space-between;margin-top:12px;">
+          <button style="border:1.5px solid #e5e7eb;background:white;padding:9px 16px;border-radius:7px;font-size:12px;color:#6b7280;cursor:pointer;">← Anterior</button>
+          <button style="background:#1a56db;color:white;padding:9px 16px;border-radius:7px;font-size:12px;font-weight:700;border:none;cursor:pointer;">Siguiente →</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">V2 — ES as subtitle + keywords merged</div>
+    <div class="mockup-body">
+      <div style="background:#f8f9fa;border-radius:8px;padding:14px;font-family:sans-serif;max-width:280px;margin:0 auto;">
+
+        <!-- progress bar -->
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <div style="flex:1;height:6px;background:#e5e7eb;border-radius:10px;overflow:hidden;">
+            <div style="width:40%;height:100%;background:#1a56db;border-radius:10px;"></div>
+          </div>
+          <span style="font-size:10px;color:#6b7280;">2 / 5</span>
+        </div>
+
+        <!-- single card, EN + ES subtitle inside -->
+        <div style="background:white;border:2px solid #1a56db;border-radius:10px;padding:14px;margin-bottom:10px;">
+          <div style="font-size:9px;font-weight:800;color:#1a56db;letter-spacing:1px;margin-bottom:6px;">🇺🇸 ENGLISH</div>
+          <div style="font-size:13px;font-weight:600;color:#111;margin-bottom:4px;line-height:1.4;">What does a <strong style="background:#fef08a;padding:1px 4px;border-radius:3px;">flashing yellow</strong> light mean?</div>
+          <div style="font-size:11px;color:#a16207;margin-bottom:12px;font-style:italic;">¿Qué hace con una luz amarilla intermitente? <button style="font-size:9px;color:#a16207;background:none;border:none;cursor:pointer;text-decoration:underline;">ocultar</button></div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="border:1.5px solid #e5e7eb;border-radius:7px;padding:9px 12px;font-size:12px;color:#374151;">Stop completely</div>
+            <div style="border:1.5px solid #e5e7eb;border-radius:7px;padding:9px 12px;font-size:12px;color:#374151;">Speed up</div>
+            <div style="border:1.5px solid #16a34a;background:#f0fdf4;border-radius:7px;padding:9px 12px;font-size:12px;color:#16a34a;font-weight:700;">✓ Slow down and proceed</div>
+            <div style="border:1.5px solid #e5e7eb;border-radius:7px;padding:9px 12px;font-size:12px;color:#374151;">Yield</div>
+          </div>
+        </div>
+
+        <!-- keywords -->
+        <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:10px;margin-bottom:10px;">
+          <div style="font-size:9px;font-weight:800;color:#166534;letter-spacing:1px;margin-bottom:6px;">PALABRAS CLAVE</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <div style="background:white;border:1px solid #bbf7d0;border-radius:6px;padding:4px 8px;font-size:10px;color:#166534;"><strong>flashing yellow</strong> → amarilla intermitente</div>
+            <div style="background:white;border:1px solid #bbf7d0;border-radius:6px;padding:4px 8px;font-size:10px;color:#166534;"><strong>slow down</strong> → disminuir velocidad</div>
+          </div>
+        </div>
+
+        <!-- nav -->
+        <div style="display:flex;justify-content:space-between;">
+          <button style="border:1.5px solid #e5e7eb;background:white;padding:9px 16px;border-radius:7px;font-size:12px;color:#6b7280;cursor:pointer;">← Anterior</button>
+          <button style="background:#1a56db;color:white;padding:9px 16px;border-radius:7px;font-size:12px;font-weight:700;border:none;cursor:pointer;">Siguiente →</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:16px;">V1 keeps EN and ES as separate cards. V2 puts the Spanish as a subtitle inside the EN card. Which feels right?</p>
