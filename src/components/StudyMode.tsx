@@ -19,7 +19,7 @@ const CATEGORY_LABELS: Record<Category, string> = {
   'speed-limits': 'Velocidad',
   'right-of-way': 'Prioridad',
   'school-zones': 'Escuelas',
-  'dui': 'DUI',
+  'dui': 'Alcohol',
   'road-markings': 'Marcas',
   'general': 'General',
 }

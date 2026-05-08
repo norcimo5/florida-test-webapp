@@ -271,7 +271,7 @@ describe('HomeScreen', () => {
     const user = userEvent.setup()
     const onStartDailyQuiz = vi.fn()
     renderHome({ onStartDailyQuiz })
-    await user.click(screen.getByText(/Quiz Diario Rápido/))
+    await user.click(screen.getByText(/Repaso Diario Rápido/))
     expect(onStartDailyQuiz).toHaveBeenCalledOnce()
   })
 

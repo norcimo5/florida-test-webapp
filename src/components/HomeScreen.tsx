@@ -157,9 +157,9 @@ export default function HomeScreen({
             className="home__quiz-cta"
             type="button"
             onClick={onStartDailyQuiz}
-            aria-label="Empezar quiz diario rápido"
+            aria-label="Empezar repaso diario rápido"
           >
-            Quiz Diario Rápido →
+            Repaso Diario Rápido →
           </button>
         </section>
 
