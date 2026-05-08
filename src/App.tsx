@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import questions from './data/questions.json'
 import type { Question, Progress, AppSettings, Screen, MacroTopic } from './types'
 import {
@@ -37,14 +37,18 @@ export default function App() {
   useEffect(() => { saveProgress(progress) }, [progress])
   useEffect(() => { saveSettings(settings) }, [settings])
 
-  // Record daily readiness on every Home mount
+  // Record daily readiness once per session when the home screen is first shown.
+  // Deferred via setTimeout(0) to avoid calling setState synchronously in the
+  // effect body (react-hooks/set-state-in-effect).
+  const hasRecordedReadiness = useRef(false)
   useEffect(() => {
-    if (screen === 'home') {
-      setProgress(prev => {
-        const updated = recordDailyReadiness(prev, typedQuestions)
-        return updated
-      })
-    }
+    if (screen !== 'home') return
+    if (hasRecordedReadiness.current) return
+    hasRecordedReadiness.current = true
+    const tid = setTimeout(() => {
+      setProgress(prev => recordDailyReadiness(prev, typedQuestions))
+    }, 0)
+    return () => clearTimeout(tid)
   }, [screen])
 
   // ── Navigation helpers ───────────────────────────────────────────────────────

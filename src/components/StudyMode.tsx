@@ -161,7 +161,7 @@ export default function StudyMode({ questions, progress, onProgressUpdate, onBac
         variant="strip"
         title="Estudio"
         left={
-          <button className="study__back-btn" onClick={onBack}>← Inicio</button>
+          <button className="study__back-btn" onClick={onBack} aria-label="Volver al Inicio">← Inicio</button>
         }
         right={
           <button
@@ -203,7 +203,7 @@ export default function StudyMode({ questions, progress, onProgressUpdate, onBac
       <main className="study__main">
         <div className="study__card" style={{ borderColor: cardBorderColor }}>
           <div className="study__panel-label" style={{ color: cardBorderColor }}>
-            🇺🇸 ENGLISH — EXAM FORMAT
+            🇺🇸 INGLÉS — FORMATO EXAMEN
           </div>
 
           <p className="study__question" dangerouslySetInnerHTML={{ __html: enQuestionHtml }} />
@@ -266,7 +266,7 @@ export default function StudyMode({ questions, progress, onProgressUpdate, onBac
         </div>
 
         <div className="study__nav">
-          <button className="study__nav-btn" onClick={handleNext}>
+          <button className="study__nav-btn" onClick={handleNext} aria-label="Siguiente pregunta">
             Siguiente →
           </button>
         </div>

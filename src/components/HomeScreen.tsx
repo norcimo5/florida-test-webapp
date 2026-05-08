@@ -76,7 +76,7 @@ export default function HomeScreen({
 
         {/* Probability sentence */}
         <p className="home__prob-sentence">
-          Estás {passPct}% lista para aprobar
+          Estás {passPct}% listo/a para aprobar
         </p>
 
         {/* Vocab streak chip */}
@@ -178,7 +178,7 @@ export default function HomeScreen({
                 const pct = Math.round((record.scoreCorrect / record.scoreTotal) * 100)
                 return (
                   <li key={record.id} className="home__score-item">
-                    <span className="home__score-label">Test {testNum}</span>
+                    <span className="home__score-label">Examen {testNum}</span>
                     <span className="home__score-pct">{pct}%</span>
                   </li>
                 )
