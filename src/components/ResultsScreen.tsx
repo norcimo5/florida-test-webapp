@@ -93,6 +93,7 @@ export default function ResultsScreen({ questions, progress, onProgressUpdate, o
     <div className="results">
       <GradientHeader
         variant="full"
+        title="Resultados"
         left={
           <button className="results__back-btn" onClick={onBack} aria-label="Volver al Inicio">← Inicio</button>
         }

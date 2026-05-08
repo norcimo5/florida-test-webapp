@@ -72,6 +72,9 @@
   color: var(--color-gray-500);
   white-space: nowrap;
   flex-shrink: 0;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .study__cat-pill--active {
@@ -104,7 +107,7 @@
 }
 
 .study__panel-label {
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 1.2px;
   margin-bottom: 8px;
@@ -246,7 +249,7 @@
 }
 
 .study__porque-label {
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 1px;
   margin-bottom: 4px;
@@ -276,7 +279,7 @@
 }
 
 .study__keywords-label {
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 800;
   color: var(--color-success-darker);
   letter-spacing: 1px;
