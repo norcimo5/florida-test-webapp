@@ -86,7 +86,7 @@ export default function ExamMode({ questions, progress, settings, onProgressUpda
       <main className="exam__main">
         <div className="exam__card">
           <div className="exam__label">🇺🇸 EXAMEN — SOLO INGLÉS</div>
-          <p className="exam__question">{currentQuestion.en.question}</p>
+          <p className="exam__question" lang="en">{currentQuestion.en.question}</p>
           <div className="exam__choices">
             {currentQuestion.en.choices.map((choice, i) => (
               <button
@@ -94,6 +94,7 @@ export default function ExamMode({ questions, progress, settings, onProgressUpda
                 className={`exam__choice ${currentAnswer?.selectedIndex === i ? 'exam__choice--selected' : ''}`}
                 onClick={() => handleSelect(i)}
                 disabled={!!currentAnswer}
+                lang="en"
               >
                 <span className="exam__choice-letter">
                   {String.fromCharCode(65 + i)}

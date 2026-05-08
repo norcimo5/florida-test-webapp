@@ -203,6 +203,11 @@
   transform: translateY(0);
 }
 
+.home__mock-cta:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
 .home__mock-cta__icon {
   font-size: 28px;
   margin-bottom: var(--space-1);
@@ -245,6 +250,11 @@
 
 .home__quiz-cta:active {
   transform: translateY(0);
+}
+
+.home__quiz-cta:focus-visible {
+  outline: 2px solid var(--color-brand-blue);
+  outline-offset: 2px;
 }
 
 /* ── Right column: progress ─────────────────────────────────────────────── */

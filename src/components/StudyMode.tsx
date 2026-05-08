@@ -174,7 +174,14 @@ export default function StudyMode({ questions, progress, onProgressUpdate, onBac
         }
       />
       <div className="study__progress-wrap">
-        <div className="study__progress-bar">
+        <div
+          className="study__progress-bar"
+          role="progressbar"
+          aria-valuenow={answeredCount}
+          aria-valuemin={0}
+          aria-valuemax={filtered.length}
+          aria-label={`Progreso de estudio: ${answeredCount} de ${filtered.length}`}
+        >
           <div className="study__progress-fill" style={{ width: `${progressPct}%` }} />
         </div>
         <span className="study__counter">{answeredCount} / {filtered.length}</span>
@@ -206,7 +213,7 @@ export default function StudyMode({ questions, progress, onProgressUpdate, onBac
             🇺🇸 INGLÉS — FORMATO EXAMEN
           </div>
 
-          <p className="study__question" dangerouslySetInnerHTML={{ __html: enQuestionHtml }} />
+          <p className="study__question" lang="en" dangerouslySetInnerHTML={{ __html: enQuestionHtml }} />
 
           {question.es && (
             <div className="study__es-chip">
@@ -216,7 +223,11 @@ export default function StudyMode({ questions, progress, onProgressUpdate, onBac
                   <span className="study__es-text" dangerouslySetInnerHTML={{ __html: esQuestionHtml }} />
                 )}
               </div>
-              <button className="study__es-toggle" onClick={() => setEsVisible(v => !v)}>
+              <button
+                className="study__es-toggle"
+                onClick={() => setEsVisible(v => !v)}
+                aria-label={esVisible ? 'Ocultar traducción al español' : 'Mostrar traducción al español'}
+              >
                 {esVisible ? 'ocultar' : 'mostrar'}
               </button>
             </div>
@@ -232,6 +243,7 @@ export default function StudyMode({ questions, progress, onProgressUpdate, onBac
                   className={`study__choice ${isCorrect ? 'study__choice--correct' : ''} ${isWrong ? 'study__choice--wrong' : ''}`}
                   onClick={() => handleSelect(i)}
                   disabled={hasAnswered}
+                  lang="en"
                 >
                   {isCorrect && '✓ '}
                   {isWrong && '✗ '}

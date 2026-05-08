@@ -23,6 +23,23 @@
   --color-error: #dc2626;
   --color-warning: #ea580c;
 
+  /* Extended palette for StudyMode feedback states */
+  --color-success-light: #f0fdf4;
+  --color-success-dark: #15803d;
+  --color-success-darker: #166534;
+  --color-success-text-dark: #14532d;
+  --color-success-border: #bbf7d0;
+  --color-error-light: #fef2f2;
+  --color-amber-bg: #fffbeb;
+  --color-amber-border: #fde68a;
+  --color-amber-text: #92400e;
+  --color-amber-text-dark: #a16207;
+  --color-amber-highlight: #fef08a;
+  --color-warning-bg: #fff7ed;
+  --color-warning-border: #fed7aa;
+  --color-warning-text: #ea580c;
+  --color-warning-text-dark: #7c2d12;
+
   /* Radii */
   --radius-sm: 6px;
   --radius-md: 9px;
@@ -46,4 +63,12 @@
 
   /* Gradient header */
   --gradient-header: linear-gradient(135deg, var(--color-brand-blue-deep) 0%, var(--color-brand-blue) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

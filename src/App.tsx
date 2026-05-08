@@ -111,14 +111,7 @@ export default function App() {
   return (
     <>
       {storageWarning && (
-        <div style={{
-          background: '#fff3cd',
-          borderBottom: '2px solid #ffc107',
-          padding: '10px 20px',
-          fontSize: '13px',
-          color: '#856404',
-          textAlign: 'center',
-        }}>
+        <div className="storage-warning" role="alert">
           ⚠️ Tu navegador no permite guardar progreso en este modo. El progreso se perderá al cerrar la ventana.
         </div>
       )}
