@@ -1,0 +1,35 @@
+/* ─── TemasScreen.css — Temas (topic browser) screen ─────────────────────────
+   Mobile-first, single column. All colors via tokens.css custom properties.
+─────────────────────────────────────────────────────────────────────────── */
+
+.temas {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-gray-50);
+  font-family: var(--font-sans);
+}
+
+/* ── Body: padded content area below the header ─────────────────────────── */
+
+.temas__body {
+  flex: 1;
+  padding: var(--space-6) var(--space-4);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Topic list: full-width stacked cards with generous vertical spacing ── */
+
+.temas__topic-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Give topic cards a bit more padding when used in the full-page Temas view
+   by overriding the default min-height so they feel more spacious. */
+.temas__topic-list .topic-card {
+  min-height: 88px;
+  padding: var(--space-4) var(--space-4);
+}
