@@ -1,216 +1,319 @@
+/* ─── HomeScreen.css — Mobile-first dashboard layout ────────────────────────
+   All colors via tokens.css custom properties. No hex literals.
+   Breakpoint: < 480px → single column; ≥ 480px → 3-column grid.
+─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Root container ─────────────────────────────────────────────────────── */
 .home {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background: var(--color-gray-50);
+  font-family: var(--font-sans);
 }
 
-.home__header {
-  background: var(--color-primary);
-  padding: 14px 24px;
+/* ── Avatar (left slot in GradientHeader) ───────────────────────────────── */
+.home__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-teal) 0%,
+    var(--color-brand-blue) 100%
+  );
   display: flex;
-  justify-content: space-between;
   align-items: center;
-}
-
-.home__logo {
+  justify-content: center;
   color: white;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 18px;
+  flex-shrink: 0;
 }
 
-.home__options-btn {
-  font-size: 22px;
-  opacity: 0.9;
+/* ── Bell button (right slot) ───────────────────────────────────────────── */
+.home__bell-btn {
   background: none;
   border: none;
   cursor: pointer;
-}
-
-.home__main {
-  max-width: 700px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 32px 24px;
+  font-size: 20px;
+  min-width: 44px;
+  min-height: 44px;
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.home__hero {
-  text-align: center;
-  padding-bottom: 8px;
-}
-
-.home__title {
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--color-gray-900);
-  margin-bottom: 6px;
-}
-
-.home__subtitle {
-  color: var(--color-gray-500);
-  font-size: 14px;
-}
-
-.home__progress-card {
-  background: white;
-  border: 1px solid var(--color-gray-200);
-  border-radius: var(--radius-lg);
-  padding: 20px;
-  box-shadow: var(--shadow-sm);
-}
-
-.home__progress-label {
-  font-size: 10px;
-  font-weight: 800;
-  color: var(--color-gray-500);
-  letter-spacing: 1.2px;
-  margin-bottom: 12px;
-}
-
-.home__stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 14px;
-}
-
-.home__stat {
-  text-align: center;
-  background: var(--color-gray-50);
-  border: 1px solid var(--color-gray-200);
-  border-radius: var(--radius-md);
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.home__stat-value {
-  font-size: 26px;
-  font-weight: 800;
-  line-height: 1;
-}
-
-.home__stat-name {
-  font-size: 11px;
-  color: var(--color-gray-500);
-}
-
-.home__stat--correct .home__stat-value { color: var(--color-success); }
-.home__stat--incorrect .home__stat-value { color: var(--color-danger); }
-.home__stat--unanswered .home__stat-value { color: var(--color-gray-500); }
-
-.home__progress-bar {
-  height: 10px;
-  background: var(--color-gray-200);
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 6px;
-}
-
-.home__progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--color-success), #20c997);
-  border-radius: 10px;
-  transition: width 0.4s ease;
-}
-
-.home__progress-pct {
-  font-size: 11px;
-  color: var(--color-gray-500);
-  text-align: right;
-}
-
-.home__modes {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-
-.home__mode-btn {
-  border-radius: var(--radius-lg);
-  padding: 22px 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.15s, transform 0.1s;
-}
-
-.home__mode-btn:hover { opacity: 0.92; transform: translateY(-1px); }
-.home__mode-btn:active { transform: translateY(0); }
-
-.home__mode-btn--exam { background: var(--color-primary); color: white; }
-.home__mode-btn--study { background: var(--color-success); color: white; }
-
-.home__mode-icon { font-size: 26px; margin-bottom: 4px; }
-
-.home__mode-title {
-  font-weight: 800;
-  font-size: 16px;
-}
-
-.home__mode-desc {
-  font-size: 12px;
-  opacity: 0.85;
-}
-
-.home__review-btn {
-  background: #fff8e1;
-  border: 1.5px solid var(--color-warning);
-  border-radius: var(--radius-lg);
-  padding: 16px 18px;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  cursor: pointer;
-  width: 100%;
+  justify-content: center;
+  border-radius: var(--radius-pill);
   transition: background 0.15s;
 }
 
-.home__review-btn:hover { background: #fff3cd; }
+.home__bell-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
 
-.home__review-text {
+/* ── Header body content (children of GradientHeader) ──────────────────── */
+.home__subtitle {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 var(--space-1) 0;
+  text-transform: uppercase;
+}
+
+.home__greeting {
+  font-size: 22px;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 var(--space-1) 0;
+  line-height: 1.2;
+}
+
+.home__prob-sentence {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 var(--space-2) 0;
+}
+
+/* Streak chips */
+.home__streak-chip {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-pill);
+  padding: var(--space-1) var(--space-3);
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: var(--space-2);
+  margin-right: var(--space-2);
+}
+
+.home__streak-chip--small {
+  font-size: 11px;
+  padding: 2px var(--space-2);
+}
+
+/* Progress bar row */
+.home__prob-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.home__prob-bar-track {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.home__prob-bar-fill {
+  height: 100%;
+  background: var(--color-brand-teal);
+  border-radius: var(--radius-pill);
+  transition: width 0.4s ease;
+}
+
+.home__prob-pct {
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  min-width: 36px;
+  text-align: right;
+}
+
+.home__prob-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: var(--space-1) 0 0 0;
+}
+
+/* Empty state microcopy inside header */
+.home__empty-hint {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: var(--space-2) 0 0 0;
+  font-style: italic;
+}
+
+/* ── Body — three columns ───────────────────────────────────────────────── */
+.home__body {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  text-align: left;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  flex: 1;
 }
 
-.home__review-title {
-  font-weight: 700;
-  color: var(--color-warning-dark);
-  font-size: 14px;
+/* ── Section headings ───────────────────────────────────────────────────── */
+.home__section-heading {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--color-gray-500);
+  text-transform: uppercase;
+  margin: 0 0 var(--space-3) 0;
 }
 
-.home__review-count {
+/* ── Column shared styles ───────────────────────────────────────────────── */
+.home__col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Left column: topics ────────────────────────────────────────────────── */
+.home__topic-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* ── Center column: exam CTAs ───────────────────────────────────────────── */
+
+/* Full Mock CTA (teal) */
+.home__mock-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--space-1);
+  background: var(--color-brand-teal);
+  color: white;
+  border: none;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-cta);
+  padding: var(--space-6) var(--space-4);
+  cursor: pointer;
+  min-height: 44px;
+  width: 100%;
+  transition: opacity 0.15s, transform 0.1s;
+  margin-bottom: var(--space-3);
+}
+
+.home__mock-cta:hover {
+  opacity: 0.93;
+  transform: translateY(-1px);
+}
+
+.home__mock-cta:active {
+  transform: translateY(0);
+}
+
+.home__mock-cta__icon {
+  font-size: 28px;
+  margin-bottom: var(--space-1);
+}
+
+.home__mock-cta__title {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.home__mock-cta__meta {
   font-size: 12px;
-  color: var(--color-warning-dark);
+  opacity: 0.9;
 }
 
-.home__review-arrow {
-  padding: 8px 16px;
-  background: var(--color-warning);
-  color: var(--color-gray-900);
-  border-radius: var(--radius-md);
+/* Daily Quick Quiz CTA (white card) */
+.home__quiz-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  color: var(--color-gray-700);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-4);
+  cursor: pointer;
+  font-size: 14px;
   font-weight: 700;
-  font-size: 13px;
-  white-space: nowrap;
+  min-height: 44px;
+  width: 100%;
+  transition: background 0.15s, transform 0.1s;
 }
 
-@media (max-width: 480px) {
-  .home__main {
-    padding: 16px;
-  }
-  .home__modes {
-    grid-template-columns: 1fr;
-  }
-  .home__mode-btn {
-    width: 100%;
+.home__quiz-cta:hover {
+  background: var(--color-gray-50);
+  transform: translateY(-1px);
+}
+
+.home__quiz-cta:active {
+  transform: translateY(0);
+}
+
+/* ── Right column: progress ─────────────────────────────────────────────── */
+.home__subsection-heading {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-gray-700);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.home__scores-list {
+  list-style: none;
+  margin: 0 0 var(--space-4) 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.home__score-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-2) var(--space-3);
+  font-size: 13px;
+}
+
+.home__score-label {
+  color: var(--color-gray-700);
+  font-weight: 600;
+}
+
+.home__score-pct {
+  color: var(--color-brand-teal-dark);
+  font-weight: 800;
+}
+
+.home__empty-scores {
+  font-size: 12px;
+  color: var(--color-gray-500);
+  margin: 0 0 var(--space-4) 0;
+  font-style: italic;
+}
+
+/* Celebratory "Listo/a" chip */
+.home__ready-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-brand-teal);
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+  padding: var(--space-2) var(--space-4);
+  margin-top: var(--space-3);
+  text-align: center;
+  box-shadow: var(--shadow-cta);
+}
+
+/* ── 3-column layout at ≥ 480px ─────────────────────────────────────────── */
+@media (min-width: 480px) {
+  .home__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--space-4);
+    align-items: start;
   }
 }
