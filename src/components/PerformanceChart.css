@@ -1,0 +1,38 @@
+/* ─── PerformanceChart ──────────────────────────────────────────────────────── */
+
+.perf-chart {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── SVG chart ───────────────────────────────────────────────────────────── */
+
+.perf-chart__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Clamp height so it doesn't get too tall on wide screens */
+  max-height: 140px;
+}
+
+/* ── Empty state ─────────────────────────────────────────────────────────── */
+
+.perf-chart--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+  padding: var(--space-4);
+  background: var(--color-gray-50);
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--color-gray-300);
+}
+
+.perf-chart__empty-text {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--color-gray-500);
+  text-align: center;
+  line-height: 1.4;
+  font-family: var(--font-sans);
+}
