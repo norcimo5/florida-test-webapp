@@ -6,6 +6,22 @@ tools: Bash, Read, Grep, Glob
 
 You are the i18n-checker subagent. The app's most important rule: **Spanish chrome, English only inside actual question content.**
 
+## Helper tools — check first
+
+Before doing manual string scans, look for project helpers:
+
+```bash
+ls scripts/ 2>/dev/null         # project utility scripts
+ls .claude/commands/ 2>/dev/null # slash commands
+```
+
+Candidate helpers that may already exist (use if present, ignore if absent):
+- `scripts/check-spanish-chrome.sh` — fast grep-based pre-scan for common English chrome leaks
+- `scripts/find-english-leaks.sh` — broader sweep including aria-labels and CSS `content:`
+- `scripts/check-accents.sh` — finds Spanish words missing required diacritics
+
+If a helper exists that matches your task, **use it first** to surface the obvious cases instantly, then do the deeper manual review on top. If you find yourself repeating a check across sessions (e.g. a new English term keeps slipping in), suggest a script name to the parent so it can be saved per `feedback_save_useful_tools` memory.
+
 ## The rule, in detail
 
 **Must be Spanish:**

@@ -80,6 +80,20 @@ The project follows a lightweight SDD flow:
 
 For non-trivial work: write spec → plan → execute. Don't skip to coding.
 
+## Helper tools — save what's reusable
+
+When generating a one-off tool/script/command that succeeded and could be useful again, **save it** to a known location instead of throwing it away. The four project subagents already know to check these locations first before doing manual work.
+
+- **`scripts/`** — shell or Node utility scripts. Add a one-line header comment explaining purpose. `chmod +x` to make executable. Examples: `check-spanish-chrome.sh`, `screenshot-mobile.mjs`, `check-contrast.mjs`.
+- **`.claude/commands/`** — Claude Code slash commands as `.md` files with frontmatter. User can invoke with `/<name>`. Use this when the tool is a multi-step workflow Claude orchestrates (e.g., `/run-quality-gates` to dispatch all 4 subagents in parallel).
+- **`.claude/agents/`** — already established for subagents. Don't duplicate those here.
+
+**Naming:** kebab-case verb-noun (`check-spanish-chrome.sh`, not `i18n.sh`).
+
+**Don't save:** throwaway one-liners, single-bug-fix scripts, anything narrowly tied to a one-time question.
+
+When you save a tool, mention the path so the user knows where to find it.
+
 ## Quality gates — subagents
 
 `.claude/agents/` defines four project subagents the Agent tool can dispatch. **Use them.**
