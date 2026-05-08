@@ -67,8 +67,8 @@
 
 ### Task 1.3: Update progressStore with migration
 
-- [ ] **Step 1: Edit `src/store/progressStore.ts`** — extend `defaultProgress` and `defaultSettings` with new fields. Add a one-time migration in `loadProgress`: if loaded data is missing any of the new keys, fill from defaults and re-save.
-- [ ] **Step 2: Add helper exports** — `pushDailyReadiness`, `pushMockExamRecord`, `setUserName`, `setTheme`, `setSound`. Each is a pure function returning new Progress/Settings.
+- [ ] **Step 1: Edit `src/store/progressStore.ts`** — extend `defaultProgress` with new fields (mockHistory, dailyReadiness, dailyQuiz, masteredKeywords, studyAnswersWithoutHints) and `defaultSettings` with `userName: 'TESTUSER'` and `onboardingComplete: true`. Add a one-time migration in `loadProgress` and `loadSettings`: if loaded data is missing any of the new keys, fill from defaults and re-save. **Do NOT add theme or sound fields — they were cut from v1 per spec §13.**
+- [ ] **Step 2: Add helper exports** — `pushDailyReadiness`, `pushMockExamRecord`, `setUserName`. Each is a pure function returning new Progress/Settings.
 - [ ] **Step 3: Test the migration manually** — in browser devtools, set a stale `fl_driver_progress` shape and confirm `loadProgress()` returns the new shape without crashing.
 - [ ] **Step 4: Commit**
   ```bash
@@ -243,29 +243,29 @@
 
 - [ ] **Step 1: Create `src/components/PerfilScreen.tsx`**:
   - Strip header `Perfil`.
-  - Avatar circle (placeholder gradient initial), name `TESTUSER` (read-only for v1).
+  - Avatar circle (placeholder gradient with first letter of `userName`), name `TESTUSER` (read-only for v1).
   - Stat rows: `Preguntas respondidas: N` / `Racha actual: N días` / `Probabilidad de aprobar: N%` / `Palabras dominadas: N`.
-  - Danger zone: `Reiniciar progreso` button → confirms via inline modal `¿Estás seguro? Esta acción no se puede deshacer.` → calls `clearAll()` from progressStore.
-- [ ] **Step 2: CSS + test.**
+  - Footer link: `Ver ajustes →` that navigates to the Ajustes screen.
+  - **No destructive actions on this screen** — reset lives on Ajustes only (per spec FR-19).
+- [ ] **Step 2: CSS + test.** Test that link navigates to Ajustes.
 - [ ] **Step 3: Commit**
   ```bash
   git add src/components/PerfilScreen.tsx src/components/PerfilScreen.css tests/PerfilScreen.test.tsx
-  git commit -m "feat: PerfilScreen with stats and reset progress flow"
+  git commit -m "feat: PerfilScreen with stats + link to Ajustes"
   ```
 
 ### Task 4.3: AjustesScreen
 
-- [ ] **Step 1: Create `src/components/AjustesScreen.tsx`**:
-  - Strip header `Ajustes`.
-  - Toggle row: `Tema` (claro / oscuro) — for v1 "oscuro" can be a stub showing `Próximamente` toast.
-  - Toggle row: `Sonido` (on/off).
-  - Action row: `Reiniciar progreso` (same as Perfil).
-  - Info rows: `Versión {package.json version}`, `Soporte` (mailto).
-- [ ] **Step 2: CSS + test.** Test theme toggle persists in localStorage.
+- [ ] **Step 1: Create `src/components/AjustesScreen.tsx`** with exactly three rows:
+  - **Row 1 — Reiniciar progreso** (button): shows confirmation modal `¿Estás seguro? Esta acción no se puede deshacer.` with `Cancelar` / `Reiniciar` buttons; on confirm, calls `clearAll()` from progressStore and toasts `Progreso reiniciado.`
+  - **Row 2 — Versión X.X.X** (read-only label): pulls version from `package.json` via Vite's `import.meta.env` or hardcoded constant.
+  - **Row 3 — Soporte** (link): `mailto:mperez.tech@gmail.com?subject=FL%20DMV%20Prep%20-%20Soporte`.
+  - **No theme toggle. No sound toggle.** (Cut from v1 per spec §13 descope tiers.)
+- [ ] **Step 2: CSS + test.** Test that confirm modal appears, that confirming wipes localStorage, that cancel preserves state.
 - [ ] **Step 3: Commit**
   ```bash
   git add src/components/AjustesScreen.tsx src/components/AjustesScreen.css tests/AjustesScreen.test.tsx
-  git commit -m "feat: AjustesScreen with theme/sound toggles, reset, support"
+  git commit -m "feat: AjustesScreen with reset confirm, version, soporte"
   ```
 
 ---

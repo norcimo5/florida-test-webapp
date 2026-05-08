@@ -111,13 +111,13 @@ This redesign transforms the home screen into a **Spanish-locked dashboard** mod
 
 ### US-13 — Perfil (profile) screen
 **WHEN** the user taps the Perfil tab
-**THE SYSTEM SHALL** display: TESTUSER name placeholder, total questions answered, current daily-quiz streak, pass-probability %, and a `Reiniciar progreso` button
-**WITH** the reset button confirming via Spanish-language modal before wiping localStorage
+**THE SYSTEM SHALL** display: TESTUSER name placeholder, total questions answered, current daily-quiz streak, pass-probability %, palabras dominadas count, and a "Ver ajustes →" link to the Ajustes screen
+**WITH** no destructive actions on this screen (reset lives on Ajustes only)
 
 ### US-14 — Ajustes (settings) screen
 **WHEN** the user taps the Ajustes tab
-**THE SYSTEM SHALL** display: theme toggle (claro / oscuro), sound on/off toggle, reset all progress, app version, and a `Soporte` link
-**WITH** all toggles persisted to localStorage via `progressStore`
+**THE SYSTEM SHALL** display three rows only: `Reiniciar progreso` (with confirmation modal), `Versión X.X.X` (read-only), and `Soporte` (mailto link)
+**WITH** the reset confirming via Spanish-language modal before wiping localStorage
 
 ### US-15 — Edge case: no progress yet
 **WHEN** a user opens the app for the first time (no localStorage data)
@@ -143,7 +143,7 @@ This redesign transforms the home screen into a **Spanish-locked dashboard** mod
 | FR-1 | All UI chrome strings are Spanish | ✅ via grep + i18n-checker |
 | FR-2 | Pass Probability = mean of 4 topic mastery percentages, rounded to nearest integer | ✅ deterministic |
 | FR-3 | Topic mastery % = (correct study answers in topic / total questions in topic) × 100, rounded | ✅ |
-| FR-4 | Mastered keyword count = unique EN keywords appearing in ≥ 3 correctly-answered questions where Spanish chip was hidden at answer time | ✅ |
+| FR-4 | Mastered keyword count = unique EN keywords appearing in ≥ 1 correctly-answered question where Spanish chip was hidden at answer time. (Threshold lowered from 3 because most keywords appear in only 1–2 questions across the 120-bank; threshold of 3 would keep the count at near-zero forever.) | ✅ |
 | FR-5 | Daily Quick Quiz = 5 random questions, weighted toward weakest macro topic but at least 1 from each | ✅ |
 | FR-6 | Streak resets if no quiz completed on previous calendar day (America/New_York TZ) | ✅ |
 | FR-7 | Performance chart plots `dailyReadiness[]` (last 7 entries) as line, `mockScores[]` (timestamped) as dots | ✅ |
@@ -158,8 +158,8 @@ This redesign transforms the home screen into a **Spanish-locked dashboard** mod
 | FR-16 | All primary CTA buttons use the same teal color token across screens | ✅ |
 | FR-17 | The four macro topics map to existing 7 categories per the table in §5 | ✅ |
 | FR-18 | Topic card tap navigates to Study Mode pre-filtered to that macro topic | ✅ |
-| FR-19 | Reset progress button on Perfil and Ajustes confirms via Spanish modal before wiping | ✅ |
-| FR-20 | Settings (theme, sound) persisted to localStorage `fl_driver_settings` | ✅ |
+| FR-19 | Reset progress button lives on Ajustes only; Perfil shows "Ver ajustes →" link instead. Confirms via Spanish modal before wiping. | ✅ |
+| FR-20 | `AppSettings` only persists `userName` and `examLength` (theme and sound cut from v1) | ✅ |
 
 ---
 
@@ -304,9 +304,8 @@ export interface Progress {
 
 export interface AppSettings {
   examLength: 25 | 50
-  theme: 'claro' | 'oscuro'
-  sound: boolean
   userName: string             // 'TESTUSER' default
+  onboardingComplete: boolean  // reserved for v2 onboarding tour; default true in v1 (no tour)
 }
 ```
 
@@ -511,7 +510,7 @@ Summary of phases:
 
 ---
 
-## 11. CLARIFICATIONS REQUIRED
+## 12. CLARIFICATIONS REQUIRED
 
 None at spec-write time. The four open decisions surfaced during brainstorming were resolved (Spanish chrome no toggle, mean of topic mastery for probability, full nav with all 5 tabs no sub-tabs, 5-question streak-tracked quick quiz, hybrid performance chart with goal line).
 
@@ -519,7 +518,32 @@ If implementation surfaces ambiguity, append to this section with `[CLARIFY-{n}]
 
 ---
 
-## 12. OPEN QUESTIONS FOR FUTURE PHASES
+## 13. DESCOPE TIERS (LOCKED)
+
+Decided 2026-05-08. All four screens promoted to Tier 1 because the storyboard mock shows a 5-tab nav and a 3-column home; partial implementation reads as broken.
+
+| Tier | Items | Cut policy |
+|---|---|---|
+| **Tier 1 — must ship** | Phase 1 foundation, Phase 2 shared primitives (GradientHeader / BottomTabBar / TopicCard / PerformanceChart), Phase 3 Home, Phase 4 all three new screens (Temas / Perfil / Ajustes — minimal content), Phase 5 restyle existing screens, Phase 6 routing, Phase 7 all 4 subagent passes, Phase 8 deploy | Never cut |
+| **Tier 2 — defer to v2** | Onboarding tour (3-slide intro), real dark mode, Perfil achievements, Ajustes sound toggle, Soporte → real ticketing system, Performance chart trendline smoothing | Build post-cousin-feedback |
+| **Tier 3 — never** | Real authentication, push notifications, multi-language toggle, social/leaderboard, in-app feedback widget | Out of project scope until product validated |
+
+## 14. DEVIL'S-ADVOCATE MITIGATIONS
+
+Risks surfaced during pre-flight review and how they're addressed in the plan:
+
+| Risk | Mitigation |
+|---|---|
+| Empty-state UX on day-1 | Inline microcopy on Home (`Empieza tu primer estudio para ver tu progreso.`) plus chart empty state. No tour in v1. |
+| Scope creep / token burn | Hybrid execution: Opus orchestrates, Sonnet 4.6 subagents execute each plan task. Cold-context cost bounded by self-contained task definitions. |
+| Restyling StudyMode could regress polished CSS | Phase 5 (restyle) runs *after* all new builds. Visual diff via `npm run preview` before/after each restyle. Tests must still pass. |
+| Vocabulary mastery threshold at 3 yields near-zero count forever | Threshold lowered to ≥1 (FR-4). |
+| Reset progress on two screens (drift risk) | Reset lives on Ajustes only; Perfil links there. |
+| Half-built theme toggle looks like a bug | Theme toggle cut from v1 entirely. |
+| Public GH Pages URL has no in-app feedback | Out of scope. Cousin reports via text/call. |
+| Bundle size budget unmeasured | Snapshot baseline at start of Phase 8; budget = baseline +30 KB gzip. |
+
+## 15. OPEN QUESTIONS FOR FUTURE PHASES
 
 These are documented for the next session, not in scope here:
 
