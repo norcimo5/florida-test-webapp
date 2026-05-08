@@ -1,0 +1,196 @@
+/* ─── AjustesScreen.css — Ajustes (settings) screen ──────────────────────────
+   Mobile-first. All colors via tokens.css custom properties. No hex literals.
+─────────────────────────────────────────────────────────────────────────── */
+
+.ajustes {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-gray-50);
+  font-family: var(--font-sans);
+}
+
+/* ── Body ─────────────────────────────────────────────────────────────────── */
+
+.ajustes__body {
+  flex: 1;
+  padding: var(--space-6) var(--space-4);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Row ──────────────────────────────────────────────────────────────────── */
+
+.ajustes__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: var(--space-4);
+  min-height: 56px;
+  border-radius: var(--radius-md);
+}
+
+.ajustes__divider {
+  height: 1px;
+  background: var(--color-gray-100);
+  /* Inset by the row's padding so it looks like a table separator */
+  margin-left: var(--space-4);
+}
+
+.ajustes__row-label {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-gray-700);
+}
+
+.ajustes__row-value {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-gray-500);
+}
+
+/* ── Danger button (Reiniciar) ────────────────────────────────────────────── */
+
+.ajustes__danger-btn {
+  background: white;
+  color: var(--color-error);
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-4);
+  min-height: 44px;
+  min-width: 44px;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.ajustes__danger-btn:hover {
+  background: var(--color-gray-50);
+}
+
+.ajustes__danger-btn:focus-visible {
+  outline: 2px solid var(--color-error);
+  outline-offset: 2px;
+}
+
+/* ── Support link ─────────────────────────────────────────────────────────── */
+
+.ajustes__support-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-brand-blue);
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ajustes__support-link:hover {
+  text-decoration: underline;
+}
+
+.ajustes__support-link:focus-visible {
+  outline: 2px solid var(--color-brand-blue);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Modal backdrop ───────────────────────────────────────────────────────── */
+
+.ajustes__modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: var(--space-4);
+}
+
+/* ── Modal dialog ─────────────────────────────────────────────────────────── */
+
+.ajustes__modal {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  width: 100%;
+  max-width: 340px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.ajustes__modal-title {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.ajustes__modal-message {
+  font-size: 0.9375rem;
+  color: var(--color-gray-500);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Modal action buttons ─────────────────────────────────────────────────── */
+
+.ajustes__modal-actions {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: flex-end;
+}
+
+.ajustes__modal-cancel {
+  background: white;
+  color: var(--color-gray-700);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  min-height: 44px;
+  min-width: 44px;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.ajustes__modal-cancel:hover {
+  background: var(--color-gray-50);
+}
+
+.ajustes__modal-cancel:focus-visible {
+  outline: 2px solid var(--color-gray-400);
+  outline-offset: 2px;
+}
+
+.ajustes__modal-confirm {
+  background: var(--color-error);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  min-height: 44px;
+  min-width: 44px;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.ajustes__modal-confirm:hover {
+  opacity: 0.88;
+}
+
+.ajustes__modal-confirm:focus-visible {
+  outline: 2px solid var(--color-error);
+  outline-offset: 2px;
+}
