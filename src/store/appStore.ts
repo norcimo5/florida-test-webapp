@@ -104,17 +104,25 @@ function load(): AppState {
   return { ...DEFAULT_STATE, ...migrateLegacy() }
 }
 
+/**
+ * True after a save failed (storage full or blocked). From then on the in-memory state is the
+ * truth for this session, so writes must NOT re-read storage (that would discard unsaved changes).
+ */
+let persistFailed = false
+
 function persist(): void {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+    persistFailed = false
   } catch {
     // Storage full or blocked — keep working in memory.
+    persistFailed = true
   }
 }
 
 /** Applies a change on top of the LATEST stored state (another tab may have written), then saves. */
 function update(patch: Partial<AppState> | ((s: AppState) => Partial<AppState>)): void {
-  if (readStorage(STORAGE_KEY) !== null) state = load()
+  if (!persistFailed && readStorage(STORAGE_KEY) !== null) state = load()
   const next = typeof patch === 'function' ? patch(state) : patch
   state = { ...state, ...next }
   persist()
@@ -124,7 +132,7 @@ function update(patch: Partial<AppState> | ((s: AppState) => Partial<AppState>))
 // Another copy of the app (tab or installed app) changed storage → refresh ours.
 if (typeof window !== 'undefined') {
   window.addEventListener('storage', (e) => {
-    if (e.key !== STORAGE_KEY && e.key !== null) return
+    if ((e.key !== STORAGE_KEY && e.key !== null) || persistFailed) return
     state = load()
     listeners.forEach((l) => l())
   })
@@ -193,10 +201,14 @@ export function clearUnlock(): void {
   update({ unlock: null })
 }
 
-/** Records that the app has seen `day` (only ever moves forward). */
+/**
+ * Saves the day the app is using as "today" (useToday passes `effectiveDay(clock, lastSeenDay)`).
+ * Normally this only moves forward; it moves back only when the stored day was rejected as an
+ * old far-future clock error, which clears it so it can't come back into effect later.
+ */
 export function noteDaySeen(day: string): void {
-  if (state.lastSeenDay !== null && state.lastSeenDay >= day) return
-  update((s) => (s.lastSeenDay !== null && s.lastSeenDay >= day ? {} : { lastSeenDay: day }))
+  if (state.lastSeenDay === day) return
+  update({ lastSeenDay: day })
 }
 
 /** Hides the install card on Inicio. */
@@ -221,5 +233,6 @@ export function __setStateForTests(next: Partial<AppState>): void {
 
 /** Test helper: re-run the load from localStorage (to test persistence/migration). */
 export function __reloadForTests(): void {
+  persistFailed = false
   state = load()
 }

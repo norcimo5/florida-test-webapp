@@ -98,7 +98,8 @@ docs/                      the documents below (+ archive/ = pre-2026 notes, his
 
 - **Give someone Premium:** `npm run code -- --email them@x.com --plan lifetime` → paste the printed
   email text into a reply to them. Details: docs/UNLOCK-CODES.md.
-- **Change the free limit:** `FREE_PER_DAY` in `src/domain/gating.ts` (+ paywall/onboarding copy, tests).
+- **Change the free limit:** `FREE_PER_DAY` in `src/domain/gating.ts` (+ README table, CHANGELOG, tests).
+  Note: "5 preguntas" on Inicio/Exámenes is the Daily Quiz length (`DAILY_QUIZ_LENGTH`), not this limit.
 - **Change prices:** `PRICES` in `src/config/app.ts`.
 - **Set payment handles:** `src/config/payment.ts`.
 - **"App shows an old version":** service worker cache; see docs/TROUBLESHOOTING.md.

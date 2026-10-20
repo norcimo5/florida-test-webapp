@@ -12,7 +12,7 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d dist --nojekyll -m \"Deploy app\"",
     "code": "node tools/make-unlock-code.ts",
     "typecheck": "tsc -b tsconfig.json tsconfig.node.json",
     "shots": "node tools/screenshots.ts",

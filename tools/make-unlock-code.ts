@@ -15,7 +15,8 @@
  *
  * The private key lives OUTSIDE the repo: ~/keystores/fldmv-unlock-ed25519.key (override with
  * FLDMV_UNLOCK_KEY=/path). BACK IT UP. If it is lost you can't make new codes for the current app;
- * if it leaks, rotate it (docs/UNLOCK-CODES.md → "Rotating the key").
+ * if it leaks, make a new one (docs/UNLOCK-CODES.md →
+ * "If the private key is lost" / "If the private key leaks").
  *
  * Runs with Node's built-in TypeScript support (Node 23.6+), no build step.
  */

@@ -4,7 +4,7 @@
  * Safe to publish: it can only CHECK codes, not create them. The matching private key lives on
  * the owner's computer (~/keystores/fldmv-unlock-ed25519.key) and must never enter this repo.
  * `npm run code -- --init` rewrites the hex below; changing it invalidates every code issued with
- * the old key (see docs/UNLOCK-CODES.md → "Rotating the key").
+ * the old key (see docs/UNLOCK-CODES.md → "If the private key is lost" / "…leaks").
  */
 import { fromHex } from '../billing/unlockCode'
 

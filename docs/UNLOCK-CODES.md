@@ -27,6 +27,9 @@ Premium is unlocked with a code you email to the buyer. No server, no payment pr
 - When they pay again, run the same `--plan monthly` command. If their current code is still
   running, the new 30 days **start after it ends** (paying early never loses days). They enter
   the new code the same way; it replaces the old one.
+- ⚠️ Stacking reads the sales log on **this computer** (`tools/issued-codes.csv`). If you make the
+  renewal on another machine, or the buyer's earlier row is missing, the new days start today.
+  In that case pass the length yourself, e.g. `--days 35` to add the 5 days they still had.
 - `npm run code -- --list` shows every code you issued and **who ends within 5 days**.
 - Other lengths: `--days 60` (any whole number 1–400).
 
@@ -102,5 +105,6 @@ payload (14 bytes)                          signature (64 bytes)
 npm run code -- --email you+test@gmail.com --plan monthly --days 1
 ```
 
-Then delete that line from `tools/issued-codes.csv` if you like. Automated tests use their own
+Use an address that isn't a real buyer's (rows for real buyers must stay in the log — renewals
+depend on them). You may delete test rows from `tools/issued-codes.csv`. Automated tests use their own
 throw-away keys (`tests/billing/unlock.test.ts`, `tests/ui/app.test.tsx`).

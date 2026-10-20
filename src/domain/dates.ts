@@ -40,7 +40,8 @@ export const MAX_CLOCK_ROLLBACK_DAYS = 62
  * The day the app should use as "today": the later of the phone's clock day and the latest day the
  * app has already seen. Setting the phone's date back therefore can't extend a monthly plan or reset
  * the free daily counters. A remembered day more than MAX_CLOCK_ROLLBACK_DAYS ahead of the clock is
- * ignored, so an honest user whose clock was once far in the future isn't locked out forever.
+ * ignored (and the caller then stores the clock day instead, clearing it for good), so an honest
+ * user whose clock was once far in the future isn't locked out.
  */
 export function effectiveDay(clockDay: string, lastSeenDay: string | null): string {
   if (!lastSeenDay || lastSeenDay <= clockDay) return clockDay

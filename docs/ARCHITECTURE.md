@@ -134,9 +134,9 @@ Back-stack behaviour (mirrors Android `popUpTo`):
   question bank inside the JS, `privacy-policy.html`), so after the first visit the app opens with
   no connection.
 - Updates (`registerType: 'prompt'` + `pwa/registerSW.ts`): a new deploy downloads in the
-  background; the app switches to it automatically at a **safe moment** — when it's in the
-  background or the user is on a bottom-nav tab — never mid-exam, mid-question or while typing a
-  code. Open apps check hourly. Details: [DEPLOY.md](DEPLOY.md).
+  background; the app switches to it automatically at a **safe moment** — when the user is on a
+  bottom-nav tab — never mid-exam, mid-question or while typing a code (also when another open copy
+  of the app triggered the switch: `onNeedReload` defers this copy's reload). Open apps check hourly. Details: [DEPLOY.md](DEPLOY.md).
 - Install: Android Chrome's `beforeinstallprompt` is captured (`pwa/install.ts`) and offered as
   an "INSTALAR" button; iPhone gets illustrated Share → "Agregar a inicio" steps (`InstallScreen`).
 
@@ -150,7 +150,7 @@ sequenceDiagram
   SW->>GH: check sw.js for a new version
   GH-->>SW: new build? download + precache (waits)
   SW-->>P: onNeedRefresh
-  Note over P: registerSW.ts waits for a safe moment<br/>(tab screen or app in background)
+  Note over P: registerSW.ts waits for a safe moment<br/>(user on a bottom-nav tab)
   P->>SW: skip waiting → page reloads on the new version
 ```
 

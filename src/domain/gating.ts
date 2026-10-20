@@ -6,7 +6,8 @@
  *
  * Free:    5 study questions per calendar day + one 5-question Daily Quiz per day.
  * Premium: unlimited study, unlimited quizzes, and the 50-question Full Mock Exam.
- * To change the free allowance, edit FREE_PER_DAY (and the paywall/store copy that mentions "5").
+ * To change the free allowance, edit FREE_PER_DAY (see docs/UPGRADING.md; note the "5 preguntas"
+ * texts in the UI are the Daily Quiz length, a different constant).
  */
 
 /** Study questions a free user may answer per calendar day. */

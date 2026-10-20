@@ -14,9 +14,12 @@ If you change the monthly length, change `MONTHLY_DAYS` **and** the CLI default 
 empty, the paywall asks buyers to email first and you reply with payment details.
 
 ## Change the free allowance
-`FREE_PER_DAY` in `src/domain/gating.ts`. Then search the copy for the number:
-`grep -rn "5 preguntas\|gratis" src/` (Inicio "5 preguntas mixtas · gratis", Exámenes, paywall
-benefits) and update tests in `tests/domain/` and `tests/ui/`.
+`FREE_PER_DAY` in `src/domain/gating.ts` — the study header ("N gratis hoy") follows automatically.
+Then update the README "What users get" table, the CHANGELOG, and the tests that assume 5
+(`tests/domain/domain.test.ts` gating cases, `tests/ui/app.test.tsx` "5 gratis hoy" and
+`freeCount: 5`). ⚠️ The "5 preguntas" texts on Inicio and Exámenes are the **Daily Quiz length**
+(`DAILY_QUIZ_LENGTH` in `src/domain/metrics.ts`), not the free allowance — leave them unless you
+change the quiz length too.
 
 ## Change grace / reminder days
 `GRACE_DAYS` and `REMIND_DAYS` in `src/billing/entitlement.ts`; update the paywall/README wording

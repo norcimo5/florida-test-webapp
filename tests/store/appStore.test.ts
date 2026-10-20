@@ -15,6 +15,7 @@ import {
   saveUnlock,
   setUserName,
 } from '../../src/store/appStore'
+import { effectiveDay } from '../../src/domain/dates'
 
 beforeEach(() => __setStateForTests({}))
 
@@ -83,12 +84,37 @@ describe('appStore', () => {
     expect(getState().freeCount).toBe(5)
   })
 
-  it('remembers the latest day seen and never moves it backwards', () => {
-    noteDaySeen('2026-10-20')
-    noteDaySeen('2026-10-01')
+  it('stores the effective day; a rejected far-future day is cleared for good', () => {
+    // What useToday does: store effectiveDay(clock, lastSeenDay).
+    const tick = (clock: string) => noteDaySeen(effectiveDay(clock, getState().lastSeenDay))
+    tick('2026-10-20')
+    tick('2026-10-01') // date set back: still 10-20
     expect(getState().lastSeenDay).toBe('2026-10-20')
-    noteDaySeen('2026-10-21')
+    tick('2026-10-21')
     expect(getState().lastSeenDay).toBe('2026-10-21')
+    // Clock was once a year fast, then fixed: the bogus day is dropped and never returns.
+    __setStateForTests({ lastSeenDay: '2027-10-20' })
+    tick('2026-10-20')
+    expect(getState().lastSeenDay).toBe('2026-10-20')
+    tick('2027-08-25') // within 62 days of the old bogus day — must not jump ahead
+    expect(getState().lastSeenDay).toBe('2027-08-25')
+  })
+
+  it('keeps unsaved changes when storage is full', () => {
+    setUserName('Ana')
+    const realSet = localStorage.setItem.bind(localStorage)
+    localStorage.setItem = () => {
+      throw new Error('QuotaExceededError')
+    }
+    try {
+      saveUnlock({ email: 'a@b.com', code: 'FLDMV-X' })
+      recordAnswer('q1', true, { countsTowardDailyCap: true, premium: false, today: '2026-10-20' })
+      recordAnswer('q2', true, { countsTowardDailyCap: true, premium: false, today: '2026-10-20' })
+      expect(getState().unlock?.code).toBe('FLDMV-X')
+      expect(getState().freeCount).toBe(2)
+    } finally {
+      localStorage.setItem = realSet
+    }
   })
 
   it('survives corrupt storage', () => {

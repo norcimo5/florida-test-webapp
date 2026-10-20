@@ -34,10 +34,12 @@ Prices (set in `src/config/app.ts`): **US$34.99 per month** (30 days) or **US$99
    (use `--plan monthly` for the monthly plan)
 
 4. The command prints a ready-made Spanish email containing their code. Copy it into your reply.
-5. They open the app → **Ajustes → Activar Premium** → paste the code. Done.
+5. They open the app → **Ajustes → Activar Premium** → type **the same email** you used in the
+   command and paste the code. Done.
 
 Monthly buyers: the code works for 30 days (+3 grace days). The app reminds them 3 days early.
-When they pay again, run the same `monthly` command — the new 30 days are added on top.
+When they pay again, run the same `monthly` command — the new 30 days are added on top (as long
+as you make it on this computer, which keeps the sales log; see docs/UNLOCK-CODES.md).
 See who's due: `npm run code -- --list`.
 
 Full details, including what to do if the signing key is lost: **docs/UNLOCK-CODES.md**.

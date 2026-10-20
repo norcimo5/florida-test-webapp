@@ -158,6 +158,15 @@ describe('activation', () => {
     expect(getState().unlock?.code).toBe(lifetime)
   })
 
+  it('a monthly code that ends sooner does not replace a longer one', () => {
+    const long = createUnlockCode({ email, plan: 'monthly', issued: dayKey(), expires: addDays(dayKey(), 35) }, keys.sk)
+    const short = createUnlockCode({ email, plan: 'monthly', issued: dayKey(), expires: addDays(dayKey(), 5) }, keys.sk)
+    start({ unlock: { email, code: long } }, '/activate')
+    activate(short)
+    expect(screen.getByRole('alert')).toHaveTextContent('Tu código actual dura más')
+    expect(getState().unlock?.code).toBe(long)
+  })
+
   it('a monthly renewal with a later expiry replaces the old code', () => {
     const now = createUnlockCode({ email, plan: 'monthly', issued: dayKey(), expires: addDays(dayKey(), 5) }, keys.sk)
     const later = createUnlockCode({ email, plan: 'monthly', issued: dayKey(), expires: addDays(dayKey(), 35) }, keys.sk)

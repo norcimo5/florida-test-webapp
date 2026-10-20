@@ -6,7 +6,7 @@ Symptom → likely cause → fix. Start from what the user tells you.
 
 ### "The app shows an old version" / "your fix isn't there"
 - **Cause:** the service worker serves the cached version until the new one has downloaded, and it
-  only switches when the user is on a main tab or the app is in the background (never mid-exam).
+  only switches when the user is on a main tab (never mid-exam, mid-question or while typing a code).
 - **Fix:** open the app, go to Inicio, wait a few seconds (it reloads by itself), or close and
   reopen it. Check the version in Ajustes. Still old after a few hours → confirm the deploy really published (open the site in a
   private window); if a phone is stuck, clearing the site's data fixes it but **also deletes
