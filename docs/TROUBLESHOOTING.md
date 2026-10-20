@@ -47,6 +47,11 @@ Ask for the exact message:
   previews) can't install — open the link in Chrome.
 - Already installed → the card and the Ajustes row disappear on purpose.
 
+### "The questions turned into Spanish" / a translate bar covers the menu
+The app tells browsers not to translate (`translate="no"` + `notranslate` meta in `index.html`,
+since 2.0.1). If a user translated the page manually, ask them to tap "Mostrar original"/"Show
+original" in the browser's translate menu.
+
 ### "Pagar / Enviar comprobante doesn't open my email"
 The button opens a `mailto:` link. If the phone has no email app set up, nothing happens. Ask them
 to email bitensemble.solutions@gmail.com manually with the plan name and the payment screenshot.

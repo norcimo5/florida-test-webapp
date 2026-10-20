@@ -3,6 +3,12 @@
 Every user-visible or behaviour change, newest first. The version is `"version"` in
 `package.json` and is shown in Ajustes.
 
+## 2.0.1 — 2026-10-20 · No auto-translate
+
+- Browsers no longer offer to translate the app. On phones set to English, Chrome's translate bar
+  covered the bottom navigation, and translating would turn the English exam questions into
+  Spanish (the app trains English keyword recognition). Found during a real Android install test.
+
 ## 2.0.0 — 2026-10-20 · Installable app, Android look, Premium codes
 
 - **New look:** rebuilt every screen to match the Android app (gradient headers, pass meter,
