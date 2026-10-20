@@ -95,6 +95,10 @@ when the phone has "reduce motion" on.
 | Activar Premium | — (web-only) | — | `ActivateScreen.tsx` |
 | Instalar app | — (web-only) | — | `InstallScreen.tsx` |
 
+Verified 2026-10-20 (v2.0.1): all 8 reference screens compared side by side on the live site, and
+the installed app checked in real Android Chrome (Android 14 emulator): install, standalone launch,
+auto-update, offline cold start, Premium activation.
+
 Known, intentional differences: no Android status bar in browser screenshots; the paywall shows
 "Cómo pagar" steps and "ENVIAR COMPROBANTE" instead of store purchase/restore buttons; Inicio may
 show an install card or a renewal notice above the topic grid.

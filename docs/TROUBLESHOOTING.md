@@ -46,6 +46,9 @@ Ask for the exact message:
   "Instalar app" / "Agregar a la pantalla principal". Some in-app browsers (Facebook, WhatsApp
   previews) can't install — open the link in Chrome.
 - Already installed → the card and the Ajustes row disappear on purpose.
+- Phones **without Google Play services** (e.g. Huawei, some emulators): Chrome adds a home-screen
+  shortcut ("Examen FL" with a small Chrome badge) instead of a full app. It still opens
+  full-screen and works offline (verified 2026-10-20 on an Android 14 emulator).
 
 ### "The questions turned into Spanish" / a translate bar covers the menu
 The app tells browsers not to translate (`translate="no"` + `notranslate` meta in `index.html`,
