@@ -1,13 +1,33 @@
 <!doctype html>
+<!--
+  index.html — the single page that hosts the app (src/main.tsx).
+  The <head> carries the install/icon tags for iPhone (apple-*) and the theme color for Android.
+  The inline style paints the brand gradient before JavaScript loads (no white flash on launch,
+  like the Android splash screen).
+-->
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Florida Driver Prep | Preparación para el Examen de Manejo</title>
-    <script type="module" crossorigin src="/florida-test-webapp/assets/index-Bt3AEsVY.js"></script>
-    <link rel="stylesheet" crossorigin href="/florida-test-webapp/assets/index-DrnWW60r.css">
-  </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Examen de Manejo Florida</title>
+    <meta name="description" content="Practica en inglés para el examen de manejo de Florida (Clase E), con guía en español. Herramienta de práctica, no afiliada al FLHSMV." />
+    <meta name="theme-color" content="#1e3a8a" />
+    <link rel="icon" href="/florida-test-webapp/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/florida-test-webapp/icons/apple-touch-icon-180.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Examen FL" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
+    <style>
+      html { background: #1e3a8a; }
+      #root:empty { min-height: 100vh; background: linear-gradient(to bottom right, #1e3a8a, #1d4ed8); }
+    </style>
+    <script type="module" crossorigin src="/florida-test-webapp/assets/index-CXvZgCQq.js"></script>
+    <link rel="stylesheet" crossorigin href="/florida-test-webapp/assets/index-Cyq-FxFw.css">
+  <link rel="manifest" href="/florida-test-webapp/manifest.webmanifest"></head>
   <body>
+    <noscript>Activa JavaScript para usar Examen de Manejo Florida.</noscript>
     <div id="root"></div>
   </body>
 </html>
