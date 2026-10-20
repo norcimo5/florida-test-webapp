@@ -1,0 +1,31 @@
+/*
+ * typography.css — the Material 3 type scale from the Android app (ui/theme/Type.kt), as classes.
+ *
+ * Use a class instead of setting font-size/weight inline. Role meanings (same as Android):
+ *   .t-display-medium   big result percentage
+ *   .t-headline-medium  screen title inside the gradient header
+ *   .t-headline-small   stat values, plan prices
+ *   .t-title-large      big numbers (pass meter %)
+ *   .t-title-medium     card titles
+ *   .t-body-large       question text
+ *   .t-body-medium      answer choices, body copy
+ *   .t-body-small       card metadata
+ *   .t-label-large      buttons
+ *   .t-label-medium     section titles
+ *   .t-label-small      disclaimers, nav labels
+ */
+.t-display-medium { font: 700 44px/48px var(--font-sans); }
+.t-headline-medium { font: 700 24px/30px var(--font-sans); }
+.t-headline-small { font: 700 20px/26px var(--font-sans); }
+.t-title-large { font: 700 28px/34px var(--font-sans); }
+.t-title-medium { font: 700 16px/22px var(--font-sans); }
+.t-body-large { font: 600 18px/26px var(--font-sans); }
+.t-body-medium { font: 400 15px/22px var(--font-sans); }
+.t-body-small { font: 400 13px/18px var(--font-sans); }
+.t-label-large { font: 700 15px/20px var(--font-sans); letter-spacing: 0.3px; }
+.t-label-medium { font: 700 13px/16px var(--font-sans); letter-spacing: 0.5px; }
+.t-label-small { font: 500 11px/14px var(--font-sans); }
+
+/* Weight overrides used by Android's `.copy(fontWeight = ...)` calls */
+.w-medium { font-weight: 500; }
+.w-bold { font-weight: 700; }

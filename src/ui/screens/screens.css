@@ -1,0 +1,300 @@
+/*
+ * screens.css — layout styles specific to individual screens (src/ui/screens/*.tsx).
+ * Shared primitives live in ../components/components.css.
+ */
+
+/* ---------- Onboarding (ui/onboarding/OnboardingScreen.kt) ---------- */
+.onboarding {
+  min-height: 100dvh;
+  background: var(--header-gradient);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: calc(var(--screen-padding) + env(safe-area-inset-top)) var(--screen-padding)
+    calc(var(--screen-padding) + env(safe-area-inset-bottom));
+}
+.onboarding__subtitle {
+  color: var(--on-header-80);
+}
+.onboarding__benefit {
+  display: flex;
+  padding: var(--space-sm) 0;
+}
+.onboarding__check {
+  color: var(--brand-teal);
+  font-weight: 700;
+  flex: none;
+  width: 1.4em;
+  font-size: 18px;
+  line-height: 26px;
+}
+.onboarding__input {
+  display: block;
+  width: 100%;
+  min-height: 56px;
+  padding: var(--space-lg);
+  border-radius: var(--radius-button);
+  border: 1px solid var(--on-header-40);
+  background: transparent;
+  color: var(--white);
+  caret-color: var(--brand-teal);
+  font: 600 18px/26px var(--font-sans); /* M3 text fields use bodyLarge (Type.kt: 18sp SemiBold) */
+}
+.onboarding__input::placeholder {
+  color: var(--on-header-60);
+}
+.onboarding__input:focus {
+  outline: none;
+  border: 2px solid var(--brand-teal);
+  padding: calc(var(--space-lg) - 1px);
+}
+
+/* ---------- Home topic grid (HomeScreen.kt TopicCard, 2 columns, 12px gap) ---------- */
+.topic-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+.topic-card__label {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 44px; /* minLines = 2 at 22px line height */
+  margin-top: var(--space-sm);
+  color: var(--gray-900);
+}
+.topic-card__pct {
+  margin-top: var(--space-sm);
+  color: var(--brand-teal-dark);
+}
+
+.card-title {
+  color: var(--gray-900);
+}
+.card-meta {
+  color: var(--gray-500);
+}
+.card-text {
+  color: var(--gray-700);
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+.row--tight {
+  gap: var(--card-gap);
+}
+.grow {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Notice cards (web-only: install nudge, Premium renewal) — AppCard + colored left edge */
+.notice {
+  border-left: 4px solid var(--brand-teal);
+}
+.notice--warn {
+  border-left-color: var(--brand-amber);
+}
+.notice__actions {
+  display: flex;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+  margin-top: var(--space-xs);
+}
+
+/* ---------- Study + Exam question UI (StudyScreen.kt / ExamScreen.kt) ---------- */
+.question-text {
+  color: var(--gray-900);
+}
+.question-text mark {
+  background: none;
+  color: var(--brand-teal-dark);
+  font-weight: 700;
+}
+.question-es {
+  margin-top: var(--space-sm);
+  color: var(--gray-500);
+}
+.choices {
+  margin-top: var(--space-lg);
+  list-style: none;
+  padding: 0;
+}
+.choice {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  margin: 5px 0;
+  padding: 14px;
+  border-radius: var(--radius-small);
+  border: 1px solid var(--gray-200);
+  background: var(--color-surface);
+  color: var(--gray-900);
+  text-align: left;
+  transition: background-color 120ms ease;
+}
+.choice:disabled {
+  cursor: default;
+}
+.choice--correct {
+  background: var(--correct-container);
+}
+.choice--incorrect {
+  background: var(--incorrect-container);
+}
+.choice--selected {
+  background: var(--selected-container);
+  border: 2px solid var(--brand-blue);
+  padding: 13px;
+}
+.choice__text {
+  flex: 1;
+}
+.feedback {
+  margin-top: var(--space-md);
+}
+.feedback--ok { color: var(--success); }
+.feedback--bad { color: var(--error); }
+.why-box {
+  margin-top: var(--space-sm);
+  padding: 14px;
+  border-radius: var(--radius-small);
+  background: var(--gray-100);
+}
+.why-box__title {
+  color: var(--brand-teal-dark);
+}
+.why-box__text {
+  margin-top: var(--space-xs);
+  color: var(--gray-700);
+}
+.hint {
+  margin-top: var(--space-sm);
+  color: var(--gray-400);
+}
+
+/* ---------- Results (ResultsScreen.kt) ---------- */
+.result-pct--pass { color: var(--success); }
+.result-pct--fail { color: var(--error); }
+
+/* ---------- Perfil stats ---------- */
+.stat-label {
+  color: var(--gray-500);
+}
+.stat-value {
+  margin-top: var(--space-xs);
+  color: var(--gray-900);
+}
+
+/* ---------- Ajustes rows ---------- */
+.setting-row {
+  min-height: var(--min-touch);
+}
+
+/* ---------- Paywall (PaywallScreen.kt) ---------- */
+.benefit {
+  display: flex;
+  gap: var(--space-sm);
+  padding: var(--space-xs) 0;
+  color: var(--gray-700);
+}
+.benefit__check {
+  color: var(--brand-teal);
+  font: 700 18px/22px var(--font-sans); /* Android Text("✓") default = bodyLarge size */
+}
+.plan-card {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: var(--card-padding);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--gray-200);
+  background: var(--color-surface);
+}
+.plan-card--selected {
+  border: 2px solid var(--brand-blue);
+  padding: calc(var(--card-padding) - 1px);
+  background: var(--selected-container);
+}
+.plan-card__badge {
+  display: inline-block;
+  margin-bottom: var(--space-xs);
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-pill);
+  background: var(--brand-teal);
+  color: var(--white);
+}
+.plan-card__top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+.plan-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  color: var(--gray-900);
+  white-space: nowrap;
+}
+.plan-card__period {
+  color: var(--gray-500);
+}
+.plan-card__note {
+  margin-top: var(--space-xs);
+  color: var(--gray-500);
+}
+.steps {
+  margin: var(--space-sm) 0 0;
+  padding-left: 1.3em;
+  color: var(--gray-700);
+}
+.steps li {
+  padding: var(--space-xs) 0;
+}
+.pay-method {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  padding: var(--space-sm) var(--space-md);
+  margin-top: var(--space-sm);
+  border-radius: var(--radius-small);
+  background: var(--gray-100);
+}
+.pay-method__handle {
+  font-weight: 700;
+  color: var(--gray-900);
+  word-break: break-all;
+}
+
+/* ---------- Install help (InstallScreen.tsx) ---------- */
+.install-step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-sm) 0;
+}
+.install-step__num {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--brand-teal);
+  color: var(--white);
+  font-weight: 700;
+}
+.inline-icon {
+  display: inline-block;
+  vertical-align: -5px;
+  margin: 0 2px;
+  color: var(--brand-blue);
+}

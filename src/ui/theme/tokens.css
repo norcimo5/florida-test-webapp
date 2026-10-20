@@ -1,0 +1,119 @@
+/*
+ * tokens.css — the design system's single source of truth (colors, type, spacing, shapes).
+ *
+ * Every value is a 1:1 port of the Android app's Compose theme, so the web app looks the same:
+ *   colors  <- android app/src/main/java/com/fldmvprep/study/ui/theme/Theme.kt  (object Brand + LightColors)
+ *   type    <- .../ui/theme/Type.kt   (AppTypography; sp == px here)
+ *   spacing <- .../ui/theme/Dimens.kt (object Dimens + AppShapes; dp == px here)
+ *
+ * RULE: components never hard-code a color, font size, spacing or radius — they use these
+ * variables (or the .t-* type classes in typography.css). Change a value here, it changes everywhere.
+ * Full mapping table: docs/DESIGN-SYSTEM.md.
+ */
+:root {
+  /* ---- Brand palette (Theme.kt: object Brand) ---- */
+  --brand-blue-deep: #1e3a8a;
+  --brand-blue: #1d4ed8;
+  --brand-teal: #10b981;
+  --brand-teal-dark: #059669;
+  --brand-amber: #f59e0b;
+
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+  --gray-900: #111827;
+
+  --success: #16a34a;
+  --error: #dc2626;
+
+  /* Answer-feedback surfaces (Brand.CorrectContainer / IncorrectContainer / SelectedContainer) */
+  --correct-container: #dcfce7;
+  --incorrect-container: #fee2e2;
+  --selected-container: #dbeafe;
+
+  --white: #ffffff;
+  /* Translucent whites used on the gradient header (Compose Color(0xCCFFFFFF) etc.) */
+  --on-header-80: rgba(255, 255, 255, 0.8);   /* 0xCC */
+  --on-header-87: rgba(255, 255, 255, 0.867); /* 0xDD */
+  --on-header-67: rgba(255, 255, 255, 0.667); /* 0xAA */
+  --on-header-60: rgba(255, 255, 255, 0.6);   /* 0x99 */
+  --on-header-40: rgba(255, 255, 255, 0.4);   /* 0x66 */
+  --on-header-20: rgba(255, 255, 255, 0.2);   /* 0x33 */
+
+  /* Brand.HeaderGradient = linearGradient(BlueDeep -> Blue), top-left to bottom-right */
+  --header-gradient: linear-gradient(to bottom right, var(--brand-blue-deep) 0%, var(--brand-blue) 100%);
+
+  /* Topic chip colors (ui/common/TopicVisuals.kt) */
+  --topic-senales-tint: var(--brand-blue);
+  --topic-senales-bg: #dbeafe;
+  --topic-reglas-tint: var(--brand-teal-dark);
+  --topic-reglas-bg: #ccfbf1;
+  --topic-seguridad-tint: #b45309;
+  --topic-seguridad-bg: #fef3c7;
+  --topic-especial-tint: #7c3aed;
+  --topic-especial-bg: #ede9fe;
+
+  /* Material 3 roles from LightColors (Theme.kt) + M3 defaults the Android app inherits */
+  --color-background: var(--gray-50);
+  --color-surface: var(--white);
+  --color-on-surface: var(--gray-900);
+  --color-on-surface-variant: var(--gray-500);
+  --color-outline: var(--gray-200);
+  --color-secondary-container: var(--selected-container);
+  --color-on-secondary-container: var(--brand-blue-deep);
+  /* M3 baseline surfaceContainer — the NavigationBar background on Android (not overridden there) */
+  --color-surface-container: #f3edf7;
+  --scrim: rgba(0, 0, 0, 0.32);
+
+  /* ---- Spacing (Dimens.kt, 4dp base scale) ---- */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-xxl: 32px;
+  --screen-padding: 16px;
+  --card-gap: 6px;
+  --card-padding: 16px;
+
+  /* ---- Shapes (Dimens.kt + AppShapes) ---- */
+  --radius-card: 16px;
+  --radius-button: 14px;
+  --radius-pill: 999px;
+  --radius-small: 10px;      /* AppShapes.small — answer choices, explanation box */
+  --radius-chip: 12px;       /* topic icon chip */
+  --radius-large: 20px;      /* AppShapes.large */
+  --radius-dialog: 28px;     /* M3 AlertDialog default */
+
+  /* Elevation 3dp (Dimens.cardElevation) approximated as a soft Material shadow */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
+
+  /* ---- Sizes ---- */
+  --min-touch: 48px;
+  --button-height: 54px;
+  --icon-chip: 44px;
+  --nav-height: 80px;          /* M3 NavigationBar */
+  --content-max-width: 480px;  /* phone-width column on tablets/desktop */
+
+  /* ---- Type (Type.kt; FontFamily.Default on Android = Roboto) ---- */
+  --font-sans: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* ---- Motion (AppNav.kt transitions, PassMeter tween(800), TrendChart tween(900)) ---- */
+  --motion-enter: 220ms;
+  --motion-exit: 180ms;
+  --motion-meter: 800ms;
+  --motion-chart: 900ms;
+}
+
+/* Honor the OS "reduce motion" setting (Android disables Compose animations the same way). */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-enter: 0ms;
+    --motion-exit: 0ms;
+    --motion-meter: 0ms;
+    --motion-chart: 0ms;
+  }
+}

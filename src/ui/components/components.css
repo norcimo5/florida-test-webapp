@@ -1,0 +1,357 @@
+/*
+ * components.css — styles for the shared building blocks in src/ui/components/*.tsx.
+ * Each block names its Android counterpart (ui/common/Components.kt unless noted).
+ */
+
+/* ---------- GradientHeader ---------- */
+.gradient-header {
+  position: relative;
+  background: var(--header-gradient);
+  color: var(--white);
+  /* statusBarsPadding(): content sits below the status bar / notch, gradient paints behind it */
+  padding: calc(var(--space-lg) + env(safe-area-inset-top)) var(--space-xl) var(--space-xl);
+}
+.gradient-header__trailing {
+  position: absolute;
+  top: calc(var(--space-lg) + env(safe-area-inset-top));
+  right: var(--space-xl);
+}
+.gradient-header__subtitle {
+  color: var(--on-header-80);
+}
+.gradient-header--with-trailing .gradient-header__text {
+  padding-right: 56px;
+}
+
+/* ---------- PassMeter ---------- */
+.pass-meter {
+  padding-top: var(--space-lg);
+}
+.pass-meter__label {
+  color: var(--on-header-87);
+}
+.pass-meter__track {
+  margin-top: var(--space-sm);
+  height: 12px;
+  border-radius: var(--radius-pill);
+  background: var(--on-header-20);
+  overflow: hidden;
+}
+.pass-meter__fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--brand-teal);
+  transition: width var(--motion-meter) ease-in-out;
+}
+.pass-meter__value {
+  margin-top: var(--space-sm);
+}
+
+/* ---------- AppCard ---------- */
+.app-card {
+  display: block;
+  width: 100%;
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--card-padding);
+  text-align: left;
+  color: inherit;
+}
+.app-card--stacked {
+  margin: var(--card-gap) 0;
+}
+button.app-card {
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+button.app-card:active {
+  transform: scale(0.985);
+}
+
+/* ---------- TealButton (Material Button, teal container) ---------- */
+.teal-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: var(--button-height);
+  padding: var(--space-sm) var(--space-xl);
+  border-radius: var(--radius-button);
+  background: var(--brand-teal);
+  color: var(--white);
+  text-align: center;
+  transition: filter 120ms ease, transform 120ms ease;
+}
+.teal-button:hover {
+  filter: brightness(0.96);
+}
+.teal-button:active {
+  transform: scale(0.99);
+  filter: brightness(0.9);
+}
+.teal-button:disabled {
+  background: var(--gray-200);
+  color: var(--gray-400);
+  cursor: default;
+  transform: none;
+  filter: none;
+}
+
+/* ---------- TextLink (>= 48px touch target) ---------- */
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--min-touch);
+  padding: var(--space-md) var(--space-xs);
+}
+.text-link--block {
+  display: flex;
+  width: 100%;
+}
+
+/* ---------- ProgressRow ---------- */
+.progress-row {
+  padding: var(--card-gap) 0;
+}
+.progress-row__top {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+.progress-row__label {
+  color: var(--gray-900);
+}
+.progress-row__pct {
+  color: var(--brand-teal-dark);
+}
+.bar {
+  height: 8px;
+  margin-top: var(--card-gap);
+  border-radius: var(--radius-pill);
+  background: var(--gray-200);
+  overflow: hidden;
+}
+.bar--thin {
+  height: 6px;
+  margin-top: var(--space-xs);
+}
+.bar__fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--brand-teal);
+}
+
+/* ---------- TopicIconChip (ui/common/TopicVisuals.kt) ---------- */
+.topic-chip {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-chip);
+  height: var(--icon-chip);
+  border-radius: var(--radius-chip);
+}
+.topic-chip--SENALES { background: var(--topic-senales-bg); color: var(--topic-senales-tint); }
+.topic-chip--REGLAS { background: var(--topic-reglas-bg); color: var(--topic-reglas-tint); }
+.topic-chip--SEGURIDAD { background: var(--topic-seguridad-bg); color: var(--topic-seguridad-tint); }
+.topic-chip--ESPECIAL { background: var(--topic-especial-bg); color: var(--topic-especial-tint); }
+
+/* ---------- SectionTitle (HomeScreen.kt) ---------- */
+.section-title {
+  color: var(--gray-500);
+  padding: var(--space-sm) 0;
+}
+
+/* ---------- Disclaimer ---------- */
+.disclaimer {
+  color: var(--gray-400);
+}
+
+/* ---------- TrendChart (ui/common/TrendChart.kt) ---------- */
+.trend-chart {
+  position: relative;
+  width: 100%;
+  height: 140px;
+}
+.trend-chart svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.trend-chart__line {
+  /* Draw-in: reveal left→right (a dash animation breaks with non-scaling strokes in Chrome). */
+  clip-path: inset(-10px 100% -10px -10px);
+  animation: trend-draw var(--motion-chart) ease-out forwards;
+}
+@keyframes trend-draw {
+  to { clip-path: inset(-10px -10px -10px -10px); }
+}
+/* 7px dot + 2px white ring, centered on the point */
+.trend-chart__dot {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  margin: -5.5px 0 0 -5.5px;
+  border-radius: 50%;
+  background: var(--error);
+  border: 2px solid var(--white);
+  opacity: 0;
+  animation: trend-dot 1ms linear forwards;
+}
+.trend-chart__dot--pass {
+  background: var(--success);
+}
+@keyframes trend-dot {
+  to { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .trend-chart__dot { animation-delay: 0s !important; }
+}
+.trend-legend {
+  color: var(--brand-amber);
+}
+
+/* ---------- BottomNav (Material 3 NavigationBar, ui/nav/AppNav.kt) ---------- */
+.bottom-nav {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--content-max-width);
+  display: flex;
+  background: var(--color-surface-container);
+  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 10;
+}
+.bottom-nav__item {
+  flex: 1;
+  min-width: 0;
+  height: var(--nav-height);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--color-on-surface-variant);
+}
+.bottom-nav__indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 32px;
+  border-radius: var(--radius-pill);
+  transition: background-color 150ms ease;
+}
+.bottom-nav__item--selected .bottom-nav__indicator {
+  background: var(--color-secondary-container);
+  color: var(--color-on-secondary-container);
+}
+.bottom-nav__label {
+  /* Android renders these at ~14px semibold (labelSmall × the reference device's font scale). */
+  font: 600 14px/18px var(--font-sans);
+  white-space: nowrap; /* "Exámenes" must stay on one line (Android fix in 1.0.1) */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.bottom-nav__item--selected .bottom-nav__label {
+  color: var(--color-on-surface);
+  font-weight: 700;
+}
+
+/* ---------- Dialog (Material 3 AlertDialog) ---------- */
+.dialog-scrim {
+  position: fixed;
+  inset: 0;
+  background: var(--scrim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  z-index: 50;
+}
+.dialog {
+  width: 100%;
+  max-width: 340px;
+  background: var(--color-surface);
+  border-radius: var(--radius-dialog);
+  padding: var(--space-xl);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+.dialog__title {
+  color: var(--gray-900);
+}
+.dialog__text {
+  margin-top: var(--space-lg);
+  color: var(--gray-500);
+}
+.dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  margin-top: var(--space-xl);
+}
+.dialog__action {
+  min-height: 40px;
+  padding: 0 var(--space-md);
+  border-radius: var(--radius-pill);
+  color: var(--brand-teal);
+}
+.dialog__action--danger {
+  color: var(--error);
+}
+
+/* ---------- Snackbar (Android Toast equivalent) ---------- */
+.snackbar {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--nav-height) + var(--space-lg) + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  width: calc(100% - 2 * var(--space-lg));
+  max-width: calc(var(--content-max-width) - 2 * var(--space-lg));
+  background: var(--gray-900);
+  color: var(--white);
+  border-radius: var(--radius-small);
+  padding: var(--space-md) var(--space-lg);
+  z-index: 60;
+  animation: screen-enter var(--motion-enter) ease-out;
+}
+
+/* ---------- TextField (Material 3 OutlinedTextField, light surfaces) ---------- */
+.text-field {
+  display: block;
+  width: 100%;
+  min-height: 56px;
+  padding: var(--space-lg);
+  border: 1px solid var(--gray-400);
+  border-radius: var(--radius-button);
+  background: var(--color-surface);
+  color: var(--gray-900);
+  font: 400 16px/24px var(--font-sans); /* 16px stops iOS zooming into the field */
+}
+.text-field:focus {
+  outline: none;
+  border: 2px solid var(--brand-teal);
+  padding: calc(var(--space-lg) - 1px);
+}
+.text-field--code {
+  font-family: ui-monospace, 'Roboto Mono', monospace;
+  letter-spacing: 0.5px;
+  resize: vertical;
+  min-height: 120px;
+  word-break: break-all;
+}
+.field-label {
+  display: block;
+  color: var(--gray-700);
+  margin-bottom: var(--space-sm);
+}
+.field-error {
+  color: var(--error);
+  margin-top: var(--space-sm);
+}

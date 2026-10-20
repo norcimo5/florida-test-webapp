@@ -1,198 +1,87 @@
-import { useState, useEffect, useRef } from 'react'
-import questions from './data/questions.json'
-import type { Question, Progress, AppSettings, Screen, MacroTopic } from './types'
-import {
-  loadProgress,
-  saveProgress,
-  loadSettings,
-  saveSettings,
-  clearExam,
-  clearAll,
-  isLocalStorageAvailable,
-} from './store/progressStore'
-import { recordDailyReadiness } from './store/computed'
-import HomeScreen from './components/HomeScreen'
-import StudyMode from './components/StudyMode'
-import ExamMode from './components/ExamMode'
-import ResultsScreen from './components/ResultsScreen'
-import TemasScreen from './components/TemasScreen'
-import PerfilScreen from './components/PerfilScreen'
-import AjustesScreen from './components/AjustesScreen'
-import BottomTabBar from './components/BottomTabBar'
+/**
+ * App.tsx — the app shell: onboarding gate, route → screen mapping, bottom nav, snackbar.
+ * Port of the Android ui/nav/AppNav.kt (NavHost + NavigationBar). Route table: ui/router.ts.
+ */
+import { useEffect } from 'react'
+import { useAppState } from './store/appStore'
+import { isMacroTopic } from './domain/macroTopic'
+import { TAB_ROUTES, useRoute, navigate } from './ui/router'
+import { BottomNav, Snackbar } from './ui/components/overlays'
+import { OnboardingScreen } from './ui/screens/OnboardingScreen'
+import { HomeScreen } from './ui/screens/HomeScreen'
+import { TemasScreen, ExamsScreen, PerfilScreen } from './ui/screens/TabScreens'
+import { AjustesScreen } from './ui/screens/AjustesScreen'
+import { StudyScreen } from './ui/screens/StudyScreen'
+import { ExamScreen, ResultsScreen } from './ui/screens/ExamScreens'
+import { PaywallScreen } from './ui/screens/PaywallScreen'
+import { ActivateScreen } from './ui/screens/ActivateScreen'
+import { InstallScreen } from './ui/screens/InstallScreen'
 
-const typedQuestions = questions as Question[]
-
-/** Screens that hide the bottom tab bar (focus / in-session mode). */
-const FOCUS_SCREENS: Screen[] = ['study', 'exam', 'results']
-
-export default function App() {
-  const [screen, setScreen] = useState<Screen>('home')
-  const [reviewMode, setReviewMode] = useState(false)
-  const [filterTopic, setFilterTopic] = useState<MacroTopic | null>(null)
-  const [progress, setProgress] = useState<Progress>(() => loadProgress())
-  const [settings, setSettings] = useState<AppSettings>(() => loadSettings())
-  const [storageWarning] = useState(() => !isLocalStorageAvailable())
-
-  // Persist progress and settings whenever they change
-  useEffect(() => { saveProgress(progress) }, [progress])
-  useEffect(() => { saveSettings(settings) }, [settings])
-
-  // Record daily readiness once per session when the home screen is first shown.
-  // Deferred via setTimeout(0) to avoid calling setState synchronously in the
-  // effect body (react-hooks/set-state-in-effect).
-  const hasRecordedReadiness = useRef(false)
-  useEffect(() => {
-    if (screen !== 'home') return
-    if (hasRecordedReadiness.current) return
-    hasRecordedReadiness.current = true
-    const tid = setTimeout(() => {
-      setProgress(prev => recordDailyReadiness(prev, typedQuestions))
-    }, 0)
-    return () => clearTimeout(tid)
-  }, [screen])
-
-  // ── Navigation helpers ───────────────────────────────────────────────────────
-
-  function navigateTo(target: Screen) {
-    setReviewMode(false)
-    setFilterTopic(null)
-    setScreen(target)
-  }
-
-  function handleTopicTap(topic: MacroTopic) {
-    setFilterTopic(topic)
-    setReviewMode(false)
-    setScreen('study')
-  }
-
-  function handleStartFullMock() {
-    setProgress(prev => clearExam(prev))
-    setScreen('exam')
-  }
-
-  // v1: daily quiz routes to the same full mock handler (5-question mechanic deferred to v2)
-  function handleStartDailyQuiz() {
-    handleStartFullMock()
-  }
-
-  function handleProgressUpdate(p: Progress) {
-    setProgress(p)
-  }
-
-  function handleExamComplete() {
-    setScreen('results')
-  }
-
-  function handleResetComplete() {
-    clearAll()
-    setProgress(loadProgress())
-    setSettings(loadSettings())
-    setScreen('home')
-  }
-
-  // ── BottomTabBar onChange ────────────────────────────────────────────────────
-
-  function handleTabChange(tab: Screen) {
-    if (tab === 'exam') {
-      // Exámenes tab always launches a fresh full mock
-      handleStartFullMock()
-    } else {
-      navigateTo(tab)
+/** Picks the screen for the current route. Unknown routes fall back to Inicio. */
+function Screen({ segments }: { segments: string[] }) {
+  const [name, a, b] = segments
+  switch (name) {
+    case 'home':
+      return <HomeScreen />
+    case 'topics':
+      return <TemasScreen />
+    case 'exams':
+      return <ExamsScreen />
+    case 'profile':
+      return <PerfilScreen />
+    case 'settings':
+      return <AjustesScreen />
+    case 'study':
+      if (a && isMacroTopic(a)) return <StudyScreen key={a} topic={a} />
+      break
+    case 'exam': {
+      const n = Number(a)
+      if (n === 5 || n === 50) return <ExamScreen key={n} count={n} />
+      break
     }
+    case 'results': {
+      const c = Number(a)
+      const t = Number(b)
+      if (Number.isInteger(c) && Number.isInteger(t) && t > 0 && c >= 0 && c <= t) {
+        return <ResultsScreen correct={c} total={t} />
+      }
+      break
+    }
+    case 'paywall':
+      return <PaywallScreen />
+    case 'activate':
+      return <ActivateScreen />
+    case 'install':
+      return <InstallScreen />
   }
+  return <Redirect />
+}
 
-  // ── Determine which Screen the tab bar should highlight ─────────────────────
-  // During focus screens (study/exam/results), the tab bar is hidden,
-  // so active tab value doesn't matter — but keep 'home' as fallback.
-  const activeTab: Screen = FOCUS_SCREENS.includes(screen) ? 'home' : screen
+function Redirect() {
+  useEffect(() => navigate('/home', { replace: true }), [])
+  return null
+}
 
-  const showTabBar = !FOCUS_SCREENS.includes(screen)
+/** Root component. */
+export default function App() {
+  const { userName } = useAppState()
+  const route = useRoute()
 
+  // Every navigation starts at the top of the new screen (Compose screens do too).
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [route.path])
+
+  if (userName === null) return <OnboardingScreen />
+
+  const isTab = (TAB_ROUTES as readonly string[]).includes(route.path)
   return (
     <>
-      {storageWarning && (
-        <div className="storage-warning" role="alert">
-          ⚠️ Tu navegador no permite guardar progreso en este modo. El progreso se perderá al cerrar la ventana.
-        </div>
-      )}
-
-      {screen === 'home' && (
-        <HomeScreen
-          questions={typedQuestions}
-          progress={progress}
-          settings={settings}
-          onTopicTap={handleTopicTap}
-          onStartFullMock={handleStartFullMock}
-          onStartDailyQuiz={handleStartDailyQuiz}
-        />
-      )}
-
-      {screen === 'temas' && (
-        <TemasScreen
-          questions={typedQuestions}
-          progress={progress}
-          onTopicTap={handleTopicTap}
-        />
-      )}
-
-      {screen === 'study' && (
-        <StudyMode
-          questions={typedQuestions}
-          progress={progress}
-          onProgressUpdate={handleProgressUpdate}
-          onBack={() => navigateTo('home')}
-          reviewMode={reviewMode}
-          filterTopic={filterTopic ?? undefined}
-        />
-      )}
-
-      {screen === 'exam' && (
-        <ExamMode
-          questions={typedQuestions}
-          progress={progress}
-          settings={settings}
-          onProgressUpdate={handleProgressUpdate}
-          onComplete={handleExamComplete}
-          onBack={() => navigateTo('home')}
-        />
-      )}
-
-      {screen === 'results' && (
-        <ResultsScreen
-          questions={typedQuestions}
-          progress={progress}
-          onProgressUpdate={handleProgressUpdate}
-          onStudy={() => {
-            // v1: "Repasar Errores" navigates to study in review mode (existing logic)
-            setReviewMode(true)
-            setFilterTopic(null)
-            setScreen('study')
-          }}
-          onBack={() => navigateTo('home')}
-        />
-      )}
-
-      {screen === 'perfil' && (
-        <PerfilScreen
-          questions={typedQuestions}
-          progress={progress}
-          settings={settings}
-          onNavigateToAjustes={() => navigateTo('ajustes')}
-        />
-      )}
-
-      {screen === 'ajustes' && (
-        <AjustesScreen
-          onResetComplete={handleResetComplete}
-        />
-      )}
-
-      {showTabBar && (
-        <BottomTabBar
-          active={activeTab}
-          onChange={handleTabChange}
-        />
-      )}
+      <main key={route.path} className={isTab ? 'screen--with-nav' : 'screen--full'}>
+        <Screen segments={route.segments} />
+      </main>
+      {isTab && <BottomNav current={route.path} />}
+      <Snackbar />
     </>
   )
 }

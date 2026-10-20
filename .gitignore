@@ -23,3 +23,8 @@ tsconfig.tsbuildinfo
 *.njsproj
 *.sln
 *.sw?
+
+# Owner-only sales log of issued unlock codes (contains buyer emails) — never commit
+tools/issued-codes.csv
+# Never commit private keys
+*.key
