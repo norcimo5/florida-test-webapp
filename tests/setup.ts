@@ -29,6 +29,8 @@ class MemoryStorage implements Storage {
   }
 }
 Object.defineProperty(globalThis, 'localStorage', { value: new MemoryStorage(), configurable: true })
+// jsdom doesn't implement scrolling; screens call it on navigation.
+window.scrollTo = () => undefined
 
 afterEach(() => {
   cleanup()

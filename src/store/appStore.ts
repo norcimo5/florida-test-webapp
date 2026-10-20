@@ -8,6 +8,10 @@
  * React components read it with `useAppState()` (useSyncExternalStore) and change it ONLY through
  * the exported action functions, which persist and notify subscribers.
  *
+ * Several copies of the app can be open at once (installed app + a browser tab share storage).
+ * So every write re-reads storage first (read-modify-write), and a `storage` event listener pulls in
+ * changes made by the other copy — otherwise a stale copy would overwrite newer data (e.g. Premium).
+ *
  * iPhone note: Safari may delete storage of sites not added to the Home Screen after weeks without
  * use. Installed apps keep it. That's why the app nudges users to install (docs/TROUBLESHOOTING.md).
  */
@@ -38,6 +42,8 @@ export interface AppState {
   unlock: UnlockRecord | null
   /** User closed the "Instala la app" card on Inicio. */
   installDismissed: boolean
+  /** Latest calendar day the app has seen; guards against setting the phone's date back (dates.ts). */
+  lastSeenDay: string | null
 }
 
 const DEFAULT_STATE: AppState = {
@@ -49,6 +55,7 @@ const DEFAULT_STATE: AppState = {
   quizDay: null,
   unlock: null,
   installDismissed: false,
+  lastSeenDay: null,
 }
 
 /** Keep the mock history bounded so storage never grows without limit. */
@@ -105,11 +112,22 @@ function persist(): void {
   }
 }
 
+/** Applies a change on top of the LATEST stored state (another tab may have written), then saves. */
 function update(patch: Partial<AppState> | ((s: AppState) => Partial<AppState>)): void {
+  if (readStorage(STORAGE_KEY) !== null) state = load()
   const next = typeof patch === 'function' ? patch(state) : patch
   state = { ...state, ...next }
   persist()
   listeners.forEach((l) => l())
+}
+
+// Another copy of the app (tab or installed app) changed storage → refresh ours.
+if (typeof window !== 'undefined') {
+  window.addEventListener('storage', (e) => {
+    if (e.key !== STORAGE_KEY && e.key !== null) return
+    state = load()
+    listeners.forEach((l) => l())
+  })
 }
 
 /** Current state snapshot (stable object until the next change). */
@@ -175,6 +193,12 @@ export function clearUnlock(): void {
   update({ unlock: null })
 }
 
+/** Records that the app has seen `day` (only ever moves forward). */
+export function noteDaySeen(day: string): void {
+  if (state.lastSeenDay !== null && state.lastSeenDay >= day) return
+  update((s) => (s.lastSeenDay !== null && s.lastSeenDay >= day ? {} : { lastSeenDay: day }))
+}
+
 /** Hides the install card on Inicio. */
 export function dismissInstall(): void {
   update({ installDismissed: true })
@@ -191,6 +215,7 @@ export function resetProgress(): void {
 /** Test helper: replace the whole state (also used to start each test clean). */
 export function __setStateForTests(next: Partial<AppState>): void {
   state = { ...DEFAULT_STATE, ...next }
+  persist() // writes re-read storage, so the test state must be stored too
   listeners.forEach((l) => l())
 }
 

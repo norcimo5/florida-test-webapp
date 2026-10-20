@@ -3,8 +3,9 @@
  *
  * - `base` must stay '/florida-test-webapp/' — the app is served from that GitHub Pages sub-path.
  * - VitePWA generates the web app manifest + a service worker that precaches the whole app
- *   (including the question bank) so it opens offline. `registerType: 'autoUpdate'` makes a new
- *   deploy replace the old version on the next launch (docs/DEPLOY.md → "How updates reach phones").
+ *   (including the question bank) so it opens offline. `registerType: 'prompt'` lets
+ *   src/pwa/registerSW.ts switch to a new deploy at a safe moment (never mid-exam) —
+ *   docs/DEPLOY.md → "How updates reach phones".
  * - `__APP_VERSION__` (shown in Ajustes) comes from package.json "version".
  */
 import { defineConfig } from 'vitest/config'
@@ -22,9 +23,8 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: 'autoUpdate',
+      registerType: 'prompt', // we apply updates ourselves, see src/pwa/registerSW.ts
       injectRegister: false, // registered in src/pwa/registerSW.ts
-      includeAssets: ['favicon.svg', 'icons/apple-touch-icon-180.png', 'privacy-policy.html'],
       manifest: {
         id: BASE,
         name: 'Examen de Manejo Florida',

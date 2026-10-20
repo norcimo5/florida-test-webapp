@@ -5,7 +5,15 @@ import { describe, expect, it } from 'vitest'
 import { countForDay, dailyQuizAllowed, freeLeftToday, fullMockAllowed, studyAllowed } from '../../src/domain/gating'
 import { macroTopicOf, isMacroTopic } from '../../src/domain/macroTopic'
 import { passProbabilityPct, passed, scorePct, topicMasteryPct } from '../../src/domain/metrics'
-import { addDays, dayKey, dayNumber, formatDayEs, fromDayNumber } from '../../src/domain/dates'
+import {
+  addDays,
+  dayKey,
+  dayNumber,
+  effectiveDay,
+  formatDayEs,
+  fromDayNumber,
+  msUntilNextLocalMidnight,
+} from '../../src/domain/dates'
 import type { Question } from '../../src/domain/types'
 import { QUESTIONS, sampleExam } from '../../src/data/questions'
 
@@ -91,6 +99,18 @@ describe('dates', () => {
     expect(dayKey(new Date(2026, 0, 5))).toBe('2026-01-05')
     expect(formatDayEs('2026-11-19')).toBe('19 de noviembre de 2026')
     expect(() => dayNumber('bad')).toThrow()
+  })
+
+  it('ignores the phone clock going backwards (within ~2 months)', () => {
+    expect(effectiveDay('2026-10-20', null)).toBe('2026-10-20')
+    expect(effectiveDay('2026-10-20', '2026-10-10')).toBe('2026-10-20')
+    expect(effectiveDay('2026-09-20', '2026-10-20')).toBe('2026-10-20') // date set back a month
+    expect(effectiveDay('2026-01-01', '2026-10-20')).toBe('2026-01-01') // stale far-future value ignored
+  })
+
+  it('schedules the midnight refresh just after local midnight', () => {
+    const ms = msUntilNextLocalMidnight(new Date(2026, 9, 20, 23, 59, 0))
+    expect(ms).toBe(61_000)
   })
 })
 

@@ -15,7 +15,8 @@
     "deploy": "gh-pages -d dist",
     "code": "node tools/make-unlock-code.ts",
     "typecheck": "tsc -b tsconfig.json tsconfig.node.json",
-    "shots": "node tools/screenshots.ts"
+    "shots": "node tools/screenshots.ts",
+    "offline-check": "node tools/offline-check.ts"
   },
   "dependencies": {
     "@fontsource/roboto": "^5.3.0",

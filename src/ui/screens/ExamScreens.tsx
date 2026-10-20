@@ -4,14 +4,19 @@
  *                  no hints, no explanations (real-exam simulation), radio-style selection.
  *   ResultsScreen  port of ui/exam/ResultsScreen.kt — big %, pass/fail at 80%.
  *
+ * The gate is checked here too (not only on the buttons), so typing #/exam/50 in the address bar
+ * can't open a Premium exam. It is evaluated once, on entry: finishing the free quiz marks it used,
+ * and that must not bounce the user to the paywall on the way to their results.
+ *
  * Exam answers update mastery but never use the free study allowance. Finishing a mock saves it to
  * history; finishing a quiz marks today's free quiz as used. Results REPLACE the exam in history,
  * so Back from results goes to where the exam was started, not into a finished exam.
  */
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { sampleExam } from '../../data/questions'
 import { FULL_MOCK_LENGTH, passed, scorePct } from '../../domain/metrics'
-import { markDailyQuiz, recordAnswer, recordMock } from '../../store/appStore'
+import { markDailyQuiz, recordAnswer, recordMock, useAppState } from '../../store/appStore'
+import { dailyQuizAllowed, fullMockAllowed } from '../../domain/gating'
 import { useEntitlement } from '../../store/useEntitlement'
 import { goHome, navigate } from '../router'
 import { Icon } from '../icons'
@@ -25,7 +30,12 @@ export function ExamScreen({ count }: { count: number }) {
   const [correct, setCorrect] = useState(0)
   const [picked, setPicked] = useState<number | null>(null)
   const { premium, today } = useEntitlement()
+  const { quizDay } = useAppState()
   const isMock = count >= FULL_MOCK_LENGTH
+  const [allowed] = useState(() => (isMock ? fullMockAllowed(premium) : dailyQuizAllowed(premium, quizDay, today)))
+  useEffect(() => {
+    if (!allowed) navigate('/paywall', { replace: true })
+  }, [allowed])
   const q = pool[idx]
   const last = idx + 1 === pool.length
 
@@ -45,6 +55,8 @@ export function ExamScreen({ count }: { count: number }) {
       window.scrollTo(0, 0)
     }
   }
+
+  if (!allowed) return null
 
   return (
     <div className="screen-enter">

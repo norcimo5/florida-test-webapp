@@ -76,6 +76,16 @@ describe('free tier', () => {
     expect(await screen.findByRole('heading', { name: 'Desbloquea todo' })).toBeInTheDocument()
   })
 
+  it('blocks Premium/used-up exams opened directly by URL', async () => {
+    start({}, '/exam/50')
+    expect(await screen.findByRole('heading', { name: 'Desbloquea todo' })).toBeInTheDocument()
+  })
+
+  it('blocks a second daily quiz opened directly by URL', async () => {
+    start({ quizDay: dayKey() }, '/exam/5')
+    expect(await screen.findByRole('heading', { name: 'Desbloquea todo' })).toBeInTheDocument()
+  })
+
   it('allows one daily quiz per day', async () => {
     start({ quizDay: dayKey() }, '/exams')
     fireEvent.click(screen.getByText('Quiz Diario Rápido · 5 preguntas (gratis)'))
@@ -134,6 +144,26 @@ describe('activation', () => {
     activate(old)
     expect(screen.getByRole('alert')).toHaveTextContent('venció')
     expect(getState().unlock).toBeNull()
+  })
+
+  it('never replaces a better saved code (lifetime, or a later monthly expiry)', () => {
+    const lifetime = createUnlockCode({ email, plan: 'lifetime', issued: dayKey() }, keys.sk)
+    const shortMonthly = createUnlockCode(
+      { email, plan: 'monthly', issued: dayKey(), expires: addDays(dayKey(), 5) },
+      keys.sk,
+    )
+    start({ unlock: { email, code: lifetime } }, '/activate')
+    activate(shortMonthly)
+    expect(screen.getByRole('alert')).toHaveTextContent('de por vida')
+    expect(getState().unlock?.code).toBe(lifetime)
+  })
+
+  it('a monthly renewal with a later expiry replaces the old code', () => {
+    const now = createUnlockCode({ email, plan: 'monthly', issued: dayKey(), expires: addDays(dayKey(), 5) }, keys.sk)
+    const later = createUnlockCode({ email, plan: 'monthly', issued: dayKey(), expires: addDays(dayKey(), 35) }, keys.sk)
+    start({ unlock: { email, code: now } }, '/activate')
+    activate(later)
+    expect(getState().unlock?.code).toBe(later)
   })
 
   it('an expired monthly code re-locks Premium and shows the notice', async () => {

@@ -30,6 +30,29 @@ export function addDays(key: string, days: number): string {
   return fromDayNumber(dayNumber(key) + days)
 }
 
+/**
+ * How far ahead of the phone's clock a remembered day may be and still be trusted (≈ 2 months).
+ * Larger gaps mean the clock was once wrong in the future, so we trust the clock again.
+ */
+export const MAX_CLOCK_ROLLBACK_DAYS = 62
+
+/**
+ * The day the app should use as "today": the later of the phone's clock day and the latest day the
+ * app has already seen. Setting the phone's date back therefore can't extend a monthly plan or reset
+ * the free daily counters. A remembered day more than MAX_CLOCK_ROLLBACK_DAYS ahead of the clock is
+ * ignored, so an honest user whose clock was once far in the future isn't locked out forever.
+ */
+export function effectiveDay(clockDay: string, lastSeenDay: string | null): string {
+  if (!lastSeenDay || lastSeenDay <= clockDay) return clockDay
+  return dayNumber(lastSeenDay) - dayNumber(clockDay) <= MAX_CLOCK_ROLLBACK_DAYS ? lastSeenDay : clockDay
+}
+
+/** Milliseconds from `now` until just after the next local midnight. */
+export function msUntilNextLocalMidnight(now: Date = new Date()): number {
+  const next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 1)
+  return next.getTime() - now.getTime()
+}
+
 const MONTHS_ES = [
   'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
   'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre',

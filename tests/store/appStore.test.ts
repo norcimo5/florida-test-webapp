@@ -8,6 +8,7 @@ import {
   __setStateForTests,
   getState,
   markDailyQuiz,
+  noteDaySeen,
   recordAnswer,
   recordMock,
   resetProgress,
@@ -55,6 +56,7 @@ describe('appStore', () => {
   })
 
   it('imports study answers and mock history from the old web app once', () => {
+    localStorage.removeItem(STORAGE_KEY)
     localStorage.setItem(
       'fl_driver_progress',
       JSON.stringify({
@@ -66,6 +68,27 @@ describe('appStore', () => {
     expect(getState().answers).toEqual({ a: true, b: false })
     expect(getState().mocks).toEqual([{ at: Date.parse('2026-05-01T10:00:00.000Z'), correct: 42, total: 50 }])
     expect(getState().userName).toBeNull()
+  })
+
+  it('a write never overwrites newer data saved by another open copy of the app', () => {
+    setUserName('Ana')
+    // Another tab activates Premium directly in storage; this copy's memory is now stale.
+    const other = JSON.parse(localStorage.getItem(STORAGE_KEY)!)
+    other.unlock = { email: 'a@b.com', code: 'FLDMV-X' }
+    other.freeCount = 4
+    other.freeDay = '2026-10-20'
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(other))
+    recordAnswer('q1', true, { countsTowardDailyCap: true, premium: false, today: '2026-10-20' })
+    expect(getState().unlock).toEqual({ email: 'a@b.com', code: 'FLDMV-X' })
+    expect(getState().freeCount).toBe(5)
+  })
+
+  it('remembers the latest day seen and never moves it backwards', () => {
+    noteDaySeen('2026-10-20')
+    noteDaySeen('2026-10-01')
+    expect(getState().lastSeenDay).toBe('2026-10-20')
+    noteDaySeen('2026-10-21')
+    expect(getState().lastSeenDay).toBe('2026-10-21')
   })
 
   it('survives corrupt storage', () => {

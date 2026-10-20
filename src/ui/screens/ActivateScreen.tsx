@@ -7,7 +7,7 @@
 import { useState, type FormEvent } from 'react'
 import { verifyUnlockCode, looksLikeEmail } from '../../billing/unlockCode'
 import { REJECT_MESSAGES } from './activationMessages'
-import { entitlementFor, isPremium } from '../../billing/entitlement'
+import { entitlementFor, isPremium, type Entitlement } from '../../billing/entitlement'
 import { UNLOCK_PUBLIC_KEY } from '../../config/unlockPublicKey'
 import { CONTACT_EMAIL } from '../../config/app'
 import { formatDayEs } from '../../domain/dates'
@@ -19,10 +19,25 @@ import { GradientHeader, TealButton, TextLink, Disclaimer } from '../components/
 import './screens.css'
 
 
+/**
+ * Why a newly entered (valid) code should NOT replace the saved one, or null if it may.
+ * Protects a lifetime user from downgrading and a monthly user from losing days by re-entering an
+ * older code.
+ */
+function worseThanCurrent(current: Entitlement, next: Entitlement): string | null {
+  if (current.status === 'lifetime' && next.status !== 'lifetime') {
+    return 'Ya tienes Premium de por vida en este teléfono. No necesitas otro código.'
+  }
+  if (current.status === 'monthly' && next.status === 'monthly' && next.expires < current.expires) {
+    return `Tu código actual dura más (hasta el ${formatDayEs(current.expires)}). Lo dejamos activo.`
+  }
+  return null
+}
+
 /** Premium activation form. */
 export function ActivateScreen() {
   const { unlock } = useAppState()
-  const { today } = useEntitlement()
+  const { today, entitlement } = useEntitlement()
   const [email, setEmail] = useState(unlock?.email ?? '')
   const [code, setCode] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -37,6 +52,8 @@ export function ActivateScreen() {
     if (!isPremium(ent)) {
       return setError(`Este código venció el ${formatDayEs(res.expires!)}. Pide un código nuevo a ${CONTACT_EMAIL}.`)
     }
+    const worse = worseThanCurrent(entitlement, ent)
+    if (worse) return setError(worse)
     saveUnlock({ email, code })
     showSnackbar(
       res.plan === 'lifetime'
